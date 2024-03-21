@@ -76,8 +76,8 @@ namespace TarodevController
             HandleDirection();
             HandleGravity();
             HandleCannonForce();
-            //HandleSwing();
-            
+            HandleSwing();
+
             ApplyMovement();
         }
 
@@ -181,6 +181,8 @@ namespace TarodevController
 
         private void HandleGravity()
         {
+            if (_swinging) return;
+
             if (_grounded && _frameVelocity.y <= 0f)
             {
                 _frameVelocity.y = _stats.GroundingForce;
@@ -201,6 +203,8 @@ namespace TarodevController
                 }
 
                 _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+
+                print("_frameVelocity.y: " + _frameVelocity.y);
             }
         }
 
@@ -253,69 +257,51 @@ namespace TarodevController
         #region Swing
 
         private bool _swinging;
+        Vector3 _grapplePosition;
+        private bool _swingingLeft;
 
         public void StartSwing(Vector3 grapplePosition) {
             _swinging = true;
+            _grapplePosition = grapplePosition;
 
-            Vector3 directionToSwingPoint =  grapplePosition - transform.position; // Direction from player to swing point
-            Vector3 swingDirection = new Vector3(directionToSwingPoint.y, -directionToSwingPoint.x).normalized; // Perpendicular to the directionToSwingPoint
-
-            float currentSpeed = _frameVelocity.magnitude;
+            _swingingLeft = transform.position.x < grapplePosition.x;
+            
+            swingSpeed = initialSwingSpeed;
 
             //_frameVelocity = swingDirection * currentSpeed;
-            print("Start swing");
         }
 
         public void StopSwing() {
             _swinging = false;
         }
 
-        /// <summary>
-        /// this method changes the velocity direction so that it move perpendicular the rope.
-        /// it 
-        /// </summary>
+        
 
-        /*
+        float swingSpeed;
+        [SerializeField] private float initialSwingSpeed;
+        [SerializeField] private float swingAcceleration;
+
         private void HandleSwing() {
-            
             if (_swinging) {
-                Vector2 directionToSwingPoint =  _swingPoint - (Vector2)transform.position; // Direction from player to swing point
 
-                float horDirection = Mathf.Sign(_swingPoint.x - transform.position.x);
+                Vector3 direction =  _grapplePosition - transform.position; // Direction from player to swing point
 
-                Vector2 swingDirection = new Vector2(directionToSwingPoint.y, -directionToSwingPoint.x) * horDirection; // Perpendicular to the directionToSwingPoint
-                float originalSpeed = _frameVelocity.magnitude;
+                Vector3 swingDirection = new Vector3(direction.y, -direction.x).normalized; // Perpendicular to the direction
+                if (!_swingingLeft){
+                    swingDirection = -swingDirection;
+                }
+                
+                swingSpeed = Mathf.MoveTowards(swingSpeed, 0, swingAcceleration * Time.fixedDeltaTime);
 
-                _frameVelocity = swingDirection.normalized * originalSpeed; // keep the same speed but set direction to swingDirection
+                _frameVelocity = swingDirection * swingSpeed;
             }
         }
-        */
-
-        /*
-        private void HandleSwing() {
-            
-            if (_swinging) {
-                Vector2 directionToSwingPoint =  _swingPoint - (Vector2)transform.position; // Direction from player to swing point
-                Vector2 swingDirection = new Vector2(directionToSwingPoint.y, -directionToSwingPoint.x); // Perpendicular to the directionToSwingPoint
-                
-
-
-                float distanceToSwingPoint = directionToSwingPoint.magnitude;
-
-                float currentSpeed = _frameVelocity.magnitude;
-                float swingStrengthModifier = Mathf.Clamp01(1 - distanceToSwingPoint / 10f);
-                
-                Vector2 desiredVelocity = swingDirection.normalized * _swingSpeed * swingStrengthModifier * currentSpeed; // Calculate the desired velocity vector
-                
-                _frameVelocity = desiredVelocity; // Directly set the Rigidbody2D's velocity
-            }
-        }
-        */
 
         #endregion
 
         private void ApplyMovement() {
             _rb.velocity = _frameVelocity;
+            print(_rb.velocity);
         }
 
 #if UNITY_EDITOR
