@@ -6,6 +6,7 @@ namespace SpeedPlatformer.Management
     public static class GameProgress
     {
         public enum Level {
+            _PROTOTYPE_LEVEL,
             _1,
             _2,
             _3
@@ -14,7 +15,8 @@ namespace SpeedPlatformer.Management
         private static Level level;
 
         public static void Initialize() {
-            level = Level._1;
+            //level = Level._1;
+            level = Level._PROTOTYPE_LEVEL;
         }
 
         public static void ResetLevel() {
@@ -23,6 +25,10 @@ namespace SpeedPlatformer.Management
 
         public static void ContinueNextLevel() {
             switch (level) {
+                case Level._PROTOTYPE_LEVEL:
+                    level = Level._1;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
                 case Level._1:
                     level = Level._2;
                     SceneManager.LoadScene(GetLevelScene());
@@ -38,6 +44,8 @@ namespace SpeedPlatformer.Management
             }
         }
 
+        private static string PROTOTYPE_LEVEL = "Precision Level Prototype";
+
         private static string LEVEL_1 = "Level 1";
         private static string LEVEL_2 = "Level 2";
         private static string LEVEL_3 = "Level 3";
@@ -45,6 +53,8 @@ namespace SpeedPlatformer.Management
         private static string GetLevelScene() {
             switch (level) {
                 default:
+                case Level._PROTOTYPE_LEVEL:
+                    return PROTOTYPE_LEVEL;
                 case Level._1:
                     return LEVEL_1;
                 case Level._2:

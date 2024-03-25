@@ -25,7 +25,7 @@ namespace SpeedPlatformer.Environment
 
         private void StartMovement(Collider2D collision) {
             int playerLayer = 6;
-            if (collision.gameObject.layer == playerLayer) {
+            if (!_moved && collision.gameObject.layer == playerLayer) {
                 _moved = true;
 
                 transform.DOMove(transform.position + moveAmount, moveDuration).SetEase(ease);
