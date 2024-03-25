@@ -1,0 +1,11 @@
+using UnityEngine;
+
+namespace SpeedPlatformer {
+
+	[CreateAssetMenu(fileName = "fileName", menuName = "menuName")]
+	public class #SCRIPTNAME# : ScriptableObject {
+		
+		
+
+	}
+}

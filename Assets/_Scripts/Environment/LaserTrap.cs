@@ -1,3 +1,4 @@
+using SpeedPlatformer.Management;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment
@@ -47,7 +48,7 @@ namespace SpeedPlatformer.Environment
 
                 int playerLayer = 6;
                 if (hit.collider.gameObject.layer == playerLayer) {
-                    PlayerDeath.Instance.Kill();
+                    GameProgress.ResetLevel();
                 }
             }
 

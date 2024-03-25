@@ -36,6 +36,13 @@ public static class Helpers
         image.color = color;
     }
 
+    public static Vector3 PerpendicularDirection(this Vector3 originalDirection) {
+        return new Vector3(originalDirection.y, -originalDirection.x);
+    }
+    public static Vector2 PerpendicularDirection(this Vector2 originalDirection) {
+        return new Vector2(originalDirection.y, -originalDirection.x);
+    }
+
     public static bool IsMouseOverUI()
     {
         if (EventSystem.current == null) EventSystem.current = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).GetComponent<EventSystem>();

@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 
 namespace SpeedPlatformer.Environment
 {
@@ -22,6 +21,10 @@ namespace SpeedPlatformer.Environment
             transform.DOMove(pos2, totalDuration / 2).SetEase(Ease.InOutSine)
                     .OnComplete(() => transform.DOMove(pos1, totalDuration / 2).SetEase(Ease.InOutSine))
                     .SetLoops(-1, LoopType.Yoyo); // Infinite loops, Yoyo style (back and forth)
+        }
+
+        private void OnDestroy() {
+            transform.DOKill();
         }
 
         private void OnDrawGizmos() {

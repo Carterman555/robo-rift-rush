@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment
@@ -9,11 +6,12 @@ namespace SpeedPlatformer.Environment
     public class MovingEnvironment : MonoBehaviour
     {
         [SerializeField] private TriggerEvent startTrigger;
-        private bool moving = false;
 
         [SerializeField] private Vector3 moveAmount;
         [SerializeField] private float finalRotation;
         [SerializeField] private float moveDuration;
+
+        private bool _moved; // moving or moved
 
         private void OnEnable() {
             startTrigger.OnTriggerEntered += StartMovement;
@@ -28,6 +26,8 @@ namespace SpeedPlatformer.Environment
         private void StartMovement(Collider2D collision) {
             int playerLayer = 6;
             if (collision.gameObject.layer == playerLayer) {
+                _moved = true;
+
                 transform.DOMove(transform.position + moveAmount, moveDuration).SetEase(ease);
                 transform.DORotate(new Vector3(0, 0, finalRotation), moveDuration).SetEase(ease);
             }

@@ -14,40 +14,40 @@ namespace TarodevController
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
-        [SerializeField] private ScriptableStats _stats;
-        private Rigidbody2D _rb;
-        private CapsuleCollider2D _col;
-        private FrameInput _frameInput;
-        private Vector2 _frameVelocity;
-        private bool _cachedQueryStartInColliders;
+        [SerializeField] private ScriptableStats stats;
+        private Rigidbody2D rb;
+        private CapsuleCollider2D col;
+        private FrameInput frameInput;
+        private Vector2 frameVelocity;
+        private bool cachedQueryStartInColliders;
 
         #region Interface
 
-        public Vector2 FrameInput => _frameInput.Move;
+        public Vector2 FrameInput => frameInput.Move;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
 
         #endregion
 
-        private float _time;
+        private float time;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _col = GetComponent<CapsuleCollider2D>();
+            rb = GetComponent<Rigidbody2D>();
+            col = GetComponent<CapsuleCollider2D>();
 
-            _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
+            cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
 
         private void Update()
         {
-            _time += Time.deltaTime;
+            time += Time.deltaTime;
             GatherInput();
         }
 
         private void GatherInput()
         {
-            _frameInput = new FrameInput
+            frameInput = new FrameInput
             {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.C),
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.C),
@@ -55,16 +55,16 @@ namespace TarodevController
                 BoostHeld = Input.GetKey(KeyCode.LeftShift)
             };
 
-            if (_stats.SnapInput)
+            if (stats.SnapInput)
             {
-                _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < _stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
-                _frameInput.Move.y = Mathf.Abs(_frameInput.Move.y) < _stats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.y);
+                frameInput.Move.x = Mathf.Abs(frameInput.Move.x) < stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(frameInput.Move.x);
+                frameInput.Move.y = Mathf.Abs(frameInput.Move.y) < stats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(frameInput.Move.y);
             }
 
-            if (_frameInput.JumpDown)
+            if (frameInput.JumpDown)
             {
-                _jumpToConsume = true;
-                _timeJumpWasPressed = _time;
+                jumpToConsume = true;
+                timeJumpWasPressed = time;
             }
         }
 
@@ -83,95 +83,95 @@ namespace TarodevController
 
         #region Collisions
         
-        private float _frameLeftGrounded = float.MinValue;
-        private bool _grounded;
-
-        [SerializeField] private float groundCheckDistance;
+        private float frameLeftGrounded = float.MinValue;
+        private bool grounded;
 
         private void CheckCollisions()
         {
+            // control whether raycasts or linecasts originating from within colliders should include those colliders in their results or not
             Physics2D.queriesStartInColliders = false;
 
             // Ground and Ceiling
-            bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
-            bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
+            bool groundHit = Physics2D.CapsuleCast(col.bounds.center, col.size, col.direction, 0, Vector2.down, stats.GrounderDistance, ~stats.PlayerLayer);
+            bool ceilingHit = Physics2D.CapsuleCast(col.bounds.center, col.size, col.direction, 0, Vector2.up, stats.GrounderDistance, ~stats.PlayerLayer);
 
-            // Hit a Ceiling
-            if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
+            // if hits ceiling, stop moving up
+            if (ceilingHit) frameVelocity.y = Mathf.Min(0, frameVelocity.y);
 
             // Landed on the Ground
-            if (!_grounded && groundHit)
+            if (!grounded && groundHit)
             {
-                _grounded = true;
-                _coyoteUsable = true;
-                _bufferedJumpUsable = true;
-                _endedJumpEarly = false;
-                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+                grounded = true;
+                coyoteUsable = true;
+                bufferedJumpUsable = true;
+                endedJumpEarly = false;
+                inAirFromSwing = false;
+                GroundedChanged?.Invoke(true, Mathf.Abs(frameVelocity.y));
             }
             // Left the Ground
-            else if (_grounded && !groundHit)
+            else if (grounded && !groundHit)
             {
-                _grounded = false;
-                _frameLeftGrounded = _time;
+                grounded = false;
+                frameLeftGrounded = time;
                 GroundedChanged?.Invoke(false, 0);
             }
 
-            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
+            Physics2D.queriesStartInColliders = cachedQueryStartInColliders;
         }
 
         #endregion
 
         #region Jumping
 
-        private bool _jumpToConsume;
-        private bool _bufferedJumpUsable;
-        private bool _endedJumpEarly;
-        private bool _coyoteUsable;
-        private float _timeJumpWasPressed;
+        private bool jumpToConsume;
+        private bool bufferedJumpUsable;
+        private bool endedJumpEarly;
+        private bool coyoteUsable;
+        private float timeJumpWasPressed;
 
-        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        private bool HasBufferedJump => bufferedJumpUsable && time < timeJumpWasPressed + stats.JumpBuffer;
+        private bool CanUseCoyote => coyoteUsable && !grounded && time < frameLeftGrounded + stats.CoyoteTime;
 
         private void HandleJump()
         {
-            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.velocity.y > 0) _endedJumpEarly = true;
+            if (!endedJumpEarly && !grounded && !frameInput.JumpHeld && rb.velocity.y > 0 && !inAirFromSwing) endedJumpEarly = true;
 
-            if (!_jumpToConsume && !HasBufferedJump) return;
+            if (!jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) ExecuteJump();
+            if (grounded || CanUseCoyote) ExecuteJump();
 
-            _jumpToConsume = false;
+            jumpToConsume = false;
         }
 
         private void ExecuteJump()
         {
-            _endedJumpEarly = false;
-            _timeJumpWasPressed = 0;
-            _bufferedJumpUsable = false;
-            _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower;
+            endedJumpEarly = false;
+            timeJumpWasPressed = 0;
+            bufferedJumpUsable = false;
+            coyoteUsable = false;
+            frameVelocity.y = stats.JumpPower;
             Jumped?.Invoke();
         }
 
         #endregion
 
         #region Horizontal
-        private bool Boosting => _frameInput.BoostHeld;
+        private bool Boosting => frameInput.BoostHeld;
 
         private void HandleDirection()
         {
-            if (_swinging) return;
+            if (swinging) return;
 
-            if (_frameInput.Move.x == 0)
+            if (frameInput.Move.x == 0)
             {
-                var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+                var deceleration = grounded ? stats.GroundDeceleration : stats.AirDeceleration;
+                frameVelocity.x = Mathf.MoveTowards(frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
             else
             {
-                float maxSpeed = Boosting ? _stats.BoostMaxSpeed : _stats.MaxSpeed;
-                float acceleration = Boosting ? _stats.BoostAcceleration : _stats.BoostAcceleration;
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
+                float maxSpeed = Boosting ? stats.BoostMaxSpeed : stats.MaxSpeed;
+                float acceleration = Boosting ? stats.BoostAcceleration : stats.BoostAcceleration;
+                frameVelocity.x = Mathf.MoveTowards(frameVelocity.x, frameInput.Move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
             }
         }
 
@@ -181,30 +181,25 @@ namespace TarodevController
 
         private void HandleGravity()
         {
-            if (_swinging) return;
+            if (swinging) return;
 
-            if (_grounded && _frameVelocity.y <= 0f)
+            if (grounded && frameVelocity.y <= 0f)
             {
-                _frameVelocity.y = _stats.GroundingForce;
+                frameVelocity.y = stats.GroundingForce;
             }
             else
             {
-                var inAirGravity = _stats.FallAcceleration;
+                var inAirGravity = stats.FallAcceleration;
 
-                if (_endedJumpEarly && _frameVelocity.y > 0) {
-                    inAirGravity *= _stats.JumpEndEarlyGravityModifier;
+                if (endedJumpEarly && frameVelocity.y > 0) {
+                    inAirGravity *= stats.JumpEndEarlyGravityModifier;
                 }
 
                 if (Boosting) {
-                    inAirGravity = _stats.BoostGravity;
-                }
-                else if (_swinging) {
-                    inAirGravity = _stats.SwingGravity;
+                    inAirGravity = stats.BoostGravity;
                 }
 
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
-
-                print("_frameVelocity.y: " + _frameVelocity.y);
+                frameVelocity.y = Mathf.MoveTowards(frameVelocity.y, -stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
@@ -215,99 +210,151 @@ namespace TarodevController
         public void HitTramp(Vector2 trampForward) {
             // Calculate the tramp force based on trampRotation and _frameVelocity
 
-            float forceMagnitude = _frameVelocity.magnitude * _stats.TrampForceMult; // Use the player's current speed as the force magnitude
-            forceMagnitude = Mathf.Max(forceMagnitude, _stats.MinTrampForce);
+            float forceMagnitude = frameVelocity.magnitude * stats.TrampForceMult; // Use the player's current speed as the force magnitude
+            forceMagnitude = Mathf.Max(forceMagnitude, stats.MinTrampForce);
 
-            Vector2 forceDirection = Vector2.Reflect(_frameVelocity.normalized, trampForward); // this should use the trampForward and the frameVelocity so it bounces off the opposite way the player bounced on
+            Vector2 forceDirection = Vector2.Reflect(frameVelocity.normalized, trampForward); // this should use the trampForward and the frameVelocity so it bounces off the opposite way the player bounced on
 
             Vector2 trampForce = forceDirection * forceMagnitude;
 
-            _frameVelocity = trampForce; 
+            frameVelocity = trampForce; 
         }
 
         #endregion
 
         #region Cannon Force
         
-        private bool _boostingInCannon;
-        private Vector2 _cannonForce;
+        private bool boostingInCannon;
+        private Vector2 cannonForce;
 
         public void AddCannonForce(Vector2 direction) {
-            _boostingInCannon = true;
-            _cannonForce = direction * _stats.CannonBoost;
+            boostingInCannon = true;
+            cannonForce = direction * stats.CannonBoost;
         }
 
         private void HandleCannonForce() {
-            if (_grounded) {
-                _boostingInCannon = false;
+            if (grounded) {
+                boostingInCannon = false;
             }
 
-            if (_boostingInCannon) {
+            if (boostingInCannon) {
                 
-                _cannonForce.x = Mathf.MoveTowards(_cannonForce.x, 0f, _stats.CannonDeacceleration * Time.fixedDeltaTime);
-                _cannonForce.y = Mathf.MoveTowards(_cannonForce.y, -_stats.MaxFallSpeed, _stats.FallAcceleration * Time.fixedDeltaTime);
+                cannonForce.x = Mathf.MoveTowards(cannonForce.x, 0f, stats.CannonDeacceleration * Time.fixedDeltaTime);
+                cannonForce.y = Mathf.MoveTowards(cannonForce.y, -stats.MaxFallSpeed, stats.FallAcceleration * Time.fixedDeltaTime);
 
-                _frameVelocity = _cannonForce;
+                frameVelocity = cannonForce;
             }
         }
-        
+
 
         #endregion
 
         #region Swing
 
-        private bool _swinging;
-        Vector3 _grapplePosition;
-        private bool _swingingLeft;
+        private bool swinging;
+        private bool inAirFromSwing; // so doesn't fall fast after swing from JumpEndEarlyGravityModifier
+
+        private float swingSpeed;
+
+        private bool swingingLeft;
+        private bool stoppedAtBottomOfSwing;
+
+        Vector3 grapplePosition;
 
         public void StartSwing(Vector3 grapplePosition) {
-            _swinging = true;
-            _grapplePosition = grapplePosition;
 
-            _swingingLeft = transform.position.x < grapplePosition.x;
-            
-            swingSpeed = initialSwingSpeed;
+            swinging = true;
+            inAirFromSwing = true;
+            stoppedAtBottomOfSwing = false;
+            this.grapplePosition = grapplePosition;
 
-            //_frameVelocity = swingDirection * currentSpeed;
+            //... direction from the player to the grapple point
+            Vector3 toGrapple = (this.grapplePosition - transform.position).normalized;
+
+            //... perpendicular to the direction
+            Vector3 swingDirection = toGrapple.PerpendicularDirection().normalized;
+
+            float projectedSpeed = Vector3.Dot(frameVelocity, swingDirection);
+            swingSpeed = Mathf.Abs(projectedSpeed);
+
+            swingingLeft = projectedSpeed > 0f;
         }
 
         public void StopSwing() {
-            _swinging = false;
+
+            //... so doesn't fall fast after swing
+            endedJumpEarly = false;
+
+            // apply a boost on release
+            if (swinging) {
+                frameVelocity += Vector2.one * swingSpeed * stats.ReleaseBoost;
+            }
+
+            swinging = false;
         }
 
-        
-
-        float swingSpeed;
-        [SerializeField] private float initialSwingSpeed;
-        [SerializeField] private float swingAcceleration;
-
         private void HandleSwing() {
-            if (_swinging) {
+            if (swinging) {
 
-                Vector3 direction =  _grapplePosition - transform.position; // Direction from player to swing point
+                // to avoid jittering caused by player rapidly switching directions at bottom of swing
+                if (stoppedAtBottomOfSwing) {
+                    frameVelocity = Vector2.zero;
+                    return;
+                }
 
-                Vector3 swingDirection = new Vector3(direction.y, -direction.x).normalized; // Perpendicular to the direction
-                if (!_swingingLeft){
+                //... direction from the player to the grapple point
+                Vector3 toGrapple = (grapplePosition - transform.position).normalized;
+
+                //... perpendicular to the direction
+                Vector3 swingDirection = toGrapple.PerpendicularDirection().normalized; 
+
+                bool leftOfGrapple = toGrapple.x < 0f;
+
+                // swing the player back and forth
+                if (swingingLeft) {
+                    if (leftOfGrapple) {
+                        swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                    }
+                    else {
+                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                    }
+                }
+                else {
+                    if (leftOfGrapple) {
+                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                    }
+                    else {
+                        swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                    }
+
                     swingDirection = -swingDirection;
                 }
-                
-                swingSpeed = Mathf.MoveTowards(swingSpeed, 0, swingAcceleration * Time.fixedDeltaTime);
 
-                _frameVelocity = swingDirection * swingSpeed;
+                // when player slows down to a stop, switch directions and check if should stop swinging
+                if (swingSpeed <= 0.01f) {
+                    swingingLeft = !swingingLeft;
+
+                    // switching directions when player is very close to bottom of swing causes jittering, so stop the player
+                    if (Mathf.Abs(toGrapple.x) < 0.01f) {
+                        transform.position = new Vector3(grapplePosition.x, transform.position.y);
+                        stoppedAtBottomOfSwing = true;
+                    }
+                }
+
+                frameVelocity = swingDirection * swingSpeed;
             }
         }
 
         #endregion
 
         private void ApplyMovement() {
-            _rb.velocity = _frameVelocity;
-            print(_rb.velocity);
+            rb.velocity = frameVelocity;
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (_stats == null) Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
+            if (stats == null) Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
         }
 #endif
     }

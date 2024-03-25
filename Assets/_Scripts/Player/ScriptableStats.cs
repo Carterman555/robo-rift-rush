@@ -67,6 +67,7 @@ namespace TarodevController
         public float MinTrampForce = 20f;
 
         [Header("Swing")]
-        public float SwingGravity;
+        public float SwingAcceleration = 80f;
+        public float ReleaseBoost = 0.5f;
     }
 }
