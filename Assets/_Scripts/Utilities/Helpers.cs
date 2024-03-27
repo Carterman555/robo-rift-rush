@@ -43,6 +43,10 @@ public static class Helpers
         return new Vector2(originalDirection.y, -originalDirection.x);
     }
 
+    public static Vector2 AngleToDirection(this float angle) {
+        return new Vector2(Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+    }
+
     public static bool IsMouseOverUI()
     {
         if (EventSystem.current == null) EventSystem.current = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).GetComponent<EventSystem>();

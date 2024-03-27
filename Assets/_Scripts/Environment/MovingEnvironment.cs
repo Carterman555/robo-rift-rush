@@ -9,7 +9,7 @@ namespace SpeedPlatformer.Environment
 
         [SerializeField] private Vector3 moveAmount;
         [SerializeField] private float finalRotation;
-        [SerializeField] private float moveDuration;
+        [SerializeField] private float moveSpeed;
 
         private bool _moved; // moving or moved
 
@@ -27,6 +27,8 @@ namespace SpeedPlatformer.Environment
             int playerLayer = 6;
             if (!_moved && collision.gameObject.layer == playerLayer) {
                 _moved = true;
+
+                float moveDuration = moveAmount.magnitude / moveSpeed;
 
                 transform.DOMove(transform.position + moveAmount, moveDuration).SetEase(ease);
                 transform.DORotate(new Vector3(0, 0, finalRotation), moveDuration).SetEase(ease);
