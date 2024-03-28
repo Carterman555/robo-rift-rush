@@ -39,7 +39,6 @@ namespace SpeedPlatformer.Environment
             float timeInCannon = 1.5f;
             if (shootTimer > timeInCannon) {
                 ShootPlayer();
-
             }
 
             if (inCannon) {
@@ -64,12 +63,14 @@ namespace SpeedPlatformer.Environment
         }
 
         private void ShootPlayer() {
-            player.gameObject.SetActive(true);
+            inCannon = false;
             shootTimer = float.MinValue;
             enterCannonTimer = 0;
-            inCannon = false;
 
+            player.gameObject.SetActive(true);
             player.GetComponent<PlayerController>().AddCannonForce(transform.right);
+
+            CameraManager.Instance.SwitchToPlayerCamera();
         }
     }
 }
