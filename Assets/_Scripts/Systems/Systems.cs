@@ -4,5 +4,7 @@
 /// </summary>
 public class Systems : PersistentSingleton<Systems>
 {
-    
+    protected override void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
 }

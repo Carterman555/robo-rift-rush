@@ -1,10 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
-{
-    public class ContinuousMovingEnvironment : MonoBehaviour
-    {
+namespace SpeedPlatformer.Environment {
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class ContinuousMovingEnvironment : MonoBehaviour {
         [SerializeField] private TriggerEvent startTrigger;
 
         [SerializeField] private float moveAngle;
@@ -18,26 +17,25 @@ namespace SpeedPlatformer.Environment
 
         private bool moving;
 
+        private Rigidbody2D rb;
+
+        private void Awake() {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
         private void OnEnable() {
-            startTrigger.OnTriggerEntered += StartMovement;
+            startTrigger.OnTriggerEntered += TryStartMovement;
         }
 
         private void OnDisable() {
-            startTrigger.OnTriggerEntered -= StartMovement;
+            startTrigger.OnTriggerEntered -= TryStartMovement;
         }
 
-        private void StartMovement(Collider2D collision) {
-            int playerLayer = 6;
-            if (!moving && collision.gameObject.layer == playerLayer) {
+        private void TryStartMovement(Collider2D collision) {
+            int cameraFrameLayer = 8;
+            if (!moving && collision.gameObject.layer == cameraFrameLayer) {
                 moving = true;
             }
-        }
-
-        private Vector3 originalPos;
-        private Vector3 originalRot; 
-        private void Awake() {
-            originalPos = transform.position;
-            originalRot = transform.eulerAngles;
         }
 
         private void FixedUpdate() {
@@ -51,17 +49,10 @@ namespace SpeedPlatformer.Environment
 
             // translate
             Vector3 moveDirection = moveAngle.AngleToDirection();
-            transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
+            rb.velocity = moveDirection * moveSpeed;
 
             // rotate
-            transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.fixedDeltaTime));
-        }
-
-        [ContextMenu("Reset Pos")]
-        private void ResetPosAndRot() {
-            transform.position = originalPos;
-            transform.eulerAngles = originalRot;
-            transform.DOKill();
+            rb.angularVelocity = rotationSpeed;
         }
 
         private void OnDrawGizmos() {

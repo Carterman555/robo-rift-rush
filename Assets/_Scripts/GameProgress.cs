@@ -6,8 +6,9 @@ namespace SpeedPlatformer.Management
     public static class GameProgress
     {
         public enum Level {
-            PRECISION_PROTOTYPE,
             SPEED_PROTOTYPE,
+            SWING_PROTOTYPE,
+            PRECISION_PROTOTYPE,
             _1,
             _2,
             _3
@@ -17,7 +18,7 @@ namespace SpeedPlatformer.Management
 
         public static void Initialize() {
             //level = Level._1;
-            level = Level.SPEED_PROTOTYPE;
+            level = Level.SWING_PROTOTYPE;
         }
 
         public static void ResetLevel() {
@@ -26,7 +27,15 @@ namespace SpeedPlatformer.Management
 
         public static void ContinueNextLevel() {
             switch (level) {
+                case Level.PRECISION_PROTOTYPE:
+                    level = Level.SPEED_PROTOTYPE;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
                 case Level.SPEED_PROTOTYPE:
+                    level = Level.SWING_PROTOTYPE;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
+                case Level.SWING_PROTOTYPE:
                     level = Level._1;
                     SceneManager.LoadScene(GetLevelScene());
                     break;
@@ -45,8 +54,9 @@ namespace SpeedPlatformer.Management
             }
         }
 
-        private static string PROTOTYPE_LEVEL = "Precision Level Prototype";
-        private static string SPEED_PROTOTYPE = "SPEED Level Prototype 1";
+        private static string PRECISION_PROTOTYPE = "Precision Level Prototype";
+        private static string SPEED_PROTOTYPE = "Speed Level Prototype 1";
+        private static string SWING_PROTOTYPE = "Swing Level Prototype";
 
         private static string LEVEL_1 = "Level 1";
         private static string LEVEL_2 = "Level 2";
@@ -55,8 +65,12 @@ namespace SpeedPlatformer.Management
         private static string GetLevelScene() {
             switch (level) {
                 default:
+                case Level.PRECISION_PROTOTYPE:
+                    return PRECISION_PROTOTYPE;
                 case Level.SPEED_PROTOTYPE:
                     return SPEED_PROTOTYPE;
+                case Level.SWING_PROTOTYPE:
+                    return SWING_PROTOTYPE;
                 case Level._1:
                     return LEVEL_1;
                 case Level._2:

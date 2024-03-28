@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Swing Level Prototype.unity
+    guid: 97141cab8f9466245af69f018a14ee30
+  - enabled: 1
+    path: Assets/Scenes/Precision Level Prototype.unity
+    guid: a18cafb25a456ea4bb9d3156a95be91d
+  - enabled: 1
+    path: Assets/Scenes/Speed Level Prototype 1.unity
+    guid: 236f3c569e66f5f4dac02cd079bc4282
   m_configObjects: {}

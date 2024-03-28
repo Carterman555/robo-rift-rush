@@ -170,7 +170,7 @@ namespace TarodevController
             else
             {
                 float maxSpeed = Boosting ? stats.BoostMaxSpeed : stats.MaxSpeed;
-                float acceleration = Boosting ? stats.BoostAcceleration : stats.BoostAcceleration;
+                float acceleration = Boosting ? stats.BoostAcceleration : stats.Acceleration;
                 frameVelocity.x = Mathf.MoveTowards(frameVelocity.x, frameInput.Move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
             }
         }
@@ -347,8 +347,18 @@ namespace TarodevController
 
         #endregion
 
+        #region Move With Environment
+
+        private Vector2 environmentVelocity;
+
+        public void SetEnvironmentVelocity(Vector2 velocity) {
+            environmentVelocity = velocity;
+        }
+
+        #endregion
+
         private void ApplyMovement() {
-            rb.velocity = frameVelocity;
+            rb.velocity = frameVelocity + environmentVelocity;
         }
 
 #if UNITY_EDITOR

@@ -1,44 +1,34 @@
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer
-{
-    public class CopyMovementToPlayer : MonoBehaviour
-    {
-        private Transform player = null;
+namespace SpeedPlatformer {
+    [RequireComponent (typeof(Rigidbody2D))]
+    public class CopyMovementToPlayer : MonoBehaviour {
+
+        private PlayerController playerController = null;
+        private Rigidbody2D rb;
+
+        private void Awake() {
+            rb = GetComponent<Rigidbody2D>();
+        }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            int playerLayer = 6;
-            if (collision.gameObject.layer == playerLayer) {
-                player = collision.transform;
-
-                player.SetParent(transform);
+            if (collision.gameObject.TryGetComponent(out PlayerController controller)) {
+                playerController = controller;
             }
         }
 
         private void OnCollisionExit2D(Collision2D collision) {
-            int playerLayer = 6;
-            if (collision.gameObject.layer == playerLayer) {
-                player.SetParent(null);
-
-                //player.GetComponent<PlayerController>().SetEnvironmentVelocity(Vector2.zero);
-                player = null;
-
+            if (collision.gameObject.TryGetComponent(out PlayerController controller)) {
+                playerController.SetEnvironmentVelocity(Vector2.zero);
+                playerController = null;
             }
         }
 
-        private Vector3 previousPos;
-
-        private void FixedUpdate() {
-
-            if (player != null) {
-                Vector3 frameVelocity = transform.position - previousPos;
-                Vector3 velocity = frameVelocity / Time.fixedDeltaTime; // per sec
-
-                //player.GetComponent<PlayerController>().SetEnvironmentVelocity(velocity);
+        private void Update() {
+            if (playerController != null) {
+                playerController.SetEnvironmentVelocity(rb.velocity);
             }
-
-            previousPos = transform.position;
         }
     }
 }

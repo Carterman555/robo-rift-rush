@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using SpeedPlatformer.Management;
 using TarodevController;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment
@@ -56,10 +54,13 @@ namespace SpeedPlatformer.Environment
         }
 
         private void PutPlayerInCannon() {
+            inCannon = true;
+            shootTimer = 0;
+
             player.gameObject.SetActive(false);
             player.transform.position = transform.position;
-            shootTimer = 0;
-            inCannon = true;
+
+            CameraManager.Instance.SwitchToCannonCamera();
         }
 
         private void ShootPlayer() {
