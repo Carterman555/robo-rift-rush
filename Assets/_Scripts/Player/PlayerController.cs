@@ -77,6 +77,7 @@ namespace TarodevController
             HandleGravity();
             HandleCannonForce();
             HandleSwing();
+            HandleGrapple();
 
             ApplyMovement();
         }
@@ -160,7 +161,7 @@ namespace TarodevController
 
         private void HandleDirection()
         {
-            if (swinging) return;
+            if (swinging || grappling) return;
 
             if (frameInput.Move.x == 0)
             {
@@ -181,7 +182,7 @@ namespace TarodevController
 
         private void HandleGravity()
         {
-            if (swinging) return;
+            if (swinging || grappling) return;
 
             if (grounded && frameVelocity.y <= 0f)
             {
@@ -343,6 +344,46 @@ namespace TarodevController
 
                 frameVelocity = swingDirection * swingSpeed;
             }
+        }
+
+        #endregion
+
+        #region Grapple Force
+
+        private bool grappling;
+        private Vector3 grapplingHookPosition;
+        private float grappleSpeed;
+
+        public void StartGrappling(Vector3 grapplePosition) {
+            grappling = true;
+            grapplingHookPosition = grapplePosition;
+
+            //... direction from the player to the grapple point
+            Vector3 toGrapple = (grapplingHookPosition - transform.position).normalized;
+
+            grappleSpeed = maxGrappleSpeed;
+        }
+
+        public void StopGrappling() {
+            grappling = false;
+
+            //... so doesn't fall fast after grapple
+            endedJumpEarly = false;
+        }
+
+        [SerializeField] private float maxGrappleSpeed; 
+        [SerializeField] private float grappleAcceleration; 
+
+        private void HandleGrapple() {
+            if (!grappling) return;
+
+            //... direction from the player to the grapple point
+            Vector3 toGrapple = (grapplingHookPosition - transform.position).normalized;
+
+            //... increase speed
+            grappleSpeed = Mathf.MoveTowards(grappleSpeed, maxGrappleSpeed, grappleAcceleration * Time.fixedDeltaTime);
+
+            frameVelocity = toGrapple * grappleSpeed;
         }
 
         #endregion
