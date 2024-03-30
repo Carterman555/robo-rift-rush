@@ -50,6 +50,9 @@ TagManager:
   - name: Ground
     uniqueID: 1062877393
     locked: 0
+  - name: SpeedBooster
+    uniqueID: 977797043
+    locked: 0
   - name: Traps
     uniqueID: 4078160665
     locked: 0

@@ -107,6 +107,7 @@ namespace TarodevController
                 bufferedJumpUsable = true;
                 endedJumpEarly = false;
                 inAirFromSwing = false;
+                inAirFromBoost = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(frameVelocity.y));
             }
             // Left the Ground
@@ -133,9 +134,11 @@ namespace TarodevController
         private bool HasBufferedJump => bufferedJumpUsable && time < timeJumpWasPressed + stats.JumpBuffer;
         private bool CanUseCoyote => coyoteUsable && !grounded && time < frameLeftGrounded + stats.CoyoteTime;
 
+        private bool InAirFromJump => !inAirFromSwing && !inAirFromBoost;
+
         private void HandleJump()
         {
-            if (!endedJumpEarly && !grounded && !frameInput.JumpHeld && rb.velocity.y > 0 && !inAirFromSwing) endedJumpEarly = true;
+            if (!endedJumpEarly && !grounded && !frameInput.JumpHeld && rb.velocity.y > 0 && InAirFromJump) endedJumpEarly = true;
 
             if (!jumpToConsume && !HasBufferedJump) return;
 
@@ -384,6 +387,17 @@ namespace TarodevController
             grappleSpeed = Mathf.MoveTowards(grappleSpeed, maxGrappleSpeed, grappleAcceleration * Time.fixedDeltaTime);
 
             frameVelocity = toGrapple * grappleSpeed;
+        }
+
+        #endregion
+
+        #region Boost Area Force
+
+        private bool inAirFromBoost;
+
+        public void Boost(Vector2 force) {
+            frameVelocity += force;
+            inAirFromBoost = true;
         }
 
         #endregion
