@@ -26,7 +26,17 @@ namespace SpeedPlatformer.Player
 
         private PlayerController playerController;
         private DistanceJoint2D joint;
-        
+
+        private Vector2 environmentVelocity;
+
+        #region Set Methods
+
+        public void SetEnvironmentVelocity(Vector2 velocity) {
+            environmentVelocity = velocity;
+        }
+
+        #endregion
+
         private void Awake() {
             playerController = GetComponent<PlayerController>();
             joint = GetComponent<DistanceJoint2D>();
@@ -74,6 +84,12 @@ namespace SpeedPlatformer.Player
             }
         }
 
+        private void FixedUpdate() {
+            if (state == GrappleState.Grappled) {
+                SetGrappleObjectPos(grapplePoint.position + ((Vector3)environmentVelocity * Time.fixedDeltaTime));
+            }
+        }
+
         private void CheckForStopGrapple() {
             if (!Input.GetMouseButton(0)) {
                 ChangeState(GrappleState.Deactive);
@@ -86,7 +102,7 @@ namespace SpeedPlatformer.Player
         /// When grapple gets launched: enable the grapple object and line, set their position, and get the target
         /// grapple position for the object to move towards
         /// 
-        /// When the grapple objects touches the ground layer, and grapples: enable the joint and start applying
+        /// When the grapple objects touches the ground layer, and grapples: enable the joint, set the distance, and start applying
         /// swing physics
         /// </summary>
         private void ChangeState(GrappleState newState) {
@@ -112,6 +128,7 @@ namespace SpeedPlatformer.Player
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
+                joint.distance = Vector3.Distance(transform.position, grapplePoint.position);
 
                 playerController.StartSwing(grapplePoint.position);
             }

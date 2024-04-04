@@ -9,5 +9,7 @@ namespace SpeedPlatformer
         public static int GroundLayer { get; private set; } = 3;
         public static int PlayerLayer { get; private set; } = 6;
         public static int TrapLayer { get; private set; } = 7;
+        public static int CameraFrameLayer { get; private set; } = 8;
+        public static int GrappleLayer { get; private set; } = 9;
     }
 }

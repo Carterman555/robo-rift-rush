@@ -1,57 +1,153 @@
 using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
-{
-    public class MovingEnvironment : MonoBehaviour
-    {
-        [SerializeField] private TriggerEvent startTrigger;
+namespace SpeedPlatformer.Environment {
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class MovingEnvironment : MonoBehaviour {
+        public TriggerEvent moveTrigger;
 
-        [SerializeField] private Vector3 moveAmount;
-        [SerializeField] private float finalRotation;
-        [SerializeField] private float moveSpeed;
+        [SerializeField] private float moveAngle = 180f;
+        [SerializeField] private float maxMoveSpeed;
+        [SerializeField] private float maxRotationSpeed;
 
-        private bool _moved; // moving or moved
+        private float moveSpeed;
+        private float rotationSpeed;
+
+        [SerializeField] private float moveAcceleration = 20f;
+
+        public bool continuousMovement = true;
+        [HideInInspector] public float moveDistance;
+
+
+        private Rigidbody2D rb;
+
+        private void Awake() {
+            rb = GetComponent<Rigidbody2D>();
+        }
 
         private void OnEnable() {
-            startTrigger.OnTriggerEntered += StartMovement;
+            moveTrigger.OnTriggerEntered += TryStartMovement;
         }
 
         private void OnDisable() {
-            startTrigger.OnTriggerEntered -= StartMovement;
+            moveTrigger.OnTriggerEntered -= TryStartMovement;
         }
 
-        [SerializeField] private Ease ease;
+        enum MovementType { Waiting, Accelerating, Constant, Deacelerating, Moved }
+        private MovementType currentMovement = MovementType.Waiting;
 
-        private void StartMovement(Collider2D collision) {
-            int playerLayer = 6;
-            if (!_moved && collision.gameObject.layer == playerLayer) {
-                _moved = true;
-
-                float moveDuration = moveAmount.magnitude / moveSpeed;
-
-                transform.DOMove(transform.position + moveAmount, moveDuration).SetEase(ease);
-                transform.DORotate(new Vector3(0, 0, finalRotation), moveDuration).SetEase(ease);
+        private void TryStartMovement(Collider2D collision) {
+            if (currentMovement == MovementType.Waiting && collision.gameObject.layer == GameLayers.CameraFrameLayer) {
+                currentMovement = MovementType.Accelerating;
             }
         }
 
-        private Vector3 originalPos;
-        private Vector3 originalRot; 
-        private void Awake() {
-            originalPos = transform.position;
-            originalRot = transform.eulerAngles;
+        float distanceMoved = 0;
+
+        private void FixedUpdate() {
+
+            switch (currentMovement) {
+                case MovementType.Accelerating:
+                    // accelerate speed and rotation
+                    moveSpeed = Mathf.MoveTowards(moveSpeed, maxMoveSpeed, moveAcceleration * Time.fixedDeltaTime);
+                    rotationSpeed = Mathf.MoveTowards(rotationSpeed, maxRotationSpeed, moveAcceleration * Time.fixedDeltaTime);
+
+                    MoveEnvironment();
+
+                    bool reachedMaxMoveSpeed = Mathf.Abs(moveSpeed - maxMoveSpeed) < 0.05f;
+                    bool reachedMaxRotationSpeed = Mathf.Abs(rotationSpeed - maxRotationSpeed) < 0.05f;
+                    if (reachedMaxMoveSpeed && reachedMaxRotationSpeed) {
+                        currentMovement = MovementType.Constant;
+                    }
+                    break;
+                case MovementType.Constant:
+                    MoveEnvironment();
+                    break;
+                case MovementType.Deacelerating:
+                    moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAcceleration * Time.fixedDeltaTime);
+                    rotationSpeed = Mathf.MoveTowards(rotationSpeed, 0, moveAcceleration * Time.fixedDeltaTime);
+
+                    MoveEnvironment();
+
+                    bool stoppedMoving = Mathf.Abs(moveSpeed) < 0.05f;
+                    bool stoppedRotating = Mathf.Abs(rotationSpeed) < 0.05f;
+                    if (stoppedMoving && stoppedRotating) {
+                        currentMovement = MovementType.Moved;
+                    }
+
+                    break;
+            }
         }
 
-        [ContextMenu("Reset Pos")]
-        private void ResetPosAndRot() {
-            transform.position = originalPos;
-            transform.eulerAngles = originalRot;
-            transform.DOKill();
+        private void MoveEnvironment() {
+            // translate
+            Vector3 moveDirection = moveAngle.AngleToDirection();
+            rb.velocity = moveDirection * moveSpeed;
+
+            // rotate
+            rb.angularVelocity = rotationSpeed;
+
+            if (!continuousMovement) {
+                distanceMoved += rb.velocity.magnitude * Time.deltaTime;
+                if (distanceMoved > moveDistance) {
+                    currentMovement = MovementType.Deacelerating;
+                }
+            }
         }
 
         private void OnDrawGizmos() {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(transform.position, transform.position + moveAmount);
+            
+
+            if (continuousMovement) {
+                Gizmos.color = Color.green;
+                float lineLength = 10f;
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3)(moveAngle.AngleToDirection() * lineLength));
+            }
+            else {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3)(moveAngle.AngleToDirection() * moveDistance));
+            }
         }
     }
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(MovingEnvironment))]
+    public class MovingEnvironmentEditor : Editor {
+        public override void OnInspectorGUI() {
+            base.OnInspectorGUI();
+
+            // to hide the moveDistance float if continuous movement is checked
+            MovingEnvironment movingEnvironment = target as MovingEnvironment;
+
+            if (!movingEnvironment.continuousMovement) {
+                movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Distance", movingEnvironment.moveDistance);
+            }
+
+            // spawn in move trigger
+            if (GUILayout.Button("Create Move Trigger")) {
+                GameObject moveTrigger = Instantiate(new GameObject(), movingEnvironment.transform);
+
+                moveTrigger.name = "MoveTrigger";
+                moveTrigger.transform.SetAsFirstSibling();
+
+                BoxCollider2D collider = moveTrigger.AddComponent<BoxCollider2D>();
+                collider.isTrigger = true;
+
+                // use the environments collider bounds to setup the bounds of the move trigger
+                Bounds environmentBounds = movingEnvironment.GetComponent<CompositeCollider2D>().bounds;
+
+                Vector2 offset = environmentBounds.center - collider.bounds.center;
+                collider.offset = offset;
+
+                float xSize = environmentBounds.size.x / collider.bounds.size.x;
+                float ySize = environmentBounds.size.y / collider.bounds.size.y;
+                collider.size = new Vector2(xSize, ySize);
+
+                //... add and assign moveTrigger component
+                movingEnvironment.moveTrigger = moveTrigger.AddComponent<TriggerEvent>();
+            }
+        }
+    }
+#endif
 }

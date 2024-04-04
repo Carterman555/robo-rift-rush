@@ -175,6 +175,13 @@ namespace TarodevController
             {
                 float maxSpeed = Boosting ? stats.BoostMaxSpeed : stats.MaxSpeed;
                 float acceleration = Boosting ? stats.BoostAcceleration : stats.Acceleration;
+
+                // if the player is changing directions, allow them to do it much faster
+                if (Mathf.Sign(frameVelocity.x) != Mathf.Sign(frameInput.Move.x)) {
+                    var deceleration = grounded ? stats.GroundDeceleration : stats.AirDeceleration;
+                    acceleration += deceleration;
+                }
+
                 frameVelocity.x = Mathf.MoveTowards(frameVelocity.x, frameInput.Move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
             }
         }
@@ -282,6 +289,11 @@ namespace TarodevController
             swingSpeed = Mathf.Abs(projectedSpeed);
 
             swingingLeft = projectedSpeed > 0f;
+        }
+
+        // used when the object the player is grappled to is moving
+        public void UpdateGrapplePos(Vector3 grapplePosition) {
+            this.grapplePosition = grapplePosition;
         }
 
         public void StopSwing() {

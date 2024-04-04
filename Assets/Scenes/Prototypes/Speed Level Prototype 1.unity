@@ -3121,6 +3121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1131272281}
   - component: {fileID: 1131272284}
+  - component: {fileID: 1131272285}
   - component: {fileID: 1131272283}
   - component: {fileID: 1131272282}
   m_Layer: 3
@@ -3270,6 +3271,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1131272285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131272280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc8b1d28df1d4848ae75426b3229646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTrigger: {fileID: 1226831983}
+  moveAngle: 178.73
+  maxMoveSpeed: 0.5
+  maxRotationSpeed: 0
+  moveAcceleration: 4
 --- !u!4 &1136003235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015823256179264561, guid: ad291d3ecfcea3d4aa8496c657dbda01, type: 3}
@@ -5475,9 +5493,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
+    - target: {fileID: 375661806940587710, guid: 75309ab65049a414d8618994d148f099, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 375661807578164438, guid: 75309ab65049a414d8618994d148f099, type: 3}
       propertyPath: m_Name
       value: PlayerGrapple
+      objectReference: {fileID: 0}
+    - target: {fileID: 375661807578164438, guid: 75309ab65049a414d8618994d148f099, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 375661807578164439, guid: 75309ab65049a414d8618994d148f099, type: 3}
       propertyPath: m_RootOrder
@@ -5841,30 +5867,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6916853990179449675, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: stats
-      value: 
-      objectReference: {fileID: 11400000, guid: 0b304e1492625d646889a98937ef537c, type: 2}
-    - target: {fileID: 6916853990179449675, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916853990179449675, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: maxGrappleSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916853990179449675, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: grappleAcceleration
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449712, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 77527187}
-    - target: {fileID: 6916853990179449716, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: grappleLine
       value: 
@@ -5877,10 +5883,6 @@ PrefabInstance:
       propertyPath: grappleTrigger
       value: 
       objectReference: {fileID: 77527184}
-    - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: groundLayerMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850

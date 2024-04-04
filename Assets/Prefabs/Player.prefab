@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4}
+  m_Offset: {x: 0, y: 2.618801}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 72, y: 40}
+  m_Size: {x: 49.900833, y: 28.259819}
   m_EdgeRadius: 0
 --- !u!1 &230909251
 GameObject:
@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6916853990179449712}
   - component: {fileID: 6916853990179449675}
   - component: {fileID: 6916853990179449719}
+  - component: {fileID: 5400878577179821067}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -178,7 +179,7 @@ DistanceJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
+  m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_MaxDistanceOnly: 0
 --- !u!114 &6916853990179449675
@@ -193,7 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a255bad7a63f14b9492be0fa4973eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: d2f4578184be6ee4c9f1044937ebc476, type: 2}
+  stats: {fileID: 11400000, guid: 0b304e1492625d646889a98937ef537c, type: 2}
+  maxGrappleSpeed: 40
+  grappleAcceleration: 40
 --- !u!114 &6916853990179449719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,10 +209,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  grappleTrigger: {fileID: 0}
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
-  grappleTrigger: {fileID: 0}
   launchSpeed: 50
+--- !u!114 &5400878577179821067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916853990179449673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killPlayerYPos: -20
 --- !u!1 &6916853991358414901
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +299,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1608816271
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0, g: 0.84148407, b: 1, a: 1}
