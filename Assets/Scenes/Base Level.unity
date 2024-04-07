@@ -467,6 +467,22 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 253870174}
+    - target: {fileID: 5499219931130883105, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.6000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.6000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931145701778, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: orthographic size
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 5499219931488396306, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_Name
       value: Setup
@@ -695,6 +711,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
+    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_Size.x
+      value: 63.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_Size.y
+      value: 35.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449673, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_Name
       value: Player

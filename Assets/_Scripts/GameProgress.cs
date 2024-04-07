@@ -13,7 +13,10 @@ namespace SpeedPlatformer.Management
             _5,
             _6,
             _7,
-            _8
+            _8,
+            _9,
+            _10,
+            _11,
         }
 
         private static Level level;
@@ -23,7 +26,7 @@ namespace SpeedPlatformer.Management
         }
 
         public static void ResetLevel() {
-            SceneManager.LoadScene(GetLevelScene());
+            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
         }
 
         public static void ContinueNextLevel() {
@@ -56,6 +59,18 @@ namespace SpeedPlatformer.Management
                     level = Level._8;
                     SceneManager.LoadScene(GetLevelScene());
                     break;
+                case Level._8:
+                    level = Level._9;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
+                case Level._9:
+                    level = Level._10;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
+                case Level._10:
+                    level = Level._11;
+                    SceneManager.LoadScene(GetLevelScene());
+                    break;
 
             }
         }
@@ -73,6 +88,8 @@ namespace SpeedPlatformer.Management
         private static string LEVEL_7 = "Level 7";
         private static string LEVEL_8 = "Level 8";
         private static string LEVEL_9 = "Level 9";
+        private static string LEVEL_10 = "Level 10";
+        private static string LEVEL_11 = "Level 11";
 
         private static string GetLevelScene() {
             switch (level) {
@@ -93,6 +110,12 @@ namespace SpeedPlatformer.Management
                     return LEVEL_7;
                 case Level._8:
                     return LEVEL_8;
+                case Level._9:
+                    return LEVEL_9;
+                case Level._10:
+                    return LEVEL_10;
+                case Level._11:
+                    return LEVEL_11;
             }
         }
 

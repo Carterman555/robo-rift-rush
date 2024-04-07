@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class MovingEnvironment : MonoBehaviour {
-        public TriggerEvent moveTrigger;
+        [SerializeField] private TriggerEvent moveTrigger;
 
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
@@ -96,6 +96,29 @@ namespace SpeedPlatformer.Environment {
             }
         }
 
+        public void CreateMoveTrigger() {
+            GameObject moveTriggerObj = Instantiate(new GameObject(), transform);
+
+            moveTriggerObj.name = "MoveTrigger";
+            moveTriggerObj.transform.SetAsFirstSibling();
+
+            BoxCollider2D collider = moveTriggerObj.AddComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+
+            // use the environments collider bounds to setup the bounds of the move trigger
+            Bounds environmentBounds = GetComponent<CompositeCollider2D>().bounds;
+
+            Vector2 offset = environmentBounds.center - collider.bounds.center;
+            collider.offset = offset;
+
+            float xSize = environmentBounds.size.x / collider.bounds.size.x;
+            float ySize = environmentBounds.size.y / collider.bounds.size.y;
+            collider.size = new Vector2(xSize, ySize);
+
+            //... add and assign moveTrigger component
+            moveTrigger = moveTriggerObj.AddComponent<TriggerEvent>();
+        }
+
         private void OnDrawGizmos() {
             
 
@@ -126,26 +149,7 @@ namespace SpeedPlatformer.Environment {
 
             // spawn in move trigger
             if (GUILayout.Button("Create Move Trigger")) {
-                GameObject moveTrigger = Instantiate(new GameObject(), movingEnvironment.transform);
-
-                moveTrigger.name = "MoveTrigger";
-                moveTrigger.transform.SetAsFirstSibling();
-
-                BoxCollider2D collider = moveTrigger.AddComponent<BoxCollider2D>();
-                collider.isTrigger = true;
-
-                // use the environments collider bounds to setup the bounds of the move trigger
-                Bounds environmentBounds = movingEnvironment.GetComponent<CompositeCollider2D>().bounds;
-
-                Vector2 offset = environmentBounds.center - collider.bounds.center;
-                collider.offset = offset;
-
-                float xSize = environmentBounds.size.x / collider.bounds.size.x;
-                float ySize = environmentBounds.size.y / collider.bounds.size.y;
-                collider.size = new Vector2(xSize, ySize);
-
-                //... add and assign moveTrigger component
-                movingEnvironment.moveTrigger = moveTrigger.AddComponent<TriggerEvent>();
+                movingEnvironment.CreateMoveTrigger();
             }
         }
     }

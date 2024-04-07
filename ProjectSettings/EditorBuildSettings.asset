@@ -12,17 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 2.unity
     guid: 43fb1603543332147bea32cf5822ebfe
   - enabled: 1
-    path: Assets/Scenes/Prototypes/Swing Level Prototype.unity
-    guid: 97141cab8f9466245af69f018a14ee30
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Precision Level Prototype.unity
-    guid: a18cafb25a456ea4bb9d3156a95be91d
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Speed Level Prototype 1.unity
-    guid: 236f3c569e66f5f4dac02cd079bc4282
-  - enabled: 1
     path: Assets/Scenes/Level 3.unity
     guid: 5455d31207830f74c9e66c8934d5ce47
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: e5df93bb1c85792478e9bd43e9f666fa
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: c53592b8c6bc72c40acb38a8dcfd1ade
   - enabled: 1
     path: Assets/Scenes/Level 6.unity
     guid: caaf0b3b427027c49887743e2c7ac191
@@ -30,12 +27,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 7.unity
     guid: 6d167f50e5c13a44cb13faf809d04f43
   - enabled: 1
-    path: Assets/Scenes/Base Level.unity
-    guid: ddc108cc66473b344934db9c22973765
+    path: Assets/Scenes/Level 8.unity
+    guid: e5cafafed4b9f83439d1f1bc811b2f9a
   - enabled: 1
-    path: Assets/Scenes/Level 5.unity
-    guid: c53592b8c6bc72c40acb38a8dcfd1ade
+    path: Assets/Scenes/Level 9.unity
+    guid: 1b874af118f960247bb1c61ed22bb9c5
   - enabled: 1
-    path: Assets/Scenes/Level 4.unity
-    guid: e5df93bb1c85792478e9bd43e9f666fa
+    path: Assets/Scenes/Level 10.unity
+    guid: b53256ce5b5b6be48bc5c4495a2e5ccb
+  - enabled: 1
+    path: Assets/Scenes/Level 11.unity
+    guid: 7138371141330304fb339829c27e6a8c
   m_configObjects: {}

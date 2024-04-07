@@ -202,6 +202,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec050ae9f2332a4db6cad9edcd2fac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 14.43
-  maxSpeed: 6
-  acceleration: 6
+  moveVector: {x: 12, y: 0}
+  speed: 6
