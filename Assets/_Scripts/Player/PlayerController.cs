@@ -26,6 +26,7 @@ namespace TarodevController
         public Vector2 FrameInput => frameInput.Move;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
+        public bool BoostInput => frameInput.BoostHeld;
 
         #endregion
 
@@ -160,7 +161,13 @@ namespace TarodevController
         #endregion
 
         #region Horizontal
-        private bool Boosting => frameInput.BoostHeld;
+
+        private bool canBoost = true;
+        private bool Boosting => BoostInput && canBoost;
+
+        public void SetCanBoost(bool canBoost) {
+            this.canBoost = canBoost;
+        }
 
         private void HandleDirection()
         {
