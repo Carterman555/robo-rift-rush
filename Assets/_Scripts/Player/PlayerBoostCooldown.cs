@@ -9,7 +9,7 @@ namespace SpeedPlatformer.Player {
 
         private float boostPower = 1f;
 
-        [SerializeField] private float boostDrain = 0.5f;
+        [SerializeField] private float boostDrain = 0f;
         [SerializeField] private float boostRegen = 0.3f;
 
         public float GetBoostPower() {
@@ -29,9 +29,6 @@ namespace SpeedPlatformer.Player {
             }
 
             playerController.SetCanBoost(boostPower != 0f);
-
-            print("Boost Power: " + boostPower);
         }
-
     }
 }

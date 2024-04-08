@@ -2256,7 +2256,7 @@ GameObject:
   - component: {fileID: 160829995}
   - component: {fileID: 160829994}
   - component: {fileID: 160829993}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,7 +2414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1621626047}
   moveAngle: 205.23
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.5
@@ -6669,7 +6668,7 @@ GameObject:
   - component: {fileID: 409472068}
   - component: {fileID: 409472067}
   - component: {fileID: 409472066}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6712,7 +6711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 953632317}
   moveAngle: -3.64
   maxMoveSpeed: 4
   maxRotationSpeed: 0
@@ -10335,7 +10333,7 @@ GameObject:
   - component: {fileID: 681661511}
   - component: {fileID: 681661510}
   - component: {fileID: 681661509}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10390,11 +10388,11 @@ Transform:
   - {fileID: 1348686053}
   - {fileID: 664769475}
   - {fileID: 491837839}
-  - {fileID: 932314333}
+  - {fileID: 612745798}
   - {fileID: 1584204715}
   - {fileID: 1468018269}
   - {fileID: 976678826}
-  - {fileID: 612745798}
+  - {fileID: 932314333}
   - {fileID: 1304244581}
   - {fileID: 1715874007}
   - {fileID: 2015417559}
@@ -10416,7 +10414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 794257616}
   moveAngle: 145.94
   maxMoveSpeed: 2
   maxRotationSpeed: -1
@@ -11508,7 +11505,7 @@ GameObject:
   - component: {fileID: 717100899}
   - component: {fileID: 717100898}
   - component: {fileID: 717100897}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11642,7 +11639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 790536565}
   moveAngle: 180
   maxMoveSpeed: 0.25
   maxRotationSpeed: -0.25
@@ -16643,7 +16639,7 @@ GameObject:
   - component: {fileID: 1019959480}
   - component: {fileID: 1019959479}
   - component: {fileID: 1019959478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16709,7 +16705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 902638100}
   moveAngle: 180
   maxMoveSpeed: 0.25
   maxRotationSpeed: 0.5
@@ -28731,7 +28726,7 @@ GameObject:
   - component: {fileID: 1964240471}
   - component: {fileID: 1964240470}
   - component: {fileID: 1964240469}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28818,7 +28813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 769873670}
   moveAngle: 180
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -30525,7 +30519,7 @@ GameObject:
   - component: {fileID: 2056148713}
   - component: {fileID: 2056148712}
   - component: {fileID: 2056148711}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30585,7 +30579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 215815902}
   moveAngle: 10.35
   maxMoveSpeed: 4
   maxRotationSpeed: -0.25

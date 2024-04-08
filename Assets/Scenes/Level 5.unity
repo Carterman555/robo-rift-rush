@@ -1123,7 +1123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &230527072
 PrefabInstance:
@@ -4029,7 +4029,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &630579346
 PrefabInstance:
@@ -7055,36 +7055,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8015823256179264561, guid: ad291d3ecfcea3d4aa8496c657dbda01, type: 3}
   m_PrefabInstance: {fileID: 325804557}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1007056182
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1007056183}
-  m_Layer: 0
-  m_Name: New Game Object
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1007056183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007056182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1007629886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8341,7 +8311,7 @@ GameObject:
   - component: {fileID: 1149779132}
   - component: {fileID: 1149779131}
   - component: {fileID: 1149779133}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaticSection_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8853,7 +8823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 276504294}
   moveAngle: 180
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.75
@@ -10562,7 +10531,7 @@ GameObject:
   - component: {fileID: 1399477954}
   - component: {fileID: 1399477953}
   - component: {fileID: 1399477955}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaticSection_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11128,7 +11097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 827703575}
   moveAngle: 193.6
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.25
@@ -12044,36 +12012,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8015823256179264561, guid: 510c13b9753758e4280594866a04e9f5, type: 3}
   m_PrefabInstance: {fileID: 1490344276}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1534836362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1534836363}
-  m_Layer: 0
-  m_Name: New Game Object
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1534836363
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534836362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1544963638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12484,7 +12422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1631977664
 PrefabInstance:
@@ -12694,7 +12632,7 @@ GameObject:
   - component: {fileID: 1660272296}
   - component: {fileID: 1660272295}
   - component: {fileID: 1660272294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MovingSection_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12736,7 +12674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1693118900}
   moveAngle: 170.88
   maxMoveSpeed: 3
   maxRotationSpeed: 2
@@ -14240,7 +14177,7 @@ Transform:
   - {fileID: 1199505897}
   - {fileID: 542324220}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1847800585
 PrefabInstance:
@@ -14404,7 +14341,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1866052703
 PrefabInstance:
@@ -14674,36 +14611,6 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 660971196337817797, guid: ad291d3ecfcea3d4aa8496c657dbda01, type: 3}
   m_PrefabInstance: {fileID: 1872530145}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1872606066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1872606067}
-  m_Layer: 0
-  m_Name: New Game Object
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1872606067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872606066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1874412342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15366,7 +15273,7 @@ GameObject:
   - component: {fileID: 1977884786}
   - component: {fileID: 1977884785}
   - component: {fileID: 1977884787}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaticSection_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16620,7 +16527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1030842336}
   moveAngle: 174.68
   maxMoveSpeed: 0.5
   maxRotationSpeed: 0.25
@@ -17771,7 +17677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 77865502}
   moveAngle: 198.78
   maxMoveSpeed: 2
   maxRotationSpeed: 1
@@ -17877,7 +17782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1480787995}
   moveAngle: 161
   maxMoveSpeed: 2
   maxRotationSpeed: 1
@@ -18007,7 +17911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931488397293, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931488397293, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18120,7 +18024,7 @@ GameObject:
   - component: {fileID: 8329157039813083814}
   - component: {fileID: 3812412708307331212}
   - component: {fileID: 4282341535148935894}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MovingSection_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18197,7 +18101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6505598690715958769, guid: 832d91399ec45d7458830653e65d39e9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6505598690715958769, guid: 832d91399ec45d7458830653e65d39e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18326,7 +18230,7 @@ GameObject:
   - component: {fileID: 4738313825727967685}
   - component: {fileID: 486013052987202543}
   - component: {fileID: 665175452324903349}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MovingSection_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18468,7 +18372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8968868931434288238, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8968868931434288238, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e40fde7998e541b7c15eeefbd5603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostDrain: 0.25
-  boostRegen: 0.15
+  boostDrain: 0
+  boostRegen: 0.3
 --- !u!1 &6916853991358414901
 GameObject:
   m_ObjectHideFlags: 0

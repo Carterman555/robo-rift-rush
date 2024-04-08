@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 61573191}
   - component: {fileID: 61573193}
   - component: {fileID: 61573192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaticSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -28,7 +28,7 @@ namespace SpeedPlatformer.Editor {
                 OrganizeSelection();
 
                 foreach (GameObject section in Selection.gameObjects) {
-                    section.AddComponent<MovingEnvironment>().CreateMoveTrigger();
+                    section.AddComponent<MovingEnvironment>();
                     section.GetComponent<FloatingIslandMovementPerlin>().enabled = false;
                 }
             }

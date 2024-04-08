@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 20397714}
   - component: {fileID: 20397713}
   - component: {fileID: 20397712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 189580382}
   moveAngle: 180
   maxMoveSpeed: 1
   maxRotationSpeed: 1.5
@@ -859,7 +858,7 @@ GameObject:
   - component: {fileID: 37815238}
   - component: {fileID: 37815240}
   - component: {fileID: 37815239}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1917,7 @@ GameObject:
   - component: {fileID: 95164463}
   - component: {fileID: 95164465}
   - component: {fileID: 95164464}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2923,7 +2922,7 @@ GameObject:
   - component: {fileID: 135809485}
   - component: {fileID: 135809484}
   - component: {fileID: 135809483}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2964,7 +2963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1636482237}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -3408,7 +3406,7 @@ GameObject:
   - component: {fileID: 180650907}
   - component: {fileID: 180650909}
   - component: {fileID: 180650908}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3555,7 +3553,7 @@ GameObject:
   - component: {fileID: 189580381}
   - component: {fileID: 189580383}
   - component: {fileID: 189580382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4151,7 +4149,7 @@ GameObject:
   - component: {fileID: 208680248}
   - component: {fileID: 208680250}
   - component: {fileID: 208680249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4511,7 +4509,7 @@ GameObject:
   - component: {fileID: 224526752}
   - component: {fileID: 224526751}
   - component: {fileID: 224526750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4552,7 +4550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 95164464}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -5527,6 +5524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_5
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -5574,6 +5575,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -6692,7 +6697,7 @@ GameObject:
   - component: {fileID: 311858529}
   - component: {fileID: 311858528}
   - component: {fileID: 311858527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6753,7 +6758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 394618783}
   moveAngle: 140.05
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -7297,6 +7301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_3
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7344,6 +7352,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -8135,7 +8147,7 @@ GameObject:
   - component: {fileID: 356829199}
   - component: {fileID: 356829201}
   - component: {fileID: 356829200}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8206,7 +8218,7 @@ GameObject:
   - component: {fileID: 357900411}
   - component: {fileID: 357900410}
   - component: {fileID: 357900409}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9366,7 +9378,7 @@ GameObject:
   - component: {fileID: 377893812}
   - component: {fileID: 377893814}
   - component: {fileID: 377893813}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9828,7 +9840,7 @@ GameObject:
   - component: {fileID: 394618782}
   - component: {fileID: 394618784}
   - component: {fileID: 394618783}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9900,7 +9912,7 @@ GameObject:
   - component: {fileID: 398787739}
   - component: {fileID: 398787738}
   - component: {fileID: 398787737}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9955,7 +9967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1905719889}
   moveAngle: 178.4
   maxMoveSpeed: 4
   maxRotationSpeed: -0.25
@@ -11348,6 +11359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1284608637}
     m_Modifications:
+    - target: {fileID: 2816476095613345103, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2816476096046608270, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -11399,6 +11414,10 @@ PrefabInstance:
     - target: {fileID: 2816476096046608305, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
       propertyPath: m_Name
       value: MovingTrap_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816476096046608305, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
@@ -11822,7 +11841,7 @@ GameObject:
   - component: {fileID: 458006366}
   - component: {fileID: 458006365}
   - component: {fileID: 458006364}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11885,7 +11904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 356829200}
   moveAngle: 149.34
   maxMoveSpeed: 6
   maxRotationSpeed: -5
@@ -12262,7 +12280,7 @@ GameObject:
   - component: {fileID: 458247565}
   - component: {fileID: 458247567}
   - component: {fileID: 458247566}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14141,7 +14159,7 @@ GameObject:
   - component: {fileID: 547836508}
   - component: {fileID: 547836510}
   - component: {fileID: 547836509}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14514,6 +14532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_2
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -14562,6 +14584,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
 --- !u!4 &570189321 stripped
@@ -14582,7 +14608,7 @@ GameObject:
   - component: {fileID: 570696347}
   - component: {fileID: 570696346}
   - component: {fileID: 570696345}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14649,7 +14675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 547836509}
   moveAngle: 111
   maxMoveSpeed: 0
   maxRotationSpeed: 0.82
@@ -15969,7 +15994,7 @@ GameObject:
   - component: {fileID: 604584564}
   - component: {fileID: 604584566}
   - component: {fileID: 604584565}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16493,7 +16518,7 @@ GameObject:
   - component: {fileID: 615811608}
   - component: {fileID: 615811610}
   - component: {fileID: 615811609}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17387,7 +17412,7 @@ GameObject:
   - component: {fileID: 665302228}
   - component: {fileID: 665302230}
   - component: {fileID: 665302229}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18871,7 +18896,7 @@ GameObject:
   - component: {fileID: 740234388}
   - component: {fileID: 740234387}
   - component: {fileID: 740234386}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18912,7 +18937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 665302229}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -19584,6 +19608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_13
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -19631,6 +19659,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -19786,7 +19818,7 @@ GameObject:
   - component: {fileID: 763449394}
   - component: {fileID: 763449393}
   - component: {fileID: 763449392}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19855,7 +19887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 2143478683}
   moveAngle: 200.68
   maxMoveSpeed: 2
   maxRotationSpeed: 0
@@ -22291,7 +22322,7 @@ GameObject:
   - component: {fileID: 847074532}
   - component: {fileID: 847074534}
   - component: {fileID: 847074533}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24200,6 +24231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_12
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -24247,6 +24282,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -24472,7 +24511,7 @@ GameObject:
   - component: {fileID: 955763969}
   - component: {fileID: 955763971}
   - component: {fileID: 955763970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24548,7 +24587,7 @@ GameObject:
   - component: {fileID: 957689079}
   - component: {fileID: 957689078}
   - component: {fileID: 957689077}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25199,7 +25238,7 @@ GameObject:
   - component: {fileID: 960931042}
   - component: {fileID: 960931044}
   - component: {fileID: 960931043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25902,6 +25941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_7
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -25949,6 +25992,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -27774,7 +27821,7 @@ GameObject:
   - component: {fileID: 1073816803}
   - component: {fileID: 1073816802}
   - component: {fileID: 1073816801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27858,7 +27905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 615811609}
   moveAngle: 180
   maxMoveSpeed: 5
   maxRotationSpeed: -2
@@ -30344,6 +30390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_9
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -30391,6 +30441,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -31789,7 +31843,7 @@ GameObject:
   - component: {fileID: 1212474765}
   - component: {fileID: 1212474767}
   - component: {fileID: 1212474766}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32238,7 +32292,7 @@ GameObject:
   - component: {fileID: 1219589244}
   - component: {fileID: 1219589243}
   - component: {fileID: 1219589242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32277,7 +32331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1903266719}
   moveAngle: 7.29
   maxMoveSpeed: 1
   maxRotationSpeed: -0.54
@@ -32532,7 +32585,7 @@ GameObject:
   - component: {fileID: 1223202170}
   - component: {fileID: 1223202172}
   - component: {fileID: 1223202171}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34005,7 +34058,7 @@ GameObject:
   - component: {fileID: 1284608641}
   - component: {fileID: 1284608640}
   - component: {fileID: 1284608639}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35576,7 +35629,7 @@ GameObject:
   - component: {fileID: 1297724842}
   - component: {fileID: 1297724841}
   - component: {fileID: 1297724840}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35617,7 +35670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1441204345}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -35887,7 +35939,7 @@ GameObject:
   - component: {fileID: 1302709737}
   - component: {fileID: 1302709739}
   - component: {fileID: 1302709738}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37198,6 +37250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_11
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -37245,6 +37301,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -37394,7 +37454,7 @@ GameObject:
   - component: {fileID: 1379903619}
   - component: {fileID: 1379903618}
   - component: {fileID: 1379903617}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38460,7 +38520,7 @@ GameObject:
   - component: {fileID: 1407628794}
   - component: {fileID: 1407628793}
   - component: {fileID: 1407628792}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38501,7 +38561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 208680249}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -39231,7 +39290,7 @@ GameObject:
   - component: {fileID: 1437736114}
   - component: {fileID: 1437736113}
   - component: {fileID: 1437736112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39641,7 +39700,7 @@ GameObject:
   - component: {fileID: 1441204344}
   - component: {fileID: 1441204346}
   - component: {fileID: 1441204345}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41592,7 +41651,7 @@ GameObject:
   - component: {fileID: 1523083296}
   - component: {fileID: 1523083298}
   - component: {fileID: 1523083297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42174,7 +42233,7 @@ GameObject:
   - component: {fileID: 1540877944}
   - component: {fileID: 1540877943}
   - component: {fileID: 1540877942}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42656,7 +42715,7 @@ GameObject:
   - component: {fileID: 1548036211}
   - component: {fileID: 1548036210}
   - component: {fileID: 1548036209}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42714,7 +42773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1223202171}
   moveAngle: 180
   maxMoveSpeed: 0
   maxRotationSpeed: 0
@@ -43093,7 +43151,7 @@ GameObject:
   - component: {fileID: 1552754457}
   - component: {fileID: 1552754456}
   - component: {fileID: 1552754455}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43134,7 +43192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 1523083297}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -43625,6 +43682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_8
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -43672,6 +43733,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -45386,7 +45451,7 @@ GameObject:
   - component: {fileID: 1636482236}
   - component: {fileID: 1636482238}
   - component: {fileID: 1636482237}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45528,7 +45593,7 @@ GameObject:
   - component: {fileID: 1645887330}
   - component: {fileID: 1645887332}
   - component: {fileID: 1645887331}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45883,7 +45948,7 @@ GameObject:
   - component: {fileID: 1662797964}
   - component: {fileID: 1662797963}
   - component: {fileID: 1662797962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45924,7 +45989,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 955763970}
   moveAngle: 180
   maxMoveSpeed: 2
   maxRotationSpeed: 0
@@ -46621,6 +46685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -46668,6 +46736,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -47234,7 +47306,7 @@ GameObject:
   - component: {fileID: 1732515024}
   - component: {fileID: 1732515023}
   - component: {fileID: 1732515022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47985,6 +48057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_10
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -48032,6 +48108,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -49947,6 +50027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -49994,6 +50078,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -51084,6 +51172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2098588951}
     m_Modifications:
+    - target: {fileID: 2816476095613345103, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2816476096046608270, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -51139,6 +51231,10 @@ PrefabInstance:
     - target: {fileID: 2816476096046608305, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
       propertyPath: m_Name
       value: MovingTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816476096046608305, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b5d2f24b85618449bac4e3415bbfd15, type: 3}
@@ -52302,7 +52398,7 @@ GameObject:
   - component: {fileID: 1903266718}
   - component: {fileID: 1903266720}
   - component: {fileID: 1903266719}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52377,7 +52473,7 @@ GameObject:
   - component: {fileID: 1905719888}
   - component: {fileID: 1905719890}
   - component: {fileID: 1905719889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52530,7 +52626,7 @@ GameObject:
   - component: {fileID: 1912132505}
   - component: {fileID: 1912132504}
   - component: {fileID: 1912132503}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54061,6 +54157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_4
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -54108,6 +54208,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -55561,7 +55665,7 @@ GameObject:
   - component: {fileID: 1992284479}
   - component: {fileID: 1992284478}
   - component: {fileID: 1992284477}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55602,7 +55706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 37815239}
   moveAngle: 180
   maxMoveSpeed: 1.75
   maxRotationSpeed: 0
@@ -57351,6 +57454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticTrap_6
       objectReference: {fileID: 0}
+    - target: {fileID: 4830033280267411677, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -57398,6 +57505,10 @@ PrefabInstance:
     - target: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830033281983599139, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -58073,7 +58184,7 @@ GameObject:
   - component: {fileID: 2098588955}
   - component: {fileID: 2098588954}
   - component: {fileID: 2098588953}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Section_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59703,7 +59814,7 @@ GameObject:
   - component: {fileID: 2143478682}
   - component: {fileID: 2143478684}
   - component: {fileID: 2143478683}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MoveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60140,6 +60251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RotatingBallTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 858516636255891283, guid: 8d59a01421bae774886557bf8db847be, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 858516636255891284, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -60183,6 +60298,18 @@ PrefabInstance:
     - target: {fileID: 858516636255891284, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858516637591651807, guid: 8d59a01421bae774886557bf8db847be, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 858516637952948309, guid: 8d59a01421bae774886557bf8db847be, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 858516638332800354, guid: 8d59a01421bae774886557bf8db847be, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d59a01421bae774886557bf8db847be, type: 3}
@@ -60391,6 +60518,10 @@ PrefabInstance:
     - target: {fileID: 5898853786615764886, guid: 84b2e1955e654b14c92dffe0094d70c2, type: 3}
       propertyPath: m_Name
       value: WinLevelObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898853786615764886, guid: 84b2e1955e654b14c92dffe0094d70c2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84b2e1955e654b14c92dffe0094d70c2, type: 3}

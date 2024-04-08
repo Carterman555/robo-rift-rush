@@ -22,7 +22,7 @@ namespace SpeedPlatformer.Management
         private static Level level;
 
         public static void Initialize() {
-            level = Level._1;
+            level = Level._9;
         }
 
         public static void ResetLevel() {
