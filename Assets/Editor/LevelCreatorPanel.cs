@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using Unity.VisualScripting;
 using SpeedPlatformer.Environment;
+using Codice.Client.Common;
 
 namespace SpeedPlatformer.Editor {
 
@@ -14,6 +15,9 @@ namespace SpeedPlatformer.Editor {
         }
 
         private Transform sectionContainer;
+
+        private Transform parent;
+        private Transform parentTarget;
 
         private void OnGUI() {
             GUILayout.Label("Selected Objects: " + Selection.gameObjects.Length);
@@ -30,6 +34,31 @@ namespace SpeedPlatformer.Editor {
                 foreach (GameObject section in Selection.gameObjects) {
                     section.AddComponent<MovingEnvironment>();
                     section.GetComponent<FloatingIslandMovementPerlin>().enabled = false;
+                }
+            }
+
+            GUILayout.Label("Move Parent Without Moving Children");
+
+            parent = EditorGUILayout.ObjectField("Parent", parent, typeof(Transform), true) as Transform;
+            parentTarget = EditorGUILayout.ObjectField("Parent Target", parentTarget, typeof(Transform), true) as Transform;
+
+            // unparent the gameobjects, move the parent, reparent the gameobjects so the children stay while the parent moves
+            if (GUILayout.Button("Move Parent")) {
+
+                Transform[] children = new Transform[parent.childCount];
+
+                for (int i = 0; i < parent.childCount; i++) {
+                    children[i] = parent.transform.GetChild(i);
+                }
+
+                foreach (Transform child in children) {
+                    child.SetParent(null);
+                }
+
+                parent.position = parentTarget.position;
+
+                foreach (Transform child in children) {
+                    child.SetParent(parent);
                 }
             }
         }
@@ -53,9 +82,20 @@ namespace SpeedPlatformer.Editor {
             }
 
             // reordering is done after all sections have been parented so they are in the correct order
+            // comment more
             foreach (GameObject section in Selection.gameObjects) {
                 if (TryGetEndingNumber(section.name, out int sectionNum)) {
-                    section.transform.SetSiblingIndex(sectionNum);
+                    int siblingIndex = 0;
+
+                    foreach (Transform child in sectionContainer) {
+                        if (TryGetEndingNumber(section.name, out int childNum)) {
+                            if (childNum < sectionNum) {
+                                siblingIndex++;
+                            }
+                        }
+                    }
+                    section.transform.SetSiblingIndex(siblingIndex);
+                    Debug.Log(section.name + " set to " + siblingIndex);
                 }
                 else {
                     Debug.LogError("Could Not Get Ending Number: " + section.name);
