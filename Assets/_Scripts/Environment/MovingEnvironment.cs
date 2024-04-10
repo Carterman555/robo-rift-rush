@@ -7,6 +7,10 @@ namespace SpeedPlatformer.Environment {
 
         [SerializeField] private TriggerEvent moveTrigger;
 
+        public void SetTrigger(TriggerEvent trigger) {
+            moveTrigger = trigger;
+        }
+
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
         [SerializeField] private float maxRotationSpeed;

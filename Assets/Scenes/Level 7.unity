@@ -2414,6 +2414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1621626047}
   moveAngle: 205.23
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.5
@@ -6711,6 +6712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 902638100}
   moveAngle: -3.64
   maxMoveSpeed: 4
   maxRotationSpeed: 0
@@ -10414,6 +10416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 794257616}
   moveAngle: 145.94
   maxMoveSpeed: 2
   maxRotationSpeed: -1
@@ -11639,6 +11642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 790536565}
   moveAngle: 180
   maxMoveSpeed: 0.25
   maxRotationSpeed: -0.25
@@ -16705,6 +16709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 0}
   moveAngle: 180
   maxMoveSpeed: 0.25
   maxRotationSpeed: 0.5
@@ -28813,6 +28818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 769873670}
   moveAngle: 180
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -30579,6 +30585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 215815902}
   moveAngle: 10.35
   maxMoveSpeed: 4
   maxRotationSpeed: -0.25
@@ -32214,7 +32221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.70000076
+      value: 1.500001
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32222,7 +32229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.70000076
+      value: 1.500001
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931488396306, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_Name

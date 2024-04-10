@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1998988858}
   moveAngle: 33.74
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -5637,6 +5638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1644180224}
   moveAngle: 180
   maxMoveSpeed: 0.5
   maxRotationSpeed: 0
@@ -15308,6 +15310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 633589519}
   moveAngle: 180
   maxMoveSpeed: 1.5
   maxRotationSpeed: -0.25
@@ -19301,6 +19304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1279729490}
   moveAngle: 204.51
   maxMoveSpeed: 3
   maxRotationSpeed: 0.5
@@ -23821,6 +23825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 768353312}
   moveAngle: -3.84
   maxMoveSpeed: 3
   maxRotationSpeed: 0.5
@@ -26121,6 +26126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 2037147894}
   moveAngle: 132.06
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -27746,8 +27752,16 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.6000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y

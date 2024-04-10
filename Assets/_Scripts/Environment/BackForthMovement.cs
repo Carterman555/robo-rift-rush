@@ -18,6 +18,10 @@ namespace SpeedPlatformer {
             .SetLoops(-1, LoopType.Yoyo); // Set infinite yoyo loops
         }
 
+        private void OnDestroy() {
+            transform.DOKill();
+        }
+
         private void OnDrawGizmos() {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + moveVector);

@@ -45,6 +45,12 @@ namespace SpeedPlatformer.Editor {
             if (GUILayout.Button("Move Parent")) {
                 MoveParentWithoutChildren(parent, parentTarget.position);
             }
+
+            if (GUILayout.Button("Assign Triggers")) {
+                foreach (GameObject section in Selection.gameObjects) {
+                    section.GetComponent<MovingEnvironment>().SetTrigger(section.GetComponentInChildren<TriggerEvent>());
+                }
+            }
         }
 
         private void SetupSelection() {
