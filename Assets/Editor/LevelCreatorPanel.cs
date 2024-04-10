@@ -25,14 +25,14 @@ namespace SpeedPlatformer.Editor {
             sectionContainer = EditorGUILayout.ObjectField("Section Container", sectionContainer, typeof(Transform), true) as Transform;
 
             if (GUILayout.Button("Turn to Floating Environments")) {
-                OrganizeSelection();
+                SetupSelection();
             }
 
             if (GUILayout.Button("Turn to Moving Environments")) {
-                OrganizeSelection();
+                SetupSelection();
 
                 foreach (GameObject section in Selection.gameObjects) {
-                    section.AddComponent<MovingEnvironment>();
+                    section.AddComponent<MovingEnvironment>().CreateMoveTrigger();
                     section.GetComponent<FloatingIslandMovementPerlin>().enabled = false;
                 }
             }
@@ -42,47 +42,36 @@ namespace SpeedPlatformer.Editor {
             parent = EditorGUILayout.ObjectField("Parent", parent, typeof(Transform), true) as Transform;
             parentTarget = EditorGUILayout.ObjectField("Parent Target", parentTarget, typeof(Transform), true) as Transform;
 
-            // unparent the gameobjects, move the parent, reparent the gameobjects so the children stay while the parent moves
             if (GUILayout.Button("Move Parent")) {
-
-                Transform[] children = new Transform[parent.childCount];
-
-                for (int i = 0; i < parent.childCount; i++) {
-                    children[i] = parent.transform.GetChild(i);
-                }
-
-                foreach (Transform child in children) {
-                    child.SetParent(null);
-                }
-
-                parent.position = parentTarget.position;
-
-                foreach (Transform child in children) {
-                    child.SetParent(parent);
-                }
+                MoveParentWithoutChildren(parent, parentTarget.position);
             }
         }
 
-        private void OrganizeSelection() {
+        private void SetupSelection() {
             // go through each section, set parent, rename it, add components, add move trigger
             foreach (GameObject section in Selection.gameObjects) {
 
-                if (TryGetEndingNumber(section.name, out int sectionNum)) {
-                    section.transform.SetParent(sectionContainer);
-                    section.name = "Section_" + sectionNum;
-
-                    section.AddComponent<Rigidbody2D>().isKinematic = true;
-                    section.AddComponent<CompositeCollider2D>();
-                    section.AddComponent<CopyMovementToPlayer>();
-                    section.AddComponent<FloatingIslandMovementPerlin>();
-                }
-                else {
+                if (!TryGetEndingNumber(section.name, out int sectionNum)) {
                     Debug.LogError("Could Not Get Ending Number: " + section.name);
+                    return;
                 }
+
+                section.transform.SetParent(sectionContainer);
+                section.name = "Section_" + sectionNum;
+
+                section.AddComponent<Rigidbody2D>().isKinematic = true;
+                section.AddComponent<CompositeCollider2D>();
+                section.AddComponent<CopyMovementToPlayer>();
+                section.AddComponent<FloatingIslandMovementPerlin>();
+
+                // set section the position to the center of tiles and objects in section
+                Transform[] children = section.transform.GetDirectChildren();
+                Vector3 centerPos = GetCenterPosition(children);
+                MoveParentWithoutChildren(section.transform, centerPos);
             }
 
             // reordering is done after all sections have been parented so they are in the correct order
-            // comment more
+            // TODO - comment more
             foreach (GameObject section in Selection.gameObjects) {
                 if (TryGetEndingNumber(section.name, out int sectionNum)) {
                     int siblingIndex = 0;
@@ -101,6 +90,37 @@ namespace SpeedPlatformer.Editor {
                     Debug.LogError("Could Not Get Ending Number: " + section.name);
                 }
             }
+        }
+
+        // unparent the gameobjects, move the parent, reparent the gameobjects so the children stay while the parent moves
+        private void MoveParentWithoutChildren(Transform parent, Vector3 newPosition) {
+            Transform[] children = parent.GetDirectChildren();
+            
+            foreach (Transform child in children) {
+                child.SetParent(null);
+            }
+
+            parent.position = newPosition;
+
+            foreach (Transform child in children) {
+                child.SetParent(parent);
+            }
+        }
+
+        public Vector3 GetCenterPosition(Transform[] transforms) {
+            float minX = float.MaxValue, maxX = float.MinValue;
+            float minY = float.MaxValue, maxY = float.MinValue;
+
+            foreach (Transform trans in transforms) {
+                Vector3 pos = trans.position;
+                minX = Mathf.Min(minX, pos.x);
+                maxX = Mathf.Max(maxX, pos.x);
+                minY = Mathf.Min(minY, pos.y);
+                maxY = Mathf.Max(maxY, pos.y);
+            }
+
+            Vector3 centerPosition = new Vector3((minX + maxX) / 2, (minY + maxY) / 2, 0);
+            return centerPosition;
         }
 
         private bool TryGetEndingNumber(string objectName, out int endingNumber) {

@@ -1,3 +1,4 @@
+using Blobber;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -21,6 +22,14 @@ public static class Helpers
     public static void SetActiveChildren(this Transform t, bool active)
     {
         foreach (Transform child in t) child.gameObject.SetActive(active);
+    }
+
+    public static Transform[] GetDirectChildren(this Transform t) {
+        Transform[] children = new Transform[t.childCount];
+        for (int i = 0; i < t.childCount; i++) {
+            children[i] = t.transform.GetChild(i);
+        }
+        return children;
     }
 
     public static void Fade(this SpriteRenderer spriteRenderer, float value)

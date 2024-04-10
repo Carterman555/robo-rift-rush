@@ -7,6 +7,8 @@ namespace SpeedPlatformer
     {
         protected override void Awake() {
             base.Awake();
+
+            //Application.targetFrameRate = -1;
         }
     }
 }

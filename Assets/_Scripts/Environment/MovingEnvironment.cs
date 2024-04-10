@@ -1,10 +1,12 @@
-using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class MovingEnvironment : MonoBehaviour {
+
+        [SerializeField] private TriggerEvent moveTrigger;
+
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
         [SerializeField] private float maxRotationSpeed;
@@ -17,6 +19,8 @@ namespace SpeedPlatformer.Environment {
         public bool continuousMovement = true;
         [HideInInspector] public float moveDistance;
 
+        enum MovementType { Waiting, Accelerating, Constant, Deacelerating, Moved }
+        private MovementType currentMovement = MovementType.Waiting;
 
         private Rigidbody2D rb;
 
@@ -24,17 +28,16 @@ namespace SpeedPlatformer.Environment {
             rb = GetComponent<Rigidbody2D>();
         }
 
-        enum MovementType { Waiting, Accelerating, Constant, Deacelerating, Moved }
-        private MovementType currentMovement = MovementType.Waiting;
+        private void OnEnable() {
+            moveTrigger.OnTriggerEntered += TryStartMovement;
+        }
+        private void OnDisable() {
+            moveTrigger.OnTriggerEntered -= TryStartMovement;
+        }
 
-        private void Update() {
-            if (currentMovement == MovementType.Waiting) {
-                Vector3 vpPos = Camera.main.WorldToViewportPoint(transform.position);
-                bool inFrame = vpPos.x >= 0f && vpPos.x <= 1f && vpPos.y >= 0f && vpPos.y <= 1f && vpPos.z > 0f;
-
-                if (inFrame) {
-                    currentMovement = MovementType.Accelerating;
-                }
+        private void TryStartMovement(Collider2D collision) {
+            if (currentMovement == MovementType.Waiting && collision.gameObject.layer == GameLayers.CameraFrameLayer) {
+                currentMovement = MovementType.Accelerating;
             }
         }
 
@@ -91,6 +94,30 @@ namespace SpeedPlatformer.Environment {
             }
         }
 
+        // TODO - for cleaner code move to another script (SRP)
+        public void CreateMoveTrigger() {
+            GameObject moveTriggerObj = Instantiate(new GameObject(), transform);
+
+            moveTriggerObj.name = "MoveTrigger";
+            moveTriggerObj.transform.SetAsFirstSibling();
+
+            BoxCollider2D collider = moveTriggerObj.AddComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+
+            // use the environments collider bounds to setup the bounds of the move trigger
+            Bounds environmentBounds = GetComponent<CompositeCollider2D>().bounds;
+
+            Vector2 offset = environmentBounds.center - collider.bounds.center;
+            collider.offset = offset;
+
+            float xSize = environmentBounds.size.x / collider.bounds.size.x;
+            float ySize = environmentBounds.size.y / collider.bounds.size.y;
+            collider.size = new Vector2(xSize, ySize);
+
+            //... add and assign moveTrigger component
+            moveTrigger = moveTriggerObj.AddComponent<TriggerEvent>();
+        }
+
         private void OnDrawGizmos() {
             if (continuousMovement) {
                 Gizmos.color = Color.green;
@@ -115,6 +142,11 @@ namespace SpeedPlatformer.Environment {
 
             if (!movingEnvironment.continuousMovement) {
                 movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Distance", movingEnvironment.moveDistance);
+            }
+
+            // spawn in move trigger
+            if (GUILayout.Button("Create Move Trigger")) {
+                movingEnvironment.CreateMoveTrigger();
             }
         }
     }
