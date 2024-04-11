@@ -1497,6 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1053015895}
   moveAngle: 206.89
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -3221,6 +3222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 417416530}
   moveAngle: 90
   maxMoveSpeed: 0
   maxRotationSpeed: 15
@@ -4305,6 +4307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 724632554}
   moveAngle: 180
   maxMoveSpeed: 0
   maxRotationSpeed: -1
@@ -9575,6 +9578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 278319672}
   moveAngle: -28.01
   maxMoveSpeed: 1
   maxRotationSpeed: 0
@@ -15071,6 +15075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1592692067}
   moveAngle: 230.75
   maxMoveSpeed: 1
   maxRotationSpeed: 0.5
@@ -24471,6 +24476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1205408607}
   moveAngle: 180
   maxMoveSpeed: 2
   maxRotationSpeed: 0
@@ -32548,6 +32554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1183121326}
   moveAngle: 24.8
   maxMoveSpeed: 2
   maxRotationSpeed: -0.5
@@ -37203,6 +37210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1737200208}
   moveAngle: 157.72
   maxMoveSpeed: 1.5
   maxRotationSpeed: -0.5
@@ -37935,6 +37943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1575241094}
   moveAngle: 266.43
   maxMoveSpeed: 0.5
   maxRotationSpeed: 0.25
@@ -38290,6 +38299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1660328190}
   moveAngle: 180
   maxMoveSpeed: 0
   maxRotationSpeed: 1
@@ -39364,6 +39374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 943934687}
   moveAngle: -44.9
   maxMoveSpeed: 1
   maxRotationSpeed: 0.25
@@ -43260,8 +43271,16 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.4000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y

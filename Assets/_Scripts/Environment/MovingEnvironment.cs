@@ -8,6 +8,7 @@ namespace SpeedPlatformer.Environment {
         [SerializeField] private TriggerEvent moveTrigger;
 
         public void SetTrigger(TriggerEvent trigger) {
+            print("Set " + trigger.name);
             moveTrigger = trigger;
         }
 

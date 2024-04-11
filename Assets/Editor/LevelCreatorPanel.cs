@@ -48,7 +48,8 @@ namespace SpeedPlatformer.Editor {
 
             if (GUILayout.Button("Assign Triggers")) {
                 foreach (GameObject section in Selection.gameObjects) {
-                    section.GetComponent<MovingEnvironment>().SetTrigger(section.GetComponentInChildren<TriggerEvent>());
+                    if (section.GetComponent<MovingEnvironment>() != null)
+                        section.GetComponent<MovingEnvironment>().SetTrigger(section.GetComponentInChildren<TriggerEvent>());
                 }
             }
         }
@@ -64,6 +65,7 @@ namespace SpeedPlatformer.Editor {
 
                 section.transform.SetParent(sectionContainer);
                 section.name = "Section_" + sectionNum;
+                section.layer = GameLayers.GroundLayer;
 
                 section.AddComponent<Rigidbody2D>().isKinematic = true;
                 section.AddComponent<CompositeCollider2D>();
@@ -83,7 +85,7 @@ namespace SpeedPlatformer.Editor {
                     int siblingIndex = 0;
 
                     foreach (Transform child in sectionContainer) {
-                        if (TryGetEndingNumber(section.name, out int childNum)) {
+                        if (TryGetEndingNumber(child.name, out int childNum)) {
                             if (childNum < sectionNum) {
                                 siblingIndex++;
                             }
