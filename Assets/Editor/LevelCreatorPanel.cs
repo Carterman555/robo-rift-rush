@@ -92,7 +92,6 @@ namespace SpeedPlatformer.Editor {
                         }
                     }
                     section.transform.SetSiblingIndex(siblingIndex);
-                    Debug.Log(section.name + " set to " + siblingIndex);
                 }
                 else {
                     Debug.LogError("Could Not Get Ending Number: " + section.name);
