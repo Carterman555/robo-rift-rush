@@ -1210,7 +1210,7 @@ Transform:
   - {fileID: 855827855}
   - {fileID: 190902276}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53578157
 MonoBehaviour:
@@ -1225,12 +1225,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 803227825}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 217.7
+  maxMoveSpeed: 1
+  maxRotationSpeed: -0.3
   moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  continuousMovement: 0
+  moveDistance: 20
 --- !u!114 &53578158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5048,7 +5048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191130009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.9215, y: 5, z: 0}
+  m_LocalPosition: {x: 348.9215, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1550950503}
@@ -5081,12 +5081,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1550950504}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
-  moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  moveAngle: -2.21
+  maxMoveSpeed: 1
+  maxRotationSpeed: 80
+  moveAcceleration: 100
+  continuousMovement: 0
+  moveDistance: 15
 --- !u!114 &191130012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15025,12 +15025,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 2130579552}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 79.4
+  maxMoveSpeed: 5
+  maxRotationSpeed: -1
   moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  continuousMovement: 0
+  moveDistance: 15
 --- !u!114 &631615308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17137,7 +17137,7 @@ Transform:
   - {fileID: 1484474305}
   - {fileID: 469584274}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &712625055
 MonoBehaviour:
@@ -25904,11 +25904,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 889240485}
   moveAngle: 180
-  maxMoveSpeed: 0
+  maxMoveSpeed: 2
   maxRotationSpeed: 0
   moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  continuousMovement: 0
+  moveDistance: 22
 --- !u!114 &1057973152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27813,7 +27813,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141572118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42, y: -2, z: 0}
+  m_LocalPosition: {x: 42, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 755769898}
@@ -27858,10 +27858,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 755769899}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
-  moveAcceleration: 20
+  moveAngle: 211.55
+  maxMoveSpeed: 2
+  maxRotationSpeed: -0.4
+  moveAcceleration: 10
   continuousMovement: 1
   moveDistance: 0
 --- !u!114 &1141572121
@@ -28327,7 +28327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: speed
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: rotateLeft
@@ -29611,12 +29611,12 @@ Transform:
   - {fileID: 1445175918}
   - {fileID: 1141572119}
   - {fileID: 1739321887}
-  - {fileID: 53578156}
   - {fileID: 1860204856}
-  - {fileID: 2121492973}
-  - {fileID: 2107664342}
   - {fileID: 712625054}
   - {fileID: 1822445183}
+  - {fileID: 53578156}
+  - {fileID: 2121492973}
+  - {fileID: 2107664342}
   - {fileID: 1200764038}
   - {fileID: 631615306}
   - {fileID: 758404397}
@@ -29723,9 +29723,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1567624139}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: -161.4
+  maxMoveSpeed: 1
+  maxRotationSpeed: 0.7
   moveAcceleration: 20
   continuousMovement: 1
   moveDistance: 0
@@ -30190,11 +30190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: speed
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: rotateLeft
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d59a01421bae774886557bf8db847be, type: 3}
@@ -30767,7 +30767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: speed
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: rotateLeft
@@ -36496,9 +36496,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 3585878}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 200.9
+  maxMoveSpeed: 2
+  maxRotationSpeed: -0.5
   moveAcceleration: 20
   continuousMovement: 1
   moveDistance: 0
@@ -43529,7 +43529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: speed
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: rotateLeft
@@ -44786,8 +44786,8 @@ MonoBehaviour:
   moveTrigger: {fileID: 971624278}
   moveAngle: 180
   maxMoveSpeed: 0
-  maxRotationSpeed: 0
-  moveAcceleration: 20
+  maxRotationSpeed: -80
+  moveAcceleration: 100
   continuousMovement: 1
   moveDistance: 0
 --- !u!114 &1817706141
@@ -45023,7 +45023,7 @@ Transform:
   - {fileID: 105827170}
   - {fileID: 833480611}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1822445184
 MonoBehaviour:
@@ -45038,12 +45038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1573690954}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 27.9
+  maxMoveSpeed: 3
+  maxRotationSpeed: 0.5
   moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  continuousMovement: 0
+  moveDistance: 20
 --- !u!114 &1822445185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46054,7 +46054,7 @@ Transform:
   - {fileID: 2039878702}
   - {fileID: 1888667286}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1860204857
 MonoBehaviour:
@@ -46069,9 +46069,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 309629705}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: -71.2
+  maxMoveSpeed: 3
+  maxRotationSpeed: 0.4
   moveAcceleration: 20
   continuousMovement: 1
   moveDistance: 0
@@ -48170,7 +48170,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960927052}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.041875616, w: 0.99912286}
   m_LocalPosition: {x: 518, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -48202,7 +48202,7 @@ Transform:
   - {fileID: 208701745}
   m_Father: {fileID: 1199505897}
   m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.8}
 --- !u!114 &1960927054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48216,9 +48216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1301217876}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 196.59
+  maxMoveSpeed: 2
+  maxRotationSpeed: -0.5
   moveAcceleration: 20
   continuousMovement: 1
   moveDistance: 0
@@ -48266,84 +48266,84 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 766328963}
     m_ColliderPaths:
-    - - X: -60000293
-        Y: 30000000
-      - X: -60000293
-        Y: 50000000
-      - X: -80000000
-        Y: 49999707
-      - X: -79999707
-        Y: 30000000
+    - - X: -59999989
+        Y: 29999980
+      - X: -59999989
+        Y: 49999980
+      - X: -79999696
+        Y: 49999687
+      - X: -79999403
+        Y: 29999980
   - m_Collider: {fileID: 62946450}
     m_ColliderPaths:
     - - X: -40000293
-        Y: 30000000
+        Y: 30000020
       - X: -40000293
-        Y: 50000000
+        Y: 50000020
       - X: -60000000
-        Y: 49999707
+        Y: 49999727
       - X: -59999707
-        Y: 30000000
+        Y: 30000020
   - m_Collider: {fileID: 965742618}
     m_ColliderPaths:
-    - - X: -20000293
-        Y: 30000000
-      - X: -20000293
-        Y: 50000000
-      - X: -40000000
-        Y: 49999707
-      - X: -39999707
-        Y: 30000000
+    - - X: -20000903
+        Y: 30000020
+      - X: -20000903
+        Y: 50000020
+      - X: -40000612
+        Y: 49999727
+      - X: -40000319
+        Y: 30000020
   - m_Collider: {fileID: 126883021}
     m_ColliderPaths:
-    - - X: -293
+    - - X: 317
         Y: 30000000
-      - X: -293
+      - X: 317
         Y: 50000000
-      - X: -20000000
+      - X: -19999390
         Y: 49999707
-      - X: -19999707
+      - X: -19999097
         Y: 30000000
   - m_Collider: {fileID: 1652743099}
     m_ColliderPaths:
     - - X: 19999707
-        Y: 30000000
+        Y: 29999980
       - X: 19999707
-        Y: 50000000
+        Y: 49999980
       - X: 0
-        Y: 49999707
+        Y: 49999687
       - X: 293
-        Y: 30000000
+        Y: 29999980
   - m_Collider: {fileID: 1097616783}
     m_ColliderPaths:
     - - X: 39999707
-        Y: 30000000
+        Y: 29999980
       - X: 39999707
-        Y: 50000000
+        Y: 49999980
       - X: 20000000
-        Y: 49999707
+        Y: 49999687
       - X: 20000293
-        Y: 30000000
+        Y: 29999980
   - m_Collider: {fileID: 1935575001}
     m_ColliderPaths:
     - - X: 59999707
-        Y: 30000000
+        Y: 30000020
       - X: 59999707
-        Y: 50000000
+        Y: 50000020
       - X: 40000000
-        Y: 49999707
+        Y: 49999727
       - X: 40000293
-        Y: 30000000
+        Y: 30000020
   - m_Collider: {fileID: 193623232}
     m_ColliderPaths:
     - - X: 79999707
-        Y: 30000000
+        Y: 30000020
       - X: 79999707
-        Y: 50000000
+        Y: 50000020
       - X: 60000000
-        Y: 49999707
+        Y: 49999727
       - X: 60000293
-        Y: 30000000
+        Y: 30000020
   - m_Collider: {fileID: 192121414}
     m_ColliderPaths:
     - - X: 99999707
@@ -48357,23 +48357,23 @@ CompositeCollider2D:
   - m_Collider: {fileID: 338346718}
     m_ColliderPaths:
     - - X: 99999707
-        Y: 10000000
+        Y: 9999982
       - X: 99999707
-        Y: 30000000
+        Y: 29999980
       - X: 80000000
-        Y: 29999707
+        Y: 29999687
       - X: 80000293
-        Y: 10000000
+        Y: 9999982
   - m_Collider: {fileID: 773114965}
     m_ColliderPaths:
     - - X: 99999707
-        Y: -10000000
+        Y: -9999990
       - X: 99999707
-        Y: 10000000
+        Y: 10000010
       - X: 80000000
-        Y: 9999707
+        Y: 9999717
       - X: 80000293
-        Y: -10000000
+        Y: -9999990
   - m_Collider: {fileID: 407315533}
     m_ColliderPaths:
     - - X: 99999707
@@ -48387,13 +48387,13 @@ CompositeCollider2D:
   - m_Collider: {fileID: 1352429920}
     m_ColliderPaths:
     - - X: 79999707
-        Y: -30000000
+        Y: -30000020
       - X: 79999707
-        Y: -10000000
+        Y: -10000019
       - X: 60000000
-        Y: -10000293
+        Y: -10000312
       - X: 60000293
-        Y: -30000000
+        Y: -30000020
   - m_Collider: {fileID: 633898051}
     m_ColliderPaths:
     - - X: 59999707
@@ -48406,24 +48406,24 @@ CompositeCollider2D:
         Y: -30000000
   - m_Collider: {fileID: 1087806813}
     m_ColliderPaths:
-    - - X: 59999707
-        Y: -50000000
-      - X: 59999707
-        Y: -30000000
-      - X: 40000000
-        Y: -30000293
-      - X: 40000293
-        Y: -50000000
+    - - X: 60000319
+        Y: -50000040
+      - X: 60000319
+        Y: -30000038
+      - X: 40000612
+        Y: -30000331
+      - X: 40000905
+        Y: -50000040
   - m_Collider: {fileID: 489862725}
     m_ColliderPaths:
     - - X: 39999707
-        Y: -50000000
+        Y: -49999960
       - X: 39999707
-        Y: -30000000
+        Y: -29999962
       - X: 20000000
-        Y: -30000293
+        Y: -30000255
       - X: 20000293
-        Y: -50000000
+        Y: -49999960
   - m_Collider: {fileID: 373222308}
     m_ColliderPaths:
     - - X: 19999707
@@ -48436,106 +48436,110 @@ CompositeCollider2D:
         Y: -50000000
   - m_Collider: {fileID: 670908108}
     m_ColliderPaths:
-    - - X: -293
-        Y: -50000000
-      - X: -293
-        Y: -30000000
-      - X: -20000000
-        Y: -30000293
-      - X: -19999707
-        Y: -50000000
+    - - X: -903
+        Y: -49999980
+      - X: -903
+        Y: -29999980
+      - X: -20000610
+        Y: -30000273
+      - X: -20000317
+        Y: -49999980
   - m_Collider: {fileID: 718272894}
     m_ColliderPaths:
-    - - X: -20000293
-        Y: -30000000
-      - X: -20000293
-        Y: -10000000
-      - X: -40000000
-        Y: -10000293
-      - X: -39999707
-        Y: -30000000
+    - - X: -20000903
+        Y: -29999962
+      - X: -20000903
+        Y: -9999962
+      - X: -40000612
+        Y: -10000255
+      - X: -40000319
+        Y: -29999962
   - m_Collider: {fileID: 1387041185}
     m_ColliderPaths:
     - - X: -40000293
-        Y: -30000000
+        Y: -29999962
       - X: -40000293
-        Y: -10000000
+        Y: -9999962
       - X: -60000000
-        Y: -10000293
+        Y: -10000255
       - X: -59999707
-        Y: -30000000
+        Y: -29999962
   - m_Collider: {fileID: 1031355554}
     m_ColliderPaths:
     - - X: -60000293
-        Y: -30000000
+        Y: -29999980
       - X: -60000293
-        Y: -10000000
+        Y: -9999981
       - X: -80000000
-        Y: -10000293
+        Y: -10000274
       - X: -79999707
-        Y: -30000000
+        Y: -29999980
   - m_Collider: {fileID: 995118590}
     m_ColliderPaths:
-    - - X: -60000293
+    - - X: -60000597
         Y: -10000000
-      - X: -60000293
+      - X: -60000597
         Y: 10000000
-      - X: -80000000
+      - X: -80000304
         Y: 9999707
-      - X: -79999707
+      - X: -80000011
         Y: -10000000
   - m_Collider: {fileID: 278365751}
     m_ColliderPaths:
-    - - X: -80000293
-        Y: -10000000
-      - X: -80000293
-        Y: 10000000
-      - X: -100000000
-        Y: 9999707
-      - X: -99999707
-        Y: -10000000
+    - - X: -80000597
+        Y: -9999981
+      - X: -80000597
+        Y: 10000019
+      - X: -100000304
+        Y: 9999726
+      - X: -100000011
+        Y: -9999981
   - m_Collider: {fileID: 1169514880}
     m_ColliderPaths:
-    - - X: -80000293
-        Y: 10000000
-      - X: -80000293
-        Y: 30000000
-      - X: -100000000
-        Y: 29999707
-      - X: -99999707
-        Y: 10000000
+    - - X: -80000597
+        Y: 10000019
+      - X: -80000597
+        Y: 30000020
+      - X: -100000304
+        Y: 29999727
+      - X: -100000011
+        Y: 10000019
   - m_Collider: {fileID: 208701743}
     m_ColliderPaths:
     - - X: -80000293
-        Y: 30000000
+        Y: 30000020
       - X: -80000293
-        Y: 50000000
+        Y: 50000020
       - X: -100000000
-        Y: 49999707
+        Y: 49999727
       - X: -99999707
-        Y: 30000000
+        Y: 30000020
   m_CompositePaths:
     m_Paths:
-    - - {x: -1.9999708, y: -4.999971}
-      - {x: 5.999971, y: -4.999971}
-      - {x: 6, y: -3}
+    - - {x: 6.0000024, y: -5.0000043}
+      - {x: 6.000061, y: -3.0000021}
       - {x: 9.99997, y: -2.999971}
       - {x: 9.999942, y: 5}
-      - {x: -10, y: 4.999942}
-      - {x: -9.999942, y: -1}
-      - {x: -8, y: -1.0000294}
-      - {x: -7.999942, y: -3}
-      - {x: -2.0000293, y: -2.999971}
-      - {x: -2.0000587, y: -1}
-      - {x: -6.000029, y: -0.99999994}
-      - {x: -6.0000587, y: 1}
-      - {x: -8.00003, y: 1.0000001}
-      - {x: -8, y: 3}
-      - {x: 8, y: 2.9999707}
-      - {x: 8, y: -1}
+      - {x: -1.999939, y: 4.999942}
+      - {x: -1.9998804, y: 3}
+      - {x: 8, y: 2.9999726}
+      - {x: 8, y: -1.0000019}
       - {x: 4, y: -1.0000587}
-      - {x: 4, y: -3}
-      - {x: -2, y: -3.0000587}
+      - {x: 4, y: -2.9999962}
+      - {x: -2.000061, y: -3.0000567}
+      - {x: -2.0000024, y: -4.999998}
+    - - {x: -7.9999704, y: -2.9999688}
+      - {x: -2.0000904, y: -2.9999669}
+      - {x: -2.0001197, y: -0.9999962}
+      - {x: -6.0000443, y: -0.9999961}
+      - {x: -6.0000887, y: 1}
+      - {x: -8.00006, y: 1.0000001}
+      - {x: -7.99993, y: 2.999998}
+      - {x: -2.0000904, y: 3.0000312}
+      - {x: -2.0001197, y: 5.000002}
+      - {x: -10, y: 4.9999433}
+      - {x: -9.999972, y: -0.9999981}
+      - {x: -8.000001, y: -1.0000275}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1960927058
@@ -48633,8 +48637,8 @@ MonoBehaviour:
   moveTrigger: {fileID: 1440637385}
   moveAngle: 180
   maxMoveSpeed: 0
-  maxRotationSpeed: 0
-  moveAcceleration: 20
+  maxRotationSpeed: 80
+  moveAcceleration: 100
   continuousMovement: 1
   moveDistance: 0
 --- !u!114 &1963717069
@@ -48885,8 +48889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 954582916}
-  moveAngle: 180
-  maxMoveSpeed: 0
+  moveAngle: 203.9
+  maxMoveSpeed: 2
   maxRotationSpeed: 0
   moveAcceleration: 20
   continuousMovement: 1
@@ -50013,7 +50017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: speed
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 858516636255891285, guid: 8d59a01421bae774886557bf8db847be, type: 3}
       propertyPath: rotateLeft
@@ -50900,12 +50904,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 936917279}
-  moveAngle: 180
-  maxMoveSpeed: 0
-  maxRotationSpeed: 0
+  moveAngle: 65.6
+  maxMoveSpeed: 2
+  maxRotationSpeed: 0.5
   moveAcceleration: 20
-  continuousMovement: 1
-  moveDistance: 0
+  continuousMovement: 0
+  moveDistance: 15
 --- !u!114 &2032418520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53140,7 +53144,7 @@ Transform:
   - {fileID: 1990090815}
   - {fileID: 1253590192}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2107664343
 MonoBehaviour:
@@ -53792,7 +53796,7 @@ Transform:
   - {fileID: 2125118856}
   - {fileID: 1534098198}
   m_Father: {fileID: 1199505897}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2121492974
 MonoBehaviour:
@@ -53807,8 +53811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 2067185998}
-  moveAngle: 180
-  maxMoveSpeed: 0
+  moveAngle: 146.9
+  maxMoveSpeed: 0.4
   maxRotationSpeed: 0
   moveAcceleration: 20
   continuousMovement: 1
@@ -54832,19 +54836,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 201.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.100002
+      value: 3.6000009
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 201.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.100002
+      value: 3.6000009
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701778, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: orthographic size
@@ -55090,6 +55094,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 3.4
       objectReference: {fileID: 0}
+    - target: {fileID: 5400878577179821067, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: killPlayerYPos
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449673, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_Name
       value: Player
@@ -55100,11 +55108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 201.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.z

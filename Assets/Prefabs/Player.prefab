@@ -155,10 +155,10 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  grappleTrigger: {fileID: 0}
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
-  launchSpeed: 50
+  launchSpeed: 75
+  maxDistance: 40
 --- !u!114 &5400878577179821067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPlayerYPos: -20
+  killPlayerYPos: -100
 --- !u!114 &3929349992693057859
 MonoBehaviour:
   m_ObjectHideFlags: 0

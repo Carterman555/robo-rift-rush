@@ -14,15 +14,16 @@ namespace SpeedPlatformer.Player
     {
         [SerializeField] private LayerMask groundLayerMask;
 
-        [SerializeField] private TriggerEvent grappleTrigger;
         [SerializeField] private LineRenderer grappleLine;
         [SerializeField] private Transform grapplePoint;
 
-        [SerializeField] private float launchSpeed = 50f;
+        [SerializeField] private float launchSpeed;
+        [SerializeField] private float maxDistance;
 
         private GrappleState state;
 
-        private Vector2 targetPos;
+        private Vector2 launchDirection;
+        private float distanceTraveled;
 
         private PlayerController playerController;
         private DistanceJoint2D joint;
@@ -46,20 +47,6 @@ namespace SpeedPlatformer.Player
             ChangeState(GrappleState.Deactive);
         }
 
-        private void OnEnable() {
-            grappleTrigger.OnTriggerEntered += GrappleTriggered;
-        }
-        private void OnDisable() {
-            grappleTrigger.OnTriggerEntered -= GrappleTriggered;
-        }
-
-        private void GrappleTriggered(Collider2D collision) {
-            int groundLayer = 3;
-            if (collision.gameObject.layer == groundLayer) {
-                ChangeState(GrappleState.Grappled);
-            }
-        }
-
         /// <summary>
         /// If in the deactive state, wait for mouse button down. If mouse button is clicked, start launching the grapple.
         /// If in the Launching state, move the grapple point towards the target pos
@@ -74,13 +61,21 @@ namespace SpeedPlatformer.Player
                 }
             }
             else if (state == GrappleState.Launching) {
-                Vector2 newPosition = Vector2.MoveTowards(grapplePoint.position, targetPos, launchSpeed * Time.deltaTime);
+
+                Vector2 newPosition = (Vector2)grapplePoint.position + (launchDirection * launchSpeed * Time.deltaTime);
                 SetGrappleObjectPos(newPosition);
 
-                CheckForStopGrapple();
+                distanceTraveled += launchSpeed * Time.deltaTime;
+                if (distanceTraveled > maxDistance) {
+                    ChangeState(GrappleState.Deactive);
+                }
+
+                RayCastForGround();
+
+                ReleaseGrappleCheck();
             }
             else if (state == GrappleState.Grappled) {
-                CheckForStopGrapple();
+                ReleaseGrappleCheck();
             }
         }
 
@@ -90,7 +85,7 @@ namespace SpeedPlatformer.Player
             }
         }
 
-        private void CheckForStopGrapple() {
+        private void ReleaseGrappleCheck() {
             if (!Input.GetMouseButton(0)) {
                 ChangeState(GrappleState.Deactive);
             }
@@ -115,6 +110,8 @@ namespace SpeedPlatformer.Player
 
                 joint.enabled = false;
 
+                distanceTraveled = 0;
+
                 playerController.StopSwing();
             }
             else if (newState == GrappleState.Launching) {
@@ -124,7 +121,7 @@ namespace SpeedPlatformer.Player
 
                 SetGrappleObjectPos(transform.position);
 
-                targetPos = GetTargetPosition();
+                launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
@@ -134,28 +131,23 @@ namespace SpeedPlatformer.Player
             }
         }
 
+        private void RayCastForGround() {
+
+            float rayLength = 1f;
+            RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
+                launchDirection,
+                rayLength,
+                groundLayerMask);
+
+            if (hit.collider != null) {
+                SetGrappleObjectPos(hit.point);
+                ChangeState(GrappleState.Grappled);
+            }
+        }
+
         private void SetGrappleObjectPos(Vector3 pos) {
             grapplePoint.position = pos;
             grappleLine.SetPosition(1, pos);
-        }
-
-        private Vector2 GetTargetPosition() {
-            Vector2 launchDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            float grappleDistance = 100f;
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position,
-                launchDirection.normalized,
-                grappleDistance,
-                groundLayerMask);
-
-            // if found ground, set the target position
-            if (hit.collider != null) {
-                return hit.point;
-            }
-            else {
-                // this allows the player to grapple from far out, which isn't what's wanted - fix
-                return launchDirection * grappleDistance;
-            }
         }
     }
 }

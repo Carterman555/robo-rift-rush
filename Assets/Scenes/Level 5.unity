@@ -8753,7 +8753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 0}
+  moveTrigger: {fileID: 276504294}
   moveAngle: 180
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.75
@@ -11028,7 +11028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 0}
+  moveTrigger: {fileID: 827703575}
   moveAngle: 193.6
   maxMoveSpeed: 0.5
   maxRotationSpeed: -0.25
@@ -16460,7 +16460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44d82813501cd442a2f02e7f4ca1d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrigger: {fileID: 0}
+  moveTrigger: {fileID: 1030842336}
   moveAngle: 174.68
   maxMoveSpeed: 0.5
   maxRotationSpeed: 0.25
