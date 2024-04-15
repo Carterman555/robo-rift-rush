@@ -3,6 +3,9 @@ using UnityEditor;
 using Unity.VisualScripting;
 using SpeedPlatformer.Environment;
 using Codice.Client.Common;
+using System.Linq;
+using static System.Collections.Specialized.BitVector32;
+using System.Collections.Generic;
 
 namespace SpeedPlatformer.Editor {
 
@@ -58,10 +61,9 @@ namespace SpeedPlatformer.Editor {
             // go through each section, set parent, rename it, add components, add move trigger
             foreach (GameObject section in Selection.gameObjects) {
 
-                if (!TryGetEndingNumber(section.name, out int sectionNum)) {
-                    Debug.LogError("Could Not Get Ending Number: " + section.name);
-                    return;
-                }
+                int sectionNum = TryGetEndingNumber(section.name);
+
+                if (sectionNum == -1) return;
 
                 section.transform.SetParent(sectionContainer);
                 section.name = "Section_" + sectionNum;
@@ -78,24 +80,11 @@ namespace SpeedPlatformer.Editor {
                 MoveParentWithoutChildren(section.transform, centerPos);
             }
 
-            // reordering is done after all sections have been parented so they are in the correct order
-            // TODO - comment more
-            foreach (GameObject section in Selection.gameObjects) {
-                if (TryGetEndingNumber(section.name, out int sectionNum)) {
-                    int siblingIndex = 0;
+            List<Transform> sortedSections = sectionContainer.GetDirectChildren().ToList();
+            sortedSections.Sort((object1, object2) => TryGetEndingNumber(object1.name).CompareTo(TryGetEndingNumber(object2.name)));
 
-                    foreach (Transform child in sectionContainer) {
-                        if (TryGetEndingNumber(child.name, out int childNum)) {
-                            if (childNum < sectionNum) {
-                                siblingIndex++;
-                            }
-                        }
-                    }
-                    section.transform.SetSiblingIndex(siblingIndex);
-                }
-                else {
-                    Debug.LogError("Could Not Get Ending Number: " + section.name);
-                }
+            for (int i = 0; i < sortedSections.Count; i++) {
+                sortedSections[i].SetSiblingIndex(i);
             }
         }
 
@@ -130,16 +119,18 @@ namespace SpeedPlatformer.Editor {
             return centerPosition;
         }
 
-        private bool TryGetEndingNumber(string objectName, out int endingNumber) {
-            endingNumber = 0;
+        private int TryGetEndingNumber(string objectName) {
+            int endingNumber = 0;
             int lastUnderscoreIndex = objectName.LastIndexOf('_');
             if (lastUnderscoreIndex != -1 && lastUnderscoreIndex < objectName.Length - 1) {
                 string endingNumberString = objectName.Substring(lastUnderscoreIndex + 1);
                 if (int.TryParse(endingNumberString, out endingNumber)) {
-                    return true;
+                    return endingNumber;
                 }
             }
-            return false;
+
+            Debug.LogError("Could Not Get Ending Number: " + objectName);
+            return -1;
         }
     }
 #endif
