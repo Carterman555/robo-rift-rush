@@ -5,140 +5,26 @@ namespace SpeedPlatformer.Management
 {
     public static class GameProgress
     {
-        public enum Level {
-            _1,
-            _2,
-            _3,
-            _4,
-            _5,
-            _6,
-            _7,
-            _8,
-            _9,
-            _10,
-            _11,
-            _12,
-            _13,
-            _14,
-            _15
-        }
+        private static int level;
 
-        private static Level level;
-
-        public static void Initialize() {
-            level = Level._9;
+        public static void Initialize(int startingLevel = 1) {
+            level = startingLevel;
         }
 
         public static void ResetLevel() {
-            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-        }
-
-        public static void ContinueNextLevel() {
-            switch (level) {
-                case Level._1:
-                    level = Level._2;
-                    break;
-                case Level._2:
-                    level = Level._3;
-                    break;
-                case Level._3:
-                    level = Level._4;
-                    break;
-                case Level._4:
-                    level = Level._5;
-                    break;
-                case Level._5:
-                    level = Level._6;
-                    break;
-                case Level._6:
-                    level = Level._7;
-                    break;
-                case Level._7:
-                    level = Level._8;
-                    break;
-                case Level._8:
-                    level = Level._9;
-                    break;
-                case Level._9:
-                    level = Level._10;
-                    break;
-                case Level._10:
-                    level = Level._11;
-                    break;
-                case Level._11:
-                    level = Level._12;
-                    break;
-                case Level._12:
-                    level = Level._13;
-                    break;
-                case Level._13:
-                    level = Level._14;
-                    break;
-                case Level._14:
-                    level = Level._15;
-                    break;
-            }
-
             SceneManager.LoadScene(GetLevelScene());
         }
 
-        //private static string PRECISION_PROTOTYPE = "Precision Level Prototype";
-        //private static string SPEED_PROTOTYPE = "Speed Level Prototype 1";
-        //private static string SWING_PROTOTYPE = "Swing Level Prototype";
-
-        private static string LEVEL_1 = "Level 1";
-        private static string LEVEL_2 = "Level 2";
-        private static string LEVEL_3 = "Level 3";
-        private static string LEVEL_4 = "Level 4";
-        private static string LEVEL_5 = "Level 5";
-        private static string LEVEL_6 = "Level 6";
-        private static string LEVEL_7 = "Level 7";
-        private static string LEVEL_8 = "Level 8";
-        private static string LEVEL_9 = "Level 9";
-        private static string LEVEL_10 = "Level 10";
-        private static string LEVEL_11 = "Level 11";
-        private static string LEVEL_12 = "Level 12";
-        private static string LEVEL_13 = "Level 13";
-        private static string LEVEL_14 = "Level 14";
-        private static string LEVEL_15 = "Level 15";
-
-        private static string GetLevelScene() {
-            switch (level) {
-                default:
-                case Level._1:
-                    return LEVEL_1;
-                case Level._2:
-                    return LEVEL_2;
-                case Level._3:
-                    return LEVEL_3;
-                case Level._4:
-                    return LEVEL_4;
-                case Level._5:
-                    return LEVEL_5;
-                case Level._6:
-                    return LEVEL_6;
-                case Level._7:
-                    return LEVEL_7;
-                case Level._8:
-                    return LEVEL_8;
-                case Level._9:
-                    return LEVEL_9;
-                case Level._10:
-                    return LEVEL_10;
-                case Level._11:
-                    return LEVEL_11;
-                case Level._12:
-                    return LEVEL_12;
-                case Level._13:
-                    return LEVEL_13;
-                case Level._14:
-                    return LEVEL_14;
-                case Level._15:
-                    return LEVEL_15;
-            }
+        public static void ContinueNextLevel() {
+            level++;
+            SceneManager.LoadScene(GetLevelScene());
         }
 
-        public static Level GetLevel() {
+        private static string GetLevelScene() {
+            return "Level " + level.ToString();
+        }
+
+        public static int GetLevel() {
             return level;
         }
     }
