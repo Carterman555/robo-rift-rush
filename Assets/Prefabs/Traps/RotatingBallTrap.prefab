@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 858516637952948312}
   - component: {fileID: 858516637952948311}
   - component: {fileID: 858516637952948313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BallTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

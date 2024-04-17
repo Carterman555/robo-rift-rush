@@ -13,6 +13,7 @@ namespace SpeedPlatformer.Player
     public class PlayerGrapple : MonoBehaviour
     {
         [SerializeField] private LayerMask groundLayerMask;
+        [SerializeField] private LayerMask trapLayerMask;
 
         [SerializeField] private LineRenderer grappleLine;
         [SerializeField] private Transform grapplePoint;
@@ -70,7 +71,14 @@ namespace SpeedPlatformer.Player
                     ChangeState(GrappleState.Deactive);
                 }
 
-                RayCastForGround();
+                if (DetectingGround(out Vector2 hitPoint)) {
+                    SetGrappleObjectPos(hitPoint);
+                    ChangeState(GrappleState.Grappled);
+                }
+
+                if (DetectingTrap()) {
+                    ChangeState(GrappleState.Deactive);
+                }
 
                 ReleaseGrappleCheck();
             }
@@ -131,7 +139,7 @@ namespace SpeedPlatformer.Player
             }
         }
 
-        private void RayCastForGround() {
+        private bool DetectingGround(out Vector2 hitPoint) {
 
             float rayLength = 1f;
             RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
@@ -139,10 +147,20 @@ namespace SpeedPlatformer.Player
                 rayLength,
                 groundLayerMask);
 
-            if (hit.collider != null) {
-                SetGrappleObjectPos(hit.point);
-                ChangeState(GrappleState.Grappled);
-            }
+            bool hitGround = hit.collider != null;
+            hitPoint = hitGround ? hit.point : Vector2.zero;
+            return hitGround;
+        }
+
+        private bool DetectingTrap() {
+
+            float rayLength = 1f;
+            RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
+                launchDirection,
+                rayLength,
+                trapLayerMask);
+
+            return hit.collider != null;
         }
 
         private void SetGrappleObjectPos(Vector3 pos) {

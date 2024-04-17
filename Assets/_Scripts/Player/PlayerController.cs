@@ -1,3 +1,4 @@
+using SpeedPlatformer;
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -78,7 +79,6 @@ namespace TarodevController
             HandleGravity();
             HandleCannonForce();
             HandleSwing();
-            HandleGrapple();
 
             ApplyMovement();
         }
@@ -171,7 +171,7 @@ namespace TarodevController
 
         private void HandleDirection()
         {
-            if (swinging || grappling) return;
+            if (swinging) return;
 
             if (frameInput.Move.x == 0)
             {
@@ -199,7 +199,7 @@ namespace TarodevController
 
         private void HandleGravity()
         {
-            if (swinging || grappling) return;
+            if (swinging) return;
 
             if (grounded && frameVelocity.y <= 0f)
             {
@@ -336,18 +336,18 @@ namespace TarodevController
                 // swing the player back and forth
                 if (swingingLeft) {
                     if (leftOfGrapple) {
-                        swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                        DecreaseSwingSpeed();
                     }
                     else {
-                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                        TryIncreaseSwingSpeed();
                     }
                 }
                 else {
                     if (leftOfGrapple) {
-                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                        TryIncreaseSwingSpeed();
                     }
                     else {
-                        swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                        DecreaseSwingSpeed();
                     }
 
                     swingDirection = -swingDirection;
@@ -365,47 +365,31 @@ namespace TarodevController
                 }
 
                 frameVelocity = swingDirection * swingSpeed;
+
+
+                void TryIncreaseSwingSpeed() {
+                    if (!touchingGround) {
+                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                    }
+                }
+                void DecreaseSwingSpeed() {
+                    swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                }
             }
         }
 
-        #endregion
+        private bool touchingGround;
 
-        #region Grapple Force
-
-        private bool grappling;
-        private Vector3 grapplingHookPosition;
-        private float grappleSpeed;
-
-        public void StartGrappling(Vector3 grapplePosition) {
-            grappling = true;
-            grapplingHookPosition = grapplePosition;
-
-            //... direction from the player to the grapple point
-            Vector3 toGrapple = (grapplingHookPosition - transform.position).normalized;
-
-            grappleSpeed = maxGrappleSpeed;
+        private void OnCollisionEnter2D(Collision2D collision) {
+            if (collision.gameObject.layer == GameLayers.GroundLayer) {
+                touchingGround = true;
+            }
         }
 
-        public void StopGrappling() {
-            grappling = false;
-
-            //... so doesn't fall fast after grapple
-            endedJumpEarly = false;
-        }
-
-        [SerializeField] private float maxGrappleSpeed; 
-        [SerializeField] private float grappleAcceleration; 
-
-        private void HandleGrapple() {
-            if (!grappling) return;
-
-            //... direction from the player to the grapple point
-            Vector3 toGrapple = (grapplingHookPosition - transform.position).normalized;
-
-            //... increase speed
-            grappleSpeed = Mathf.MoveTowards(grappleSpeed, maxGrappleSpeed, grappleAcceleration * Time.fixedDeltaTime);
-
-            frameVelocity = toGrapple * grappleSpeed;
+        private void OnCollisionExit2D(Collision2D collision) {
+            if (collision.gameObject.layer == GameLayers.GroundLayer) {
+                touchingGround = false;
+            }
         }
 
         #endregion

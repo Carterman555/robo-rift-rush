@@ -138,8 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0b304e1492625d646889a98937ef537c, type: 2}
-  maxGrappleSpeed: 40
-  grappleAcceleration: 40
 --- !u!114 &6916853990179449719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +153,9 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  trapLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
   launchSpeed: 75
