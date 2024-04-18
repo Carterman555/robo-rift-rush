@@ -103,8 +103,7 @@ namespace SpeedPlatformer.Environment {
             GameObject moveTriggerObj = Instantiate(new GameObject(), moveTriggerContainer);
 
             moveTriggerObj.transform.position = transform.position;
-            moveTriggerObj.name = "MoveTrigger";
-            moveTriggerObj.transform.SetAsFirstSibling();
+            moveTriggerObj.name = "MoveTrigger_" + name.TryGetEndingNumber('_');
 
             BoxCollider2D collider = moveTriggerObj.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;

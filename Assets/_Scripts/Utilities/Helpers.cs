@@ -81,4 +81,21 @@ public static class Helpers
         }
         return false;
     }
+
+    # region Game Specific
+
+    public static int TryGetEndingNumber(this string objectName, char charBeforeNumber) {
+        int lastUnderscoreIndex = objectName.LastIndexOf(charBeforeNumber);
+        if (lastUnderscoreIndex != -1 && lastUnderscoreIndex < objectName.Length - 1) {
+            string endingNumberString = objectName.Substring(lastUnderscoreIndex + 1);
+            if (int.TryParse(endingNumberString, out int endingNumber)) {
+                return endingNumber;
+            }
+        }
+
+        Debug.LogError("Could Not Get Ending Number: " + objectName);
+        return -1;
+    }
+
+    #endregion
 }

@@ -1,13 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using Unity.VisualScripting;
 using SpeedPlatformer.Environment;
-using Codice.Client.Common;
 using System.Linq;
-using static System.Collections.Specialized.BitVector32;
 using System.Collections.Generic;
-using System;
-using Codice.Utils;
 
 namespace SpeedPlatformer.Editor {
 
@@ -61,13 +56,6 @@ namespace SpeedPlatformer.Editor {
             if (GUILayout.Button("Move Parent")) {
                 MoveParentWithoutChildren(parent, parentTarget.position);
             }
-
-            if (GUILayout.Button("Assign Triggers")) {
-                foreach (GameObject section in Selection.gameObjects) {
-                    if (section.GetComponent<MovingEnvironment>() != null)
-                        section.GetComponent<MovingEnvironment>().SetTrigger(section.GetComponentInChildren<TriggerEvent>());
-                }
-            }
         }
 
         
@@ -76,7 +64,7 @@ namespace SpeedPlatformer.Editor {
             // go through each section, set parent, rename it, add components, add move trigger
             foreach (GameObject section in Selection.gameObjects) {
 
-                int sectionNum = TryGetEndingNumber(section.name);
+                int sectionNum = section.name.TryGetEndingNumber('_');
 
                 if (sectionNum == -1) return;
 
@@ -96,7 +84,8 @@ namespace SpeedPlatformer.Editor {
             }
 
             List<Transform> sortedSections = sectionContainer.GetDirectChildren().ToList();
-            sortedSections.Sort((object1, object2) => TryGetEndingNumber(object1.name).CompareTo(TryGetEndingNumber(object2.name)));
+            sortedSections.Sort((object1, object2) => object1.name.TryGetEndingNumber('_').
+                CompareTo(object2.name.TryGetEndingNumber('_')));
 
             for (int i = 0; i < sortedSections.Count; i++) {
                 sortedSections[i].SetSiblingIndex(i);
@@ -189,20 +178,6 @@ namespace SpeedPlatformer.Editor {
 
             Vector3 centerPosition = new Vector3((minX + maxX) / 2, (minY + maxY) / 2, 0);
             return centerPosition;
-        }
-
-        private int TryGetEndingNumber(string objectName) {
-            int endingNumber = 0;
-            int lastUnderscoreIndex = objectName.LastIndexOf('_');
-            if (lastUnderscoreIndex != -1 && lastUnderscoreIndex < objectName.Length - 1) {
-                string endingNumberString = objectName.Substring(lastUnderscoreIndex + 1);
-                if (int.TryParse(endingNumberString, out endingNumber)) {
-                    return endingNumber;
-                }
-            }
-
-            Debug.LogError("Could Not Get Ending Number: " + objectName);
-            return -1;
         }
     }
 #endif
