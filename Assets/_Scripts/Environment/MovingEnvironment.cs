@@ -7,11 +7,6 @@ namespace SpeedPlatformer.Environment {
 
         [SerializeField] private TriggerEvent moveTrigger;
 
-        public void SetTrigger(TriggerEvent trigger) {
-            print("Set " + trigger.name);
-            moveTrigger = trigger;
-        }
-
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
         [SerializeField] private float maxRotationSpeed;
@@ -31,6 +26,10 @@ namespace SpeedPlatformer.Environment {
 
         private void Awake() {
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start() {
+            moveTrigger.transform.position = transform.position;
         }
 
         private void OnEnable() {
