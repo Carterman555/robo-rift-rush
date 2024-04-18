@@ -100,9 +100,10 @@ namespace SpeedPlatformer.Environment {
         }
 
         // TODO - for cleaner code move to another script (SRP)
-        public void CreateMoveTrigger() {
-            GameObject moveTriggerObj = Instantiate(new GameObject(), transform);
+        public void CreateMoveTrigger(Transform moveTriggerContainer) {
+            GameObject moveTriggerObj = Instantiate(new GameObject(), moveTriggerContainer);
 
+            moveTriggerObj.transform.position = transform.position;
             moveTriggerObj.name = "MoveTrigger";
             moveTriggerObj.transform.SetAsFirstSibling();
 
@@ -151,7 +152,10 @@ namespace SpeedPlatformer.Environment {
 
             // spawn in move trigger
             if (GUILayout.Button("Create Move Trigger")) {
-                movingEnvironment.CreateMoveTrigger();
+
+                if (Helpers.TryFindByName(out GameObject triggerContainer, "MoveTriggers")) {
+                    movingEnvironment.CreateMoveTrigger(triggerContainer.transform);
+                }
             }
         }
     }

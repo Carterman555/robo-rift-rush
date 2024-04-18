@@ -6,11 +6,13 @@ using Codice.Client.Common;
 using System.Linq;
 using static System.Collections.Specialized.BitVector32;
 using System.Collections.Generic;
+using System;
+using Codice.Utils;
 
 namespace SpeedPlatformer.Editor {
 
 #if UNITY_EDITOR
-	public class LevelCreatorPanel : EditorWindow {
+    public class LevelCreatorPanel : EditorWindow {
 
         [MenuItem("Window/Level Creator Panel")]
         public static void ShowWindow() {
@@ -21,6 +23,9 @@ namespace SpeedPlatformer.Editor {
 
         private Transform parent;
         private Transform parentTarget;
+
+        private Transform moveTriggerContainer;
+        private Transform breakTriggerContainer;
 
         private void OnGUI() {
             GUILayout.Label("Selected Objects: " + Selection.gameObjects.Length);
@@ -34,10 +39,18 @@ namespace SpeedPlatformer.Editor {
             if (GUILayout.Button("Turn to Moving Environments")) {
                 SetupSelection();
 
-                foreach (GameObject section in Selection.gameObjects) {
-                    section.AddComponent<MovingEnvironment>().CreateMoveTrigger();
-                    section.GetComponent<FloatingIslandMovementPerlin>().enabled = false;
-                }
+                //... create trigger containers if they don't exist
+                TryCreateTriggerContainers();
+                TurnSelectionToMovingEnvironments();
+            }
+
+            if (GUILayout.Button("Turn to Fragile Environments")) {
+                SetupSelection();
+
+                //... create trigger containers if they don't exist
+                TryCreateTriggerContainers();
+                TurnSelectionToMovingEnvironments();
+                TurnSelectionToFragileEnvironments();
             }
 
             GUILayout.Label("Move Parent Without Moving Children");
@@ -56,6 +69,8 @@ namespace SpeedPlatformer.Editor {
                 }
             }
         }
+
+        
 
         private void SetupSelection() {
             // go through each section, set parent, rename it, add components, add move trigger
@@ -87,6 +102,63 @@ namespace SpeedPlatformer.Editor {
                 sortedSections[i].SetSiblingIndex(i);
             }
         }
+
+        private void TurnSelectionToMovingEnvironments() {
+            foreach (GameObject section in Selection.gameObjects) {
+                section.AddComponent<MovingEnvironment>().CreateMoveTrigger(moveTriggerContainer);
+                section.GetComponent<FloatingIslandMovementPerlin>().enabled = false;
+            }
+        }
+
+        private void TurnSelectionToFragileEnvironments() {
+            foreach (GameObject section in Selection.gameObjects) {
+                section.AddComponent<BreakOnGroundContact>().CreateBreakTrigger(breakTriggerContainer);
+            }
+        }
+
+        #region Create Trigger Containers
+
+        private void TryCreateTriggerContainers() {
+            if (!Helpers.TryFindByName(out GameObject environment, "Environment")) return;
+
+            Transform mainTriggerContainer = TryCreateMainTriggerContainer(environment.transform);
+            TryCreateMoveTriggerContainer(mainTriggerContainer);
+            TryCreateBreakTriggerContainer(mainTriggerContainer);
+        }
+
+        private Transform TryCreateMainTriggerContainer(Transform environment) {
+            GameObject triggerContainer;
+            if (Helpers.TryFindByName(out GameObject _triggerContainer, "Triggers")) {
+                triggerContainer = _triggerContainer;
+            }
+            else {
+                triggerContainer = Instantiate(new GameObject(), environment);
+                triggerContainer.name = "Triggers";
+            }
+            return triggerContainer.transform;
+        }
+
+        private void TryCreateMoveTriggerContainer(Transform mainTriggerContainer) {
+            if (Helpers.TryFindByName(out GameObject _moveTriggerContainer, "MoveTriggers")) {
+                moveTriggerContainer = _moveTriggerContainer.transform;
+            }
+            else {
+                moveTriggerContainer = Instantiate(new GameObject(), mainTriggerContainer).transform;
+                moveTriggerContainer.name = "MoveTriggers";
+            }
+        }
+
+        private void TryCreateBreakTriggerContainer(Transform mainTriggerContainer) {
+            if (Helpers.TryFindByName(out GameObject _breakTriggerContainer, "BreakTriggers")) {
+                breakTriggerContainer = _breakTriggerContainer.transform;
+            }
+            else {
+                breakTriggerContainer = Instantiate(new GameObject(), mainTriggerContainer).transform;
+                breakTriggerContainer.name = "BreakTriggers";
+            }
+        }
+
+        #endregion
 
         // unparent the gameobjects, move the parent, reparent the gameobjects so the children stay while the parent moves
         private void MoveParentWithoutChildren(Transform parent, Vector3 newPosition) {
