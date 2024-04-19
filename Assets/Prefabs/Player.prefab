@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0b304e1492625d646889a98937ef537c, type: 2}
+  rollSpeed: 40
+  rollDuration: 0.3
 --- !u!114 &6916853990179449719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPlayerYPos: -100
+  killPlayerYPos: -80
 --- !u!114 &3929349992693057859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6916853991358414902}
   - component: {fileID: 6916853991358414903}
+  - component: {fileID: 15185450}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -270,3 +273,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &15185450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916853991358414901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b2ad57949320243a19a251d138a1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 6916853990179449675}

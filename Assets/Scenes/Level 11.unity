@@ -1757,17 +1757,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 375661806940587711, guid: 75309ab65049a414d8618994d148f099, type: 3}
   m_PrefabInstance: {fileID: 375661806883896880}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &77527184 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 375661806940587680, guid: 75309ab65049a414d8618994d148f099, type: 3}
-  m_PrefabInstance: {fileID: 375661806883896880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162640ffccad3745a0bce741d63b1f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &77527187 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 375661806940587683, guid: 75309ab65049a414d8618994d148f099, type: 3}
@@ -60361,7 +60350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1000004
+      value: -4.4100003
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60369,7 +60358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1000004
+      value: -4.4100003
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701778, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: orthographic size
@@ -60612,26 +60601,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
-    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Size.x
-      value: 64.23454
-      objectReference: {fileID: 0}
-    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Size.y
-      value: 35.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65439401, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Offset.y
-      value: 3.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5400878577179821067, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: killPlayerYPos
-      value: -80
-      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449673, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_Name
       value: Player
@@ -60646,7 +60615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60692,10 +60661,6 @@ PrefabInstance:
       propertyPath: grapplePoint
       value: 
       objectReference: {fileID: 77527183}
-    - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: grappleTrigger
-      value: 
-      objectReference: {fileID: 77527184}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850

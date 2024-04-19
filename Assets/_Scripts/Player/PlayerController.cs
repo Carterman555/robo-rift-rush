@@ -28,6 +28,7 @@ namespace TarodevController
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
         public bool BoostInput => frameInput.BoostHeld;
+        public bool Rolling => rolling;
 
         #endregion
 
@@ -49,12 +50,12 @@ namespace TarodevController
 
         private void GatherInput()
         {
-            frameInput = new FrameInput
-            {
+            frameInput = new FrameInput {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.C),
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.C),
                 Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
-                BoostHeld = Input.GetKey(KeyCode.LeftShift)
+                BoostHeld = Input.GetKey(KeyCode.LeftShift),
+                RollDown = Input.GetKey(KeyCode.E)
             };
 
             if (stats.SnapInput)
@@ -79,6 +80,7 @@ namespace TarodevController
             HandleGravity();
             HandleCannonForce();
             HandleSwing();
+            HandleRoll();
 
             ApplyMovement();
         }
@@ -155,6 +157,9 @@ namespace TarodevController
             bufferedJumpUsable = false;
             coyoteUsable = false;
             frameVelocity.y = stats.JumpPower;
+
+            StopRolling();
+
             Jumped?.Invoke();
         }
 
@@ -405,6 +410,64 @@ namespace TarodevController
 
         #endregion
 
+        #region Roll
+
+        private bool rolling;
+
+        [SerializeField] private float rollSpeed;
+        [SerializeField] private float rollDuration;
+        private float rollTimer;
+
+        private int lastDirection = 1;
+
+        // try setting velocity or adding velocity, able to roll in air or not
+        // if not able to roll in air, add buffer and coyote time
+        
+        private void HandleRoll() {
+
+            if (!rolling && grounded && frameInput.RollDown) {
+                StartRolling();
+            }
+
+            if (rolling) {
+                frameVelocity = new Vector2(rollSpeed * lastDirection, 0);
+
+                rollTimer += Time.deltaTime;
+                if (rollTimer > rollDuration) {
+                    StopRolling();
+                }
+            }
+            else {
+                // if moving, track the last direction of the player input to know which way they should roll
+                if (frameInput.Move.x != 0) {
+                    lastDirection = (int)Mathf.Sign(frameInput.Move.x);
+                }
+            }
+        }
+
+        private void StartRolling() {
+            rolling = true;
+
+            Vector2 rollingColOffset = new Vector2(0, -0.5f);
+            col.offset = rollingColOffset;
+
+            Vector2 normalColSize = new Vector2(1, 1);
+            col.size = normalColSize;
+        }
+
+        private void StopRolling() {
+            rolling = false;
+            rollTimer = 0;
+
+            Vector2 normalColOffset = Vector2.zero;
+            col.offset = normalColOffset;
+
+            Vector2 normalColSize = new Vector2(1, 2);
+            col.size = normalColSize;
+        }
+
+        #endregion
+
         #region Move With Environment
 
         private Vector2 environmentVelocity;
@@ -433,6 +496,7 @@ namespace TarodevController
         public bool JumpHeld;
         public Vector2 Move;
         public bool BoostHeld;
+        public bool RollDown;
     }
 
     public interface IPlayerController
