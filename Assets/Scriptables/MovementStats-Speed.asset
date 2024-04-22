@@ -38,7 +38,4 @@ MonoBehaviour:
   TrampForceMult: 1.5
   MinTrampForce: 20
   SwingAcceleration: 80
-  SwingMomentControl: 10
-  StartSwingBoost: 0
-  MinStartSwingSpeed: 0
-  ReleaseBoost: 0
+  ReleaseBoost: 0.5

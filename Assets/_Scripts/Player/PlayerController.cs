@@ -277,28 +277,17 @@ namespace TarodevController
         private bool swinging;
         private bool inAirFromSwing; // so doesn't fall fast after swing from JumpEndEarlyGravityModifier
 
-        private float swingVelocity;
+        private float swingSpeed;
 
+        private bool swingingLeft;
         private bool stoppedAtBottomOfSwing;
 
         private Vector3 grapplePosition;
 
         private Vector3 swingDirection;
 
-        private float SwingSpeed => Mathf.Abs(swingVelocity);
-        private float VelocitySwingDirection => Mathf.Sign(swingVelocity);
-
-        private void TryIncreaseSwingSpeed(float acceleration) {
-            if (!touchingGround) {
-                swingVelocity += VelocitySwingDirection * acceleration * Time.fixedDeltaTime;
-            }
-        }
-
-        private void DecreaseSwingSpeed(float deacceleration) {
-            swingVelocity = Mathf.MoveTowards(swingVelocity, 0, deacceleration * Time.fixedDeltaTime);
-        }
-
         public void StartSwing(Vector3 grapplePosition) {
+
             swinging = true;
             inAirFromSwing = true;
             stoppedAtBottomOfSwing = false;
@@ -310,15 +299,16 @@ namespace TarodevController
             //... perpendicular to the direction
             Vector3 swingDirection = toGrapple.PerpendicularDirection().normalized;
 
-            swingVelocity = Vector3.Dot(frameVelocity, swingDirection);
+            float projectedSpeed = Vector3.Dot(frameVelocity, swingDirection);
+            swingSpeed = Mathf.Abs(projectedSpeed);
+            swingingLeft = projectedSpeed > 0f;
 
-            print("Start Boost: " + SwingSpeed + " -> " + SwingSpeed + stats.StartSwingBoost);
-            TryIncreaseSwingSpeed(stats.StartSwingBoost);
+            swingSpeed += stats.StartSwingBoost;
 
-            if (SwingSpeed < stats.MinStartSwingSpeed) {
-                print("Start Boost Increased: " + swingVelocity + " -> " + stats.MinStartSwingSpeed);
-                swingVelocity = stats.MinStartSwingSpeed * VelocitySwingDirection;
+            if (swingSpeed < stats.MinStartSwingSpeed) {
+                swingSpeed = stats.MinStartSwingSpeed;
             }
+
         }
 
         // used when the object the player is grappled to is moving
@@ -333,8 +323,7 @@ namespace TarodevController
 
             // apply a boost on release
             if (swinging) {
-                print("Release Boost: " + frameVelocity.magnitude + " -> " + (frameVelocity + (Vector2)swingDirection * stats.ReleaseBoost).magnitude);
-                frameVelocity += Mathf.Sign(swingVelocity) * (Vector2)swingDirection * stats.ReleaseBoost;
+                frameVelocity += (Vector2)swingDirection * stats.ReleaseBoost;
             }
 
             swinging = false;
@@ -353,31 +342,34 @@ namespace TarodevController
                 Vector3 toGrapple = (grapplePosition - transform.position).normalized;
 
                 //... perpendicular to the direction
-                swingDirection = -toGrapple.PerpendicularDirection().normalized; 
+                swingDirection = toGrapple.PerpendicularDirection().normalized; 
 
                 bool leftOfGrapple = toGrapple.x < 0f;
-                
-                bool swingingLeft = VelocitySwingDirection == -1;
+
+                // swing the player back and forth
                 if (swingingLeft) {
-                    // swing the player back and forth
                     if (leftOfGrapple) {
-                        DecreaseSwingSpeed(stats.Acceleration);
+                        DecreaseSwingSpeed();
                     }
                     else {
-                        TryIncreaseSwingSpeed(stats.SwingAcceleration);
+                        TryIncreaseSwingSpeed();
                     }
                 }
                 else {
                     if (leftOfGrapple) {
-                        TryIncreaseSwingSpeed(stats.SwingAcceleration);
+                        TryIncreaseSwingSpeed();
                     }
                     else {
-                        DecreaseSwingSpeed(stats.Acceleration);
+                        DecreaseSwingSpeed();
                     }
+
+                    swingDirection = -swingDirection;
                 }
 
                 // when player slows down to a stop, switch directions and check if should stop swinging
-                if (SwingSpeed <= 0.01f) {
+                if (swingSpeed <= 0.01f) {
+                    swingingLeft = !swingingLeft;
+
                     // switching directions when player is very close to bottom of swing causes jittering, so stop the player
                     if (Mathf.Abs(toGrapple.x) < 0.01f) {
                         transform.position = new Vector3(grapplePosition.x, transform.position.y);
@@ -385,7 +377,17 @@ namespace TarodevController
                     }
                 }
 
-                frameVelocity = swingDirection * swingVelocity;
+                frameVelocity = swingDirection * swingSpeed;
+
+
+                void TryIncreaseSwingSpeed() {
+                    if (!touchingGround) {
+                        swingSpeed += stats.SwingAcceleration * Time.fixedDeltaTime;
+                    }
+                }
+                void DecreaseSwingSpeed() {
+                    swingSpeed = Mathf.MoveTowards(swingSpeed, 0, stats.SwingAcceleration * Time.fixedDeltaTime);
+                }
             }
         }
 
