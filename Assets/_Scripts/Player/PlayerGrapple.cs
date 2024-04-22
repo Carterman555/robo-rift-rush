@@ -1,7 +1,6 @@
 using System;
 using TarodevController;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace SpeedPlatformer.Player
 {
@@ -24,8 +23,6 @@ namespace SpeedPlatformer.Player
 
         private GrappleState state;
 
-        private static bool unlocked;
-
         private Vector2 launchDirection;
         private float distanceTraveled;
 
@@ -34,30 +31,13 @@ namespace SpeedPlatformer.Player
 
         private Vector2 environmentVelocity;
 
-        #region Get Methods
-
-        public bool IsUnlocked() {
-            return unlocked;
-        }
-
-        #endregion
-
         #region Set Methods
 
         public void SetEnvironmentVelocity(Vector2 velocity) {
             environmentVelocity = velocity;
         }
 
-        public void Unlock() {
-            unlocked = true;
-        }
-
         #endregion
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void Init() {
-            unlocked = false;
-        }
 
         private void Awake() {
             playerController = GetComponent<PlayerController>();
@@ -73,8 +53,6 @@ namespace SpeedPlatformer.Player
         /// If in the Launching state, move the grapple point towards the target pos
         /// </summary>
         private void Update() {
-
-            if (!unlocked) return;
 
             grappleLine.SetPosition(0, transform.position);
 
