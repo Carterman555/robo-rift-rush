@@ -53,6 +53,9 @@ TagManager:
   - name: SpeedBooster
     uniqueID: 977797043
     locked: 0
+  - name: Items
+    uniqueID: 2301411709
+    locked: 0
   - name: Traps
     uniqueID: 4078160665
     locked: 0

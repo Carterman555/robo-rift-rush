@@ -168,7 +168,7 @@ namespace TarodevController
         #region Horizontal
 
         private bool canBoost = true;
-        private bool Boosting => BoostInput && canBoost;
+        private bool Boosting => !BoostInput && canBoost;
 
         public void SetCanBoost(bool canBoost) {
             this.canBoost = canBoost;
@@ -214,12 +214,12 @@ namespace TarodevController
             {
                 var inAirGravity = stats.FallAcceleration;
 
-                if (endedJumpEarly && frameVelocity.y > 0) {
-                    inAirGravity *= stats.JumpEndEarlyGravityModifier;
-                }
-
                 if (Boosting) {
                     inAirGravity = stats.BoostGravity;
+                }
+
+                if (endedJumpEarly && frameVelocity.y > 0) {
+                    inAirGravity *= stats.JumpEndEarlyGravityModifier;
                 }
 
                 frameVelocity.y = Mathf.MoveTowards(frameVelocity.y, -stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
@@ -282,7 +282,9 @@ namespace TarodevController
         private bool swingingLeft;
         private bool stoppedAtBottomOfSwing;
 
-        Vector3 grapplePosition;
+        private Vector3 grapplePosition;
+
+        private Vector3 swingDirection;
 
         public void StartSwing(Vector3 grapplePosition) {
 
@@ -299,8 +301,14 @@ namespace TarodevController
 
             float projectedSpeed = Vector3.Dot(frameVelocity, swingDirection);
             swingSpeed = Mathf.Abs(projectedSpeed);
-
             swingingLeft = projectedSpeed > 0f;
+
+            swingSpeed += stats.StartSwingBoost;
+
+            if (swingSpeed < stats.MinStartSwingSpeed) {
+                swingSpeed = stats.MinStartSwingSpeed;
+            }
+
         }
 
         // used when the object the player is grappled to is moving
@@ -315,7 +323,7 @@ namespace TarodevController
 
             // apply a boost on release
             if (swinging) {
-                frameVelocity += Vector2.one * swingSpeed * stats.ReleaseBoost;
+                frameVelocity += (Vector2)swingDirection * stats.ReleaseBoost;
             }
 
             swinging = false;
@@ -334,7 +342,7 @@ namespace TarodevController
                 Vector3 toGrapple = (grapplePosition - transform.position).normalized;
 
                 //... perpendicular to the direction
-                Vector3 swingDirection = toGrapple.PerpendicularDirection().normalized; 
+                swingDirection = toGrapple.PerpendicularDirection().normalized; 
 
                 bool leftOfGrapple = toGrapple.x < 0f;
 
