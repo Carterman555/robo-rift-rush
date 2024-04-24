@@ -332,6 +332,10 @@ namespace TarodevController
         private void HandleSwing() {
             if (swinging) {
 
+                if (frameInput.Move.x != 0) {
+                    stoppedAtBottomOfSwing = false;
+                }
+
                 // to avoid jittering caused by player rapidly switching directions at bottom of swing
                 if (stoppedAtBottomOfSwing) {
                     frameVelocity = Vector2.zero;
@@ -341,31 +345,37 @@ namespace TarodevController
                 //... direction from the player to the grapple point
                 Vector3 toGrapple = (grapplePosition - transform.position).normalized;
 
-                //... perpendicular to the direction
-                swingDirection = toGrapple.PerpendicularDirection().normalized; 
-
-                bool leftOfGrapple = toGrapple.x > 0f;
-
-                // swing the player back and forth
-                float acceleration = stats.SwingAcceleration;
-
+                swingDirection = toGrapple.PerpendicularDirection().normalized;
                 if (swingingLeft) {
-                    if (leftOfGrapple) {
-                        DecreaseSwingSpeed(acceleration);
-                    }
-                    else {
-                        TryIncreaseSwingSpeed(acceleration);
-                    }
-
                     swingDirection = -swingDirection;
                 }
+
+                // swing back and forth
+                bool leftOfGrapple = toGrapple.x > 0f;
+                bool swingingUpwards = (swingingLeft && leftOfGrapple) || (!swingingLeft && !leftOfGrapple);
+                if (swingingUpwards) {
+                    DecreaseSwingSpeed(stats.SwingAcceleration);
+                }
                 else {
-                    if (leftOfGrapple) {
-                        TryIncreaseSwingSpeed(acceleration);
-                    }
-                    else {
-                        DecreaseSwingSpeed(acceleration);
-                    }
+                    TryIncreaseSwingSpeed(stats.SwingAcceleration);
+                }
+
+                // player can control momentum
+                bool inputWithSwingDirection = (swingingLeft && frameInput.Move.x < 0) || (!swingingLeft && frameInput.Move.x > 0);
+                bool inputAgainstSwingDirection = (swingingLeft && frameInput.Move.x > 0) || (!swingingLeft && frameInput.Move.x < 0);
+
+                // the higher the player is in the swing, the less momentum control they have
+                float heightRatio = Mathf.Max(0, toGrapple.y / toGrapple.magnitude); // current height / max height
+                float momentumControlMult = heightRatio / Mathf.Max(0.25f, swingSpeed);
+                momentumControlMult = Mathf.Pow(momentumControlMult, 2);
+
+                print(heightRatio + " / " + Mathf.Max(0.25f, swingSpeed) + " = " + momentumControlMult);
+
+                if (inputWithSwingDirection) {
+                    TryIncreaseSwingSpeed(stats.MomentumControl * momentumControlMult);
+                }
+                else if (inputAgainstSwingDirection) {
+                    DecreaseSwingSpeed(stats.MomentumControl * momentumControlMult);
                 }
 
                 // when player slows down to a stop, switch directions and check if should stop swinging
@@ -385,44 +395,9 @@ namespace TarodevController
             }
         }
 
-
-        //private float GetControlMomentum() {
-        //    if (swingingLeft) {
-        //        if (frameInput.Move.x == 1) {
-        //            return stats.MomentumControl;
-        //        }
-        //        else if (frameInput.Move.x == -1) {
-        //            return -stats.MomentumControl;
-        //        }
-        //    }
-        //    else {
-        //        if (frameInput.Move.x == 1) {
-        //            return -stats.MomentumControl;
-        //        }
-        //        else if (frameInput.Move.x == -1) {
-        //            return stats.MomentumControl;
-        //        }
-        //    }
-
-        //    return 1f;
-        //}
-
         private void TryIncreaseSwingSpeed(float acceleration) {
             if (!touchingGround) {
                 float speedIncrease = acceleration;
-
-                print("Acceleration Before: " + speedIncrease);
-
-                // If the player is pressing the right direction, increase the speed more
-                if (swingingLeft && frameInput.Move.x < 0 || !swingingLeft && frameInput.Move.x > 0) {
-                    speedIncrease += stats.MomentumControl;
-                }
-                // If the player is pressing the opposite direction, decrease the speed
-                else if (swingingLeft && frameInput.Move.x > 0 || !swingingLeft && frameInput.Move.x < 0) {
-                    speedIncrease -= stats.MomentumControl;
-                }
-
-                print("Acceleration After: " + speedIncrease);
 
                 swingSpeed += speedIncrease * Time.fixedDeltaTime;
             }
