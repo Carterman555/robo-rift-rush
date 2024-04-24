@@ -95109,6 +95109,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6916853990179449675, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: testMult
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449712, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
