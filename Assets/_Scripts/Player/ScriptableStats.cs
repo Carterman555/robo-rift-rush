@@ -71,5 +71,6 @@ namespace TarodevController
         public float StartSwingBoost = 20f;
         public float MinStartSwingSpeed = 10f;
         public float ReleaseBoost = 20f;
+        public float MomentumControl;
     }
 }
