@@ -122,6 +122,10 @@ namespace SpeedPlatformer.Environment {
             moveTrigger = moveTriggerObj.AddComponent<TriggerEvent>();
         }
 
+        public void UpdateMoveTriggerPosition() {
+            moveTrigger.transform.position = transform.position;
+        }
+
         private void OnDrawGizmos() {
             if (continuousMovement) {
                 Gizmos.color = Color.green;
@@ -141,9 +145,12 @@ namespace SpeedPlatformer.Environment {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
-            // to hide the moveDistance float if continuous movement is checked
             MovingEnvironment movingEnvironment = target as MovingEnvironment;
 
+            //... move the trigger with the section when it's moved in editor mode
+            movingEnvironment.UpdateMoveTriggerPosition();
+
+            // to hide the moveDistance float if continuous movement is checked
             if (!movingEnvironment.continuousMovement) {
                 movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Distance", movingEnvironment.moveDistance);
             }

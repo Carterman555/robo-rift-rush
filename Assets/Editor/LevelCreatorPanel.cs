@@ -58,8 +58,6 @@ namespace SpeedPlatformer.Editor {
             }
         }
 
-        
-
         private void SetupSelection() {
             // go through each section, set parent, rename it, add components, add move trigger
             foreach (GameObject section in Selection.gameObjects) {

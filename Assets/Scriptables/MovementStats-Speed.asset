@@ -41,4 +41,5 @@ MonoBehaviour:
   StartSwingBoost: 0
   MinStartSwingSpeed: 0
   ReleaseBoost: 0
-  MomentumControl: 40
+  MomentumControlAcceleration: 30
+  MaxSwingSpeedControl: 50

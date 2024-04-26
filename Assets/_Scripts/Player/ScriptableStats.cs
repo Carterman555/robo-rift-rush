@@ -71,6 +71,8 @@ namespace TarodevController
         public float StartSwingBoost = 20f;
         public float MinStartSwingSpeed = 10f;
         public float ReleaseBoost = 20f;
-        public float MomentumControl;
+        public float MomentumControlAcceleration;
+        [Tooltip("The max pontential speed until the player cannot control the swing momentum")]
+        public float MaxSwingSpeedControl;
     }
 }

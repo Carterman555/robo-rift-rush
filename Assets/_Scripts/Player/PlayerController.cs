@@ -1,4 +1,4 @@
-using SpeedPlatformer;
+﻿using SpeedPlatformer;
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
@@ -381,62 +381,60 @@ namespace TarodevController
             }
         }
 
-        [SerializeField] private float testMult;
-
+        /// <summary>
+        /// Calculate the potential energy using speed and height. The higher the potential energy, the less control
+        /// the player has in speeding up the momentum and the more control they have over slowing the momentum. This
+        /// allows the player to gain momentum quickly when swinging slowly while limiting them on how fast they can swing.
+        /// </summary>
         private void HandlePlayerControl() {
-                bool inputWithSwingDirection = (swingingLeft && frameInput.Move.x < 0) || (!swingingLeft && frameInput.Move.x > 0);
-                bool inputAgainstSwingDirection = (swingingLeft && frameInput.Move.x > 0) || (!swingingLeft && frameInput.Move.x < 0);
+            Vector2 toGrapple = (Vector2)(grapplePosition - transform.position);
 
-                // the higher the player is in the swing, the less momentum control they have
-                Vector2 toGrapple = (Vector2)(grapplePosition - transform.position);
-                float heightRatio = Mathf.Max(0, toGrapple.y / toGrapple.magnitude); // current height / max height
-                float heightFromBottomOfSwing = toGrapple.magnitude - toGrapple.y;
+            float toBottomAngle = Vector2.Angle(toGrapple, new Vector2(0, toGrapple.magnitude));
+            float travelDistanceToBottom = 2 * Mathf.PI * toGrapple.magnitude * (toBottomAngle / 360f); // circumference(2πr) * percent of circumference to bottom
 
-                // calculate the potential speed with and height ratio
-                float potentialSpeedFromHeight = Mathf.Sqrt(heightFromBottomOfSwing * stats.Acceleration * testMult);
-                float potentialSpeed = swingSpeed + potentialSpeedFromHeight;
-
-                if (toGrapple.magnitude - heightFromBottomOfSwing < 0.1f || swingSpeed < 0.1f){
-                    print("heightFromBottomOfSwing: " + heightFromBottomOfSwing);
-                    print("potentialSpeed: " + potentialSpeed); 
+            // predict the fastest speed (when at bottom of swing)
+            int count = 0;
+            float distanceRemaining = travelDistanceToBottom;
+            float protentialSpeed = swingSpeed;
+            while (distanceRemaining > 0) {
+                count++;
+                if (count > 9999) {
+                    print("9999 times!");
                 }
 
-                //print("heightFromBottomOfSwing:" + heightFromBottomOfSwing + " potentialSpeed: " + potentialSpeed);
+                protentialSpeed += stats.Acceleration * Time.fixedDeltaTime;
+                distanceRemaining -= protentialSpeed * Time.fixedDeltaTime;
+            }
 
-                float momentumControlMult = heightRatio * Mathf.Max(0.25f, swingSpeed);
-                //momentumControlMult = Mathf.Pow(momentumControlMult, 2);
+            //... the higher the potential energy, the less control the player has in speeding up the momentum
+            float speedUpControlMult = Mathf.Max(0, Mathf.Lerp(4, 0, protentialSpeed / stats.MaxSwingSpeedControl));
+            float slowDownControlMult = Mathf.Max(0.1f, 1 / speedUpControlMult); // min at 0.1 because can't divide by 0
 
-                //print(heightRatio + " / " + Mathf.Max(0.25f, swingSpeed) + " = " + momentumControlMult);
+            // prevent glitch where the player can slowly gaining height when at top of swing
+            bool atTopOfSwing = toBottomAngle > 1f && swingSpeed < 2f;
+            if (atTopOfSwing) {
+                return;
+            }
 
-                if (inputWithSwingDirection) {
-                    TryIncreaseSwingSpeed(stats.MomentumControl * momentumControlMult);
-                }
-                else if (inputAgainstSwingDirection) {
-                    DecreaseSwingSpeed(stats.MomentumControl * momentumControlMult);
-                }
+            bool inputWithSwingDirection = (swingingLeft && frameInput.Move.x < 0) || (!swingingLeft && frameInput.Move.x > 0);
+            bool inputAgainstSwingDirection = (swingingLeft && frameInput.Move.x > 0) || (!swingingLeft && frameInput.Move.x < 0);
+
+            if (inputWithSwingDirection) {
+                TryIncreaseSwingSpeed(stats.MomentumControlAcceleration * speedUpControlMult);
+            }
+            else if (inputAgainstSwingDirection) {
+                DecreaseSwingSpeed(stats.MomentumControlAcceleration * slowDownControlMult);
+            }
         }
 
         private void TryIncreaseSwingSpeed(float acceleration) {
             if (!touchingGround) {
-                float speedIncrease = acceleration;
-
-                swingSpeed += speedIncrease * Time.fixedDeltaTime;
+                swingSpeed += acceleration * Time.fixedDeltaTime;
             }
         }
 
         private void DecreaseSwingSpeed(float deacceleration) {
-            float speedDecrease = deacceleration;
-
-            // If the player is pressing the right direction, increase the speed more
-            if (swingingLeft && frameInput.Move.x < 0 || !swingingLeft && frameInput.Move.x > 0) {
-                speedDecrease -= stats.MomentumControl;
-            }
-            // If the player is pressing the opposite direction, decrease the speed
-            else if (swingingLeft && frameInput.Move.x > 0 || !swingingLeft && frameInput.Move.x < 0) {
-                speedDecrease += stats.MomentumControl;
-            }
-
-            swingSpeed = Mathf.MoveTowards(swingSpeed, 0, speedDecrease * Time.fixedDeltaTime);
+            swingSpeed = Mathf.MoveTowards(swingSpeed, 0, deacceleration * Time.fixedDeltaTime);
         }
 
         private bool touchingGround;
