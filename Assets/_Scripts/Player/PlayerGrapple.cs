@@ -13,6 +13,8 @@ namespace SpeedPlatformer.Player
 
     public class PlayerGrapple : MonoBehaviour
     {
+        [SerializeField] private bool startUnlocked;
+
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private LayerMask trapLayerMask;
 
@@ -66,6 +68,10 @@ namespace SpeedPlatformer.Player
             grappleLine.positionCount = 2;
 
             ChangeState(GrappleState.Deactive);
+
+            if (!unlocked && startUnlocked) {
+                unlocked = true;
+            }
         }
 
         /// <summary>

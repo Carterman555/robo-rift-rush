@@ -115,12 +115,12 @@ namespace SpeedPlatformer.Editor {
 
         private Transform TryCreateMainTriggerContainer(Transform environment) {
             GameObject triggerContainer;
-            if (Helpers.TryFindByName(out GameObject _triggerContainer, "Triggers")) {
+            if (Helpers.TryFindByName(out GameObject _triggerContainer, "EnvironmentTriggers")) {
                 triggerContainer = _triggerContainer;
             }
             else {
                 triggerContainer = Instantiate(new GameObject(), environment);
-                triggerContainer.name = "Triggers";
+                triggerContainer.name = "EnvironmentTriggers";
             }
             return triggerContainer.transform;
         }

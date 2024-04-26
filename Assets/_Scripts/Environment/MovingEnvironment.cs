@@ -7,14 +7,20 @@ namespace SpeedPlatformer.Environment {
 
         [SerializeField] private TriggerEvent moveTrigger;
 
+        public bool translationMovement = true;
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
+        public bool startAtMaxMoveSpeed = true;
+        [HideInInspector] public float moveAcceleration = 20f;
+
         [SerializeField] private float maxRotationSpeed;
+        public bool startAtMaxRotationSpeed = true;
+        [HideInInspector] public float rotationAcceleration = 20f;
 
         private float moveSpeed;
         private float rotationSpeed;
 
-        [SerializeField] private float moveAcceleration = 20f;
+        
 
         public bool continuousMovement = true;
         [HideInInspector] public float moveDistance;
@@ -111,9 +117,6 @@ namespace SpeedPlatformer.Environment {
             // use the environments collider bounds to setup the bounds of the move trigger
             Bounds environmentBounds = GetComponent<CompositeCollider2D>().bounds;
 
-            Vector2 offset = environmentBounds.center - collider.bounds.center;
-            collider.offset = offset;
-
             float xSize = environmentBounds.size.x / collider.bounds.size.x;
             float ySize = environmentBounds.size.y / collider.bounds.size.y;
             collider.size = new Vector2(xSize, ySize);
@@ -150,8 +153,17 @@ namespace SpeedPlatformer.Environment {
             //... move the trigger with the section when it's moved in editor mode
             movingEnvironment.UpdateMoveTriggerPosition();
 
+            if (!movingEnvironment.startAtMaxMoveSpeed) {
+                movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Acceleration", movingEnvironment.moveAcceleration);
+            }
+
+            if (!movingEnvironment.startAtMaxRotationSpeed) {
+                movingEnvironment.moveDistance = EditorGUILayout.FloatField("Rotation Acceleration", movingEnvironment.rotationAcceleration);
+            }
+
             // to hide the moveDistance float if continuous movement is checked
             if (!movingEnvironment.continuousMovement) {
+                
                 movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Distance", movingEnvironment.moveDistance);
             }
 

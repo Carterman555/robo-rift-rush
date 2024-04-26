@@ -47,11 +47,7 @@ public static class Helpers
 
     public static bool TryFindByName(out GameObject gameObject, string name) {
         gameObject = GameObject.Find(name);
-        if (gameObject == null) {
-            Debug.LogError(gameObject + " object not found in scene!");
-            return false;
-        }
-        return true;
+        return gameObject != null;
     }
 
     public static Vector3 PerpendicularDirection(this Vector3 originalDirection) {
