@@ -42,6 +42,10 @@ namespace SpeedPlatformer.Player
             return unlocked;
         }
 
+        public Vector2 GetGrapplePointPosition() {
+            return grapplePoint.position;
+        }
+
         #endregion
 
         #region Set Methods
@@ -117,8 +121,20 @@ namespace SpeedPlatformer.Player
 
         private void FixedUpdate() {
             if (state == GrappleState.Grappled) {
-                SetGrappleObjectPos(grapplePoint.position + ((Vector3)environmentVelocity * Time.fixedDeltaTime));
+
+                // so moves with translating environment
+                Vector3 newPosition = grapplePoint.position + ((Vector3)environmentVelocity * Time.fixedDeltaTime);
+
+                SetGrappleObjectPos(newPosition);
             }
+        }
+
+        
+
+        private Vector2 RotateVector(Vector2 vector, float angle) {
+            float cos = Mathf.Cos(angle);
+            float sin = Mathf.Sin(angle);
+            return new Vector2(vector.x * cos - vector.y * sin, vector.x * sin + vector.y * cos);
         }
 
         private void ReleaseGrappleCheck() {

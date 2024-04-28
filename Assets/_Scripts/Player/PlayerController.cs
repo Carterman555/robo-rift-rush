@@ -375,8 +375,6 @@ namespace TarodevController
                     }
                 }
 
-                Debug.DrawLine(transform.position, transform.position + swingDirection * 3);
-
                 frameVelocity = swingDirection * swingSpeed;
             }
         }
@@ -427,8 +425,15 @@ namespace TarodevController
             }
         }
 
+        /// <summary>
+        /// There is a left and right trigger to detect if the player is touching the ground. This is so that the
+        /// when the ground is blocking their swing movement so they can't gain speed and launch upon releasing.
+        /// The two different triggers allows the player to increase speed when the ground is not blocking the swinging
+        /// direction.
+        /// </summary>
         private void TryIncreaseSwingSpeed(float acceleration) {
-            if (!touchingGround) {
+            bool groundBlockingPlayer = (leftGroundBlockingPlayer && swingingLeft) || (rightGroundBlockingPlayer && !swingingLeft);
+            if (!groundBlockingPlayer) {
                 swingSpeed += acceleration * Time.fixedDeltaTime;
             }
         }
@@ -437,19 +442,44 @@ namespace TarodevController
             swingSpeed = Mathf.MoveTowards(swingSpeed, 0, deacceleration * Time.fixedDeltaTime);
         }
 
-        private bool touchingGround;
+        #region Ground Triggers
+        private bool leftGroundBlockingPlayer; // ground is block player from swinging to the left
+        private bool rightGroundBlockingPlayer; // ground is block player from swinging to the right
 
-        private void OnCollisionEnter2D(Collision2D collision) {
+        [SerializeField] private TriggerEvent leftGroundTrigger;
+        [SerializeField] private TriggerEvent rightGroundTrigger;
+
+        private void OnEnable() {
+            leftGroundTrigger.OnTriggerEntered += OnLeftGroundTriggerEnter;
+            leftGroundTrigger.OnTriggerExited += OnLeftGroundTriggerExit;
+            rightGroundTrigger.OnTriggerEntered += OnRightGroundTriggerEnter;
+            rightGroundTrigger.OnTriggerExited += OnRightGroundTriggerExit;
+        }
+
+        private void OnLeftGroundTriggerEnter(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.GroundLayer) {
-                touchingGround = true;
+                leftGroundBlockingPlayer = true;
             }
         }
 
-        private void OnCollisionExit2D(Collision2D collision) {
+        private void OnLeftGroundTriggerExit(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.GroundLayer) {
-                touchingGround = false;
+                leftGroundBlockingPlayer = false;
             }
         }
+
+        private void OnRightGroundTriggerEnter(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.GroundLayer) {
+                rightGroundBlockingPlayer = true;
+            }
+        }
+
+        private void OnRightGroundTriggerExit(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.GroundLayer) {
+                rightGroundBlockingPlayer = false;
+            }
+        } 
+        #endregion
 
         #endregion
 

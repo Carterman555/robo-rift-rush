@@ -41,19 +41,45 @@ namespace SpeedPlatformer {
         private void OnTriggerExit2D(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.GrappleLayer) {
                 playerGrapple.SetEnvironmentVelocity(Vector2.zero);
+                playerController.SetEnvironmentVelocity(Vector2.zero);
                 touchingGrapple = false;
             }
         }
 
         private void Update() {
-            if (touchingPlayer) {
-                playerController.SetEnvironmentVelocity(rb.velocity);
+            if (touchingPlayer && !touchingGrapple) {
+                Vector2 velocity = rb.velocity;
+                velocity += GetVelocityFromRotation(playerController.transform.position, rb.angularVelocity);
+                playerController.SetEnvironmentVelocity(velocity);
             }
 
             if (touchingGrapple) {
-                playerController.SetEnvironmentVelocity(rb.velocity);
-                playerGrapple.SetEnvironmentVelocity(rb.velocity);
+
+                Vector2 velocity = rb.velocity + GetVelocityFromRotation(playerGrapple.GetGrapplePointPosition(), rb.angularVelocity);
+                playerController.SetEnvironmentVelocity(velocity);
+                playerGrapple.SetEnvironmentVelocity(velocity);
+
+                playerController.UpdateGrapplePos(playerGrapple.GetGrapplePointPosition());
             }
+        }
+
+        private Vector2 GetVelocityFromRotation(Vector3 objectPos, float angularVelocityDegrees) {
+
+            // Calculate the angular velocity of the square in radians per second
+            float angularVelocity = angularVelocityDegrees * Mathf.Deg2Rad;
+
+            // Calculate the position of the circle relative to the square
+            Vector3 relativePosition = objectPos - transform.position;
+
+            // Calculate the velocity of the circle
+            Vector2 velocity = new Vector2(
+                -relativePosition.y * angularVelocity,
+                relativePosition.x * angularVelocity
+            );
+
+            Debug.DrawRay(objectPos, velocity);
+
+            return velocity;
         }
     }
 }

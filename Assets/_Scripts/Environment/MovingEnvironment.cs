@@ -11,16 +11,14 @@ namespace SpeedPlatformer.Environment {
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
         public bool startAtMaxMoveSpeed = true;
-        [HideInInspector] public float moveAcceleration = 20f;
+        [HideInInspector] public float moveAcceleration;
 
         [SerializeField] private float maxRotationSpeed;
         public bool startAtMaxRotationSpeed = true;
-        [HideInInspector] public float rotationAcceleration = 20f;
+        [HideInInspector] public float rotationAcceleration;
 
         private float moveSpeed;
         private float rotationSpeed;
-
-        
 
         public bool continuousMovement = true;
         [HideInInspector] public float moveDistance;
@@ -57,9 +55,18 @@ namespace SpeedPlatformer.Environment {
 
             switch (currentMovement) {
                 case MovementType.Accelerating:
+
                     // accelerate speed and rotation
                     moveSpeed = Mathf.MoveTowards(moveSpeed, maxMoveSpeed, moveAcceleration * Time.fixedDeltaTime);
                     rotationSpeed = Mathf.MoveTowards(rotationSpeed, maxRotationSpeed, moveAcceleration * Time.fixedDeltaTime);
+
+                    if (startAtMaxMoveSpeed) {
+                        moveSpeed = maxMoveSpeed;
+                    }
+
+                    if (startAtMaxRotationSpeed) {
+                        rotationSpeed = maxRotationSpeed;
+                    }
 
                     MoveEnvironment();
 
@@ -125,8 +132,10 @@ namespace SpeedPlatformer.Environment {
             moveTrigger = moveTriggerObj.AddComponent<TriggerEvent>();
         }
 
-        public void UpdateMoveTriggerPosition() {
-            moveTrigger.transform.position = transform.position;
+        public void TryUpdateMoveTriggerPosition() {
+            if (moveTrigger != null) {
+                moveTrigger.transform.position = transform.position;
+            }
         }
 
         private void OnDrawGizmos() {
@@ -151,14 +160,14 @@ namespace SpeedPlatformer.Environment {
             MovingEnvironment movingEnvironment = target as MovingEnvironment;
 
             //... move the trigger with the section when it's moved in editor mode
-            movingEnvironment.UpdateMoveTriggerPosition();
+            movingEnvironment.TryUpdateMoveTriggerPosition();
 
             if (!movingEnvironment.startAtMaxMoveSpeed) {
-                movingEnvironment.moveDistance = EditorGUILayout.FloatField("Move Acceleration", movingEnvironment.moveAcceleration);
+                movingEnvironment.moveAcceleration = EditorGUILayout.FloatField("Move Acceleration", movingEnvironment.moveAcceleration);
             }
 
             if (!movingEnvironment.startAtMaxRotationSpeed) {
-                movingEnvironment.moveDistance = EditorGUILayout.FloatField("Rotation Acceleration", movingEnvironment.rotationAcceleration);
+                movingEnvironment.rotationAcceleration = EditorGUILayout.FloatField("Rotation Acceleration", movingEnvironment.rotationAcceleration);
             }
 
             // to hide the moveDistance float if continuous movement is checked
