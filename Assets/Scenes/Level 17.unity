@@ -36240,6 +36240,7 @@ GameObject:
   - component: {fileID: 1300870663}
   - component: {fileID: 1300870662}
   - component: {fileID: 1300870668}
+  - component: {fileID: 1300870669}
   m_Layer: 3
   m_Name: Section_2
   m_TagString: Untagged
@@ -36254,7 +36255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300870660}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 148, y: -47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -38554,7 +38555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300870660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f63e52b2d7bc48b4eacef32389cddcad, type: 3}
   m_Name: 
@@ -38564,6 +38565,26 @@ MonoBehaviour:
   maxMoveSpeed: 1.5
   startAtMaxMoveSpeed: 1
   moveAcceleration: 0
+--- !u!114 &1300870669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300870660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf9c4cbf00ed924cb0ed75f6ce062a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTrigger: {fileID: 1024625933}
+  rotateClockwise: 1
+  maxRotationSpeed: 50
+  startAtMaxRotationSpeed: 1
+  RotationAcceleration: 0
+  rotationEndCondition: 2
+  EndRotation: 348
+  EndRotateCount: 1
 --- !u!1001 &1301391169
 PrefabInstance:
   m_ObjectHideFlags: 0
