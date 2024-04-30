@@ -7,7 +7,6 @@ namespace SpeedPlatformer.Environment {
 
         [SerializeField] private TriggerEvent moveTrigger;
 
-        public bool translationMovement = true;
         [SerializeField] private float moveAngle = 180f;
         [SerializeField] private float maxMoveSpeed;
         public bool startAtMaxMoveSpeed = true;
@@ -123,6 +122,9 @@ namespace SpeedPlatformer.Environment {
 
             // use the environments collider bounds to setup the bounds of the move trigger
             Bounds environmentBounds = GetComponent<CompositeCollider2D>().bounds;
+
+            Vector2 offset = environmentBounds.center - collider.bounds.center;
+            collider.offset = offset;
 
             float xSize = environmentBounds.size.x / collider.bounds.size.x;
             float ySize = environmentBounds.size.y / collider.bounds.size.y;

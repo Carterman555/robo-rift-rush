@@ -5,7 +5,7 @@ namespace SpeedPlatformer.Environment{
         // draw circle to make selectable
         private void OnDrawGizmos() {
 
-            Color lightBlue = new Color(82f / 255f, 219f / 255f, 255f / 255f, 40f/255f);
+            Color lightBlue = new Color(82f / 255f, 219f / 255f, 255f / 255f, 80f/255f);
             Gizmos.color = lightBlue;
 
             float radius = 1.5f;
