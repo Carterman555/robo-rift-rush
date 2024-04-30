@@ -21,6 +21,14 @@ namespace SpeedPlatformer {
 
         private Rigidbody2D rb;
 
+        #region Get Methods
+
+        public bool Deaccelerating() {
+            return currentMovement == MovementType.Deaccelerating;
+        }
+
+        #endregion
+
         private void Awake() {
             rb = GetComponent<Rigidbody2D>();
         }
@@ -52,16 +60,12 @@ namespace SpeedPlatformer {
                     // accelerate speed and rotation
                     moveSpeed = Mathf.MoveTowards(moveSpeed, maxMoveSpeed, moveAcceleration * Time.fixedDeltaTime);
                     MoveEnvironment();
+                    CheckNearTarget();
                     break;
                 case MovementType.Deaccelerating:
                     moveSpeed = Mathf.MoveTowards(moveSpeed, 0, deacceleration * Time.fixedDeltaTime);
                     MoveEnvironment();
-
-                    bool stoppedMoving = Mathf.Abs(moveSpeed) < 0.05f;
-                    if (stoppedMoving) {
-                        currentMovement = MovementType.Moved;
-                    }
-
+                    CheckStopMoving();
                     break;
             }
         }
@@ -69,7 +73,9 @@ namespace SpeedPlatformer {
         private void MoveEnvironment() {
             Vector3 moveDirection = (targetTransform.position - transform.position).normalized;
             rb.velocity = moveDirection * moveSpeed;
+        }
 
+        private void CheckNearTarget() {
             float distanceToDeaccelerate = 2f;
             float distanceFromTarget = (targetTransform.position - transform.position).magnitude;
             if (distanceFromTarget < distanceToDeaccelerate) {
@@ -80,6 +86,14 @@ namespace SpeedPlatformer {
 
                 //...  then calculate deacceleration using slope of velocity-time graph (rise/run or vel/time)
                 deacceleration = moveSpeed / secondsToStop;
+            }
+        }
+
+        private void CheckStopMoving() {
+            bool stoppedMoving = Mathf.Abs(moveSpeed) < 0.05f;
+            if (stoppedMoving) {
+                rb.velocity = Vector3.zero;
+                currentMovement = MovementType.Moved;
             }
         }
 
