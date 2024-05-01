@@ -1,4 +1,5 @@
 using SpeedPlatformer.Management;
+using SpeedPlatformer.Triggers;
 using TarodevController;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.Triggers {
     public class TriggerEvent : MonoBehaviour {
         public event Action<Collider2D> OnTriggerEntered;
         public event Action<Collider2D> OnTriggerExited;

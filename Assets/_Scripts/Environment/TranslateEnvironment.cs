@@ -1,4 +1,4 @@
-using SpeedPlatformer.Environment;
+using SpeedPlatformer.Triggers;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace SpeedPlatformer {
         public bool startAtMaxMoveSpeed = true;
         [HideInInspector] public float moveAcceleration;
 
-        enum MovementType { Waiting, Moving, Deaccelerating, Moved }
+        enum MovementType { Waiting, Moving, Deaccelerating }
         private MovementType currentMovement = MovementType.Waiting;
 
         private Rigidbody2D rb;
@@ -25,6 +25,14 @@ namespace SpeedPlatformer {
 
         public bool Deaccelerating() {
             return currentMovement == MovementType.Deaccelerating;
+        }
+
+        #endregion
+
+        #region Set Methods
+
+        public void SetMoveTrigger(TriggerEvent trigger) {
+            moveTrigger = trigger;
         }
 
         #endregion
@@ -81,7 +89,8 @@ namespace SpeedPlatformer {
             if (distanceFromTarget < distanceToDeaccelerate) {
                 currentMovement = MovementType.Deaccelerating;
 
-                //... calculate seconds using area under velocity-time graph,
+                //... calculate seconds using area under velocity-time graph - distanceToDeaccelerate is area of triangle so * 2 to get
+                //... area of square, then divide by speed to get time
                 float secondsToStop = (2 * distanceToDeaccelerate) / moveSpeed;
 
                 //...  then calculate deacceleration using slope of velocity-time graph (rise/run or vel/time)
@@ -93,13 +102,24 @@ namespace SpeedPlatformer {
             bool stoppedMoving = Mathf.Abs(moveSpeed) < 0.05f;
             if (stoppedMoving) {
                 rb.velocity = Vector3.zero;
-                currentMovement = MovementType.Moved;
+                enabled = false;
             }
         }
 
         public void TryUpdateMoveTriggerPosition() {
             if (moveTrigger != null) {
                 moveTrigger.transform.position = transform.position;
+            }
+        }
+
+        [ContextMenu("Create Move Trigger")]
+        public void CreateMoveTrigger() {
+
+            //... add and assign moveTrigger component
+            moveTrigger = Helpers.CreateMoveTrigger(transform);
+
+            if (TryGetComponent(out RotateEnvironment rotateEnvironment)) {
+                rotateEnvironment.SetMoveTrigger(moveTrigger);
             }
         }
     }

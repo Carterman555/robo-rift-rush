@@ -1,7 +1,5 @@
-using Blobber;
-using System;
+using SpeedPlatformer.Triggers;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -91,6 +89,33 @@ public static class Helpers
 
         Debug.LogError("Could Not Get Ending Number: " + objectName);
         return -1;
+    }
+
+    public static TriggerEvent CreateMoveTrigger(Transform transform) {
+
+        if (!Helpers.TryFindByName(out GameObject moveTriggerContainer, "MoveTriggers")) {
+            Debug.LogWarning("Could not find MoveTriggers");
+        }
+        GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), moveTriggerContainer.transform);
+
+        moveTriggerObj.transform.position = transform.position;
+        moveTriggerObj.name = "MoveTrigger_" + transform.name.TryGetEndingNumber('_');
+
+        BoxCollider2D collider = moveTriggerObj.AddComponent<BoxCollider2D>();
+        collider.isTrigger = true;
+
+        // use the environments collider bounds to setup the bounds of the move trigger
+        Bounds environmentBounds = transform.GetComponent<CompositeCollider2D>().bounds;
+
+        Vector2 offset = environmentBounds.center - collider.bounds.center;
+        collider.offset = offset;
+
+        float xSize = environmentBounds.size.x / collider.bounds.size.x;
+        float ySize = environmentBounds.size.y / collider.bounds.size.y;
+        collider.size = new Vector2(xSize, ySize);
+
+        //... add and return moveTrigger component
+        return moveTriggerObj.AddComponent<TriggerEvent>();
     }
 
     #endregion

@@ -1,3 +1,4 @@
+using SpeedPlatformer.Triggers;
 using UnityEditor;
 using UnityEngine;
 

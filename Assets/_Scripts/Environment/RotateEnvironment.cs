@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using SpeedPlatformer.Triggers;
 
 namespace SpeedPlatformer {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -15,29 +16,39 @@ namespace SpeedPlatformer {
         public bool startAtMaxRotationSpeed = true;
         [HideInInspector] public float RotationAcceleration;
 
-        private enum RotateEndCondition { MatchTranslate, Continuous, Rotation }
-        [SerializeField] private RotateEndCondition rotationEndCondition;
+        private enum RotationEndCondition { MatchTranslate, Continuous, Rotation }
+        [SerializeField] private RotationEndCondition rotationEndCondition;
         [HideInInspector] public float EndRotation;
-        [HideInInspector] public int EndRotateCount;
-
-        private int rotateCount = 0;
 
 
-        enum MovementType { Waiting, Moving, Deaccelerating, Moved }
+        enum MovementType { Waiting, Moving, Deaccelerating }
         private MovementType currentMovement = MovementType.Waiting;
 
         private Rigidbody2D rb;
 
+        //... using this instead of transform.eulerAngles.z because transform.eulerAngles.z is only between 0 and 360
+        //... only accurate if rotationEndCondition is rotation
+        private float currentRotation;
+
         #region Get Methods
 
         public bool EndFromRotation(){
-            return rotationEndCondition == RotateEndCondition.Rotation;
+            return rotationEndCondition == RotationEndCondition.Rotation;
+        }
+
+        #endregion
+
+        #region Set Methods
+
+        public void SetMoveTrigger(TriggerEvent trigger) {
+            moveTrigger = trigger;
         }
 
         #endregion
 
         private void Awake() {
             rb = GetComponent<Rigidbody2D>();
+            currentRotation = transform.eulerAngles.z;
         }
 
         private void OnEnable() {
@@ -62,7 +73,6 @@ namespace SpeedPlatformer {
         private float deacceleration;
 
         private void FixedUpdate() {
-
             switch (currentMovement) {
                 case MovementType.Moving:
                     rotationSpeed = Mathf.MoveTowards(rotationSpeed, maxRotationSpeed, RotationAcceleration * Time.fixedDeltaTime);
@@ -77,14 +87,11 @@ namespace SpeedPlatformer {
             }
         }
 
-    
         private void SetRotation() {
             // velocity is negative when rotating clockwise and it's positive when rotating counter clockwise
             int direction = rotateClockwise ? -1 : 1;
             rb.angularVelocity = rotationSpeed * direction;
         }
-
-        private bool resetRotation;
 
         /// <summary>
         /// there are different ways the rotation can stop depending on rotationEndCondition
@@ -92,7 +99,7 @@ namespace SpeedPlatformer {
         private void CheckStartDeaccelerating() {
             
             // check if environment is done translating 
-            if (rotationEndCondition == RotateEndCondition.MatchTranslate) {
+            if (rotationEndCondition == RotationEndCondition.MatchTranslate) {
                 if (TryGetComponent(out TranslateEnvironment translateEnvironment)){
                     if (translateEnvironment.Deaccelerating()) {
                         currentMovement = MovementType.Deaccelerating;
@@ -107,25 +114,13 @@ namespace SpeedPlatformer {
             }
 
             // check if past end rotation
-            else if (rotationEndCondition == RotateEndCondition.Rotation) {
+            else if (rotationEndCondition == RotationEndCondition.Rotation) {
 
-                if (360f - transform.eulerAngles.z <= 0.1f) {
-                    resetRotation = true;
-                }
+                currentRotation += rb.angularVelocity * Time.fixedDeltaTime;
 
                 float rotateAmountToDeaccelerate = 3f;
-                bool pastGoingClockwise = rotateClockwise && transform.eulerAngles.z < EndRotation + rotateAmountToDeaccelerate;
-                bool pastGoingCounterClockwise = !rotateClockwise && transform.eulerAngles.z > EndRotation - rotateAmountToDeaccelerate;
-
-                if (!resetRotation && rotateCount <= EndRotateCount) {
-
-                    if (pastGoingClockwise || pastGoingCounterClockwise) {
-                        rotateCount++;
-                        resetRotation = false;
-                    }
-
-                    return;
-                }
+                bool pastGoingClockwise = rotateClockwise && currentRotation < EndRotation + rotateAmountToDeaccelerate;
+                bool pastGoingCounterClockwise = !rotateClockwise && currentRotation > EndRotation - rotateAmountToDeaccelerate;
 
                 // if within 10 degrees of stopping, start deaccelerating and do math to figure at how fast
                 if (pastGoingClockwise || pastGoingCounterClockwise) {
@@ -136,8 +131,6 @@ namespace SpeedPlatformer {
 
                     //...  then calculate deacceleration using slope of velocity-time graph (rise/run or vel/time)
                     deacceleration = rotationSpeed / secondsToStop;
-
-                    print("Start deaccelerating: " + deacceleration);
                 }
             }
         }
@@ -145,9 +138,19 @@ namespace SpeedPlatformer {
         private void CheckStopRotating() {
             bool stoppedRotating = Mathf.Abs(rotationSpeed) < 0.05f;
             if (stoppedRotating) {
-                currentMovement = MovementType.Moved;
                 rb.angularVelocity = 0f;
-                print("stop");
+                enabled = false;
+            }
+        }
+
+        [ContextMenu("Create Move Trigger")]
+        public void CreateMoveTrigger() {
+
+            //... add and assign moveTrigger component
+            moveTrigger = Helpers.CreateMoveTrigger(transform);
+
+            if (TryGetComponent(out TranslateEnvironment translateEnvironment)) {
+                translateEnvironment.SetMoveTrigger(moveTrigger);
             }
         }
     }
@@ -166,7 +169,6 @@ namespace SpeedPlatformer {
 
             if (rotateEnvironment.EndFromRotation()) {
                 rotateEnvironment.EndRotation = EditorGUILayout.FloatField("End Rotation", rotateEnvironment.EndRotation);
-                rotateEnvironment.EndRotateCount = EditorGUILayout.IntField("End Rotate Count", rotateEnvironment.EndRotateCount);
             }
         }
     }
