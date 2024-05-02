@@ -1,7 +1,8 @@
 using UnityEngine;
-using UnityEditor;
 
 namespace SpeedPlatformer.Environment.Traps {
+
+    // TODO - maybe make line renderer instead
     public class ExpandingTrap : MonoBehaviour {
 
         private float size;

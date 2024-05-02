@@ -8,55 +8,52 @@ namespace SpeedPlatformer.Environment
         [SerializeField] private LineRenderer laserLineRenderer;
         [SerializeField] private LayerMask obstacleLayerMask;
 
-        [SerializeField] private float laserActiveTime;
-        [SerializeField] private float laserDeactiveTime;
-        private float laserActiveTimer = 0;
+        [SerializeField] private float laserSpeed;
         private bool laserActive = true;
+
+        private float laserLength;
 
         private void Start() {
             laserLineRenderer.positionCount = 2;
+            laserLineRenderer.SetPosition(0, (Vector2)transform.position);
+            laserLineRenderer.SetPosition(1, (Vector2)transform.position);
+
+            DeactivateLaser();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.CameraFrameLayer) {
+                ActivateLaser();
+            }
         }
 
         private void Update(){
-            laserActiveTimer += Time.deltaTime;
-
-            if (laserActive) {
-                if (laserActiveTimer > laserDeactiveTime) {
-                    laserActiveTimer = 0;
-                    DeactivateLaser();
-                }
-            }
-            else {
-                if (laserActiveTimer > laserActiveTime) {
-                    laserActiveTimer = 0;
-                    ActivateLaser();
-                }
-            }
 
             if (!laserActive) {
                 return;
             }
 
-            laserLineRenderer.SetPosition(0, (Vector2)transform.position);
-
             float laserRange = 100f;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, laserRange, obstacleLayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, laserLength, obstacleLayerMask);
 
             // if hit something, make laser stop at that point
             if (hit.collider != null) {
-                laserLineRenderer.SetPosition(1, hit.point);
+                laserLength = hit.distance;
 
-                int playerLayer = 6;
-                if (hit.collider.gameObject.layer == playerLayer) {
+                if (hit.collider.gameObject.layer == GameLayers.PlayerLayer) {
                     GameProgress.ResetLevel();
                 }
             }
 
-            // if didn't hit something, the laser will go as long as the laser range is
+            // if not hitting obstacle, grow laser
             else {
-                Vector2 endPoint = transform.position + (laserRange * -transform.right);
-                laserLineRenderer.SetPosition(1, endPoint);
+                laserLength = Mathf.MoveTowards(laserLength, laserRange, laserSpeed * Time.deltaTime);
             }
+
+            laserLineRenderer.SetPosition(0, (Vector2)transform.position);
+
+            Vector2 endPoint = transform.position + (laserLength * -transform.right);
+            laserLineRenderer.SetPosition(1, endPoint);
         }
 
         private void ActivateLaser() {
