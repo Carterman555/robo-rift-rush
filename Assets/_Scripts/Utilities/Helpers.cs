@@ -93,10 +93,11 @@ public static class Helpers
 
     public static TriggerEvent CreateMoveTrigger(Transform transform) {
 
-        if (!Helpers.TryFindByName(out GameObject moveTriggerContainer, "MoveTriggers")) {
-            Debug.LogWarning("Could not find MoveTriggers");
-        }
-        GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), moveTriggerContainer.transform);
+        //if (!Helpers.TryFindByName(out GameObject moveTriggerContainer, "MoveTriggers")) {
+        //   Debug.LogWarning("Could not find MoveTriggers");
+        //}
+        //GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), moveTriggerContainer.transform);
+        GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), transform);
 
         moveTriggerObj.transform.position = transform.position;
         moveTriggerObj.name = "MoveTrigger_" + transform.name.TryGetEndingNumber('_');
