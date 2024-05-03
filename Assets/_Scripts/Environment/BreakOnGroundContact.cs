@@ -24,11 +24,11 @@ namespace SpeedPlatformer.Environment {
             breakTrigger.transform.SetPositionAndRotation(transform.position, transform.rotation);
         }
 
-        public void CreateBreakTrigger(Transform breakTriggerContainer) {
-            GameObject breakTriggerObj = Instantiate(new GameObject(), breakTriggerContainer);
+        public void CreateBreakTrigger(Transform island) {
+            GameObject breakTriggerObj = new GameObject("BreakTrigger_" + name.TryGetEndingNumber('_'));
 
             breakTriggerObj.transform.position = transform.position;
-            breakTriggerObj.name = "BreakTrigger_" + name.TryGetEndingNumber('_');
+            breakTriggerObj.transform.SetParent(island);
 
             BoxCollider2D collider = breakTriggerObj.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;

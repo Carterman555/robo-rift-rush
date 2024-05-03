@@ -19,8 +19,7 @@ namespace SpeedPlatformer.Editor {
         private Transform parent;
         private Transform parentTarget;
 
-        private Transform moveTriggerContainer;
-        private Transform breakTriggerContainer;
+        private Transform targetsContainer;
 
         private void OnGUI() {
             GUILayout.Label("Selected Objects: " + Selection.gameObjects.Length);
@@ -98,50 +97,24 @@ namespace SpeedPlatformer.Editor {
         }
 
         private void TurnSelectionToFragileEnvironments() {
-            foreach (GameObject section in Selection.gameObjects) {
-                section.AddComponent<BreakOnGroundContact>().CreateBreakTrigger(breakTriggerContainer);
+            foreach (GameObject island in Selection.gameObjects) {
+                island.AddComponent<BreakOnGroundContact>().CreateBreakTrigger(island.transform);
             }
         }
 
-        #region Create Trigger Containers
+        #region Create Containers
 
-        private void TryCreateTriggerContainers() {
+
+        // Create empty gameobject named "Targets" if it doesn't already exist
+        private void TryTargetContainer() {
             if (!Helpers.TryFindByName(out GameObject environment, "Environment")) return;
 
-            Transform mainTriggerContainer = TryCreateMainTriggerContainer(environment.transform);
-            TryCreateMoveTriggerContainer(mainTriggerContainer);
-            TryCreateBreakTriggerContainer(mainTriggerContainer);
-        }
-
-        private Transform TryCreateMainTriggerContainer(Transform environment) {
-            GameObject triggerContainer;
-            if (Helpers.TryFindByName(out GameObject _triggerContainer, "EnvironmentTriggers")) {
-                triggerContainer = _triggerContainer;
+            if (Helpers.TryFindByName(out GameObject _targetContainer, "Targets")) {
+                targetsContainer = _targetContainer.transform;
             }
             else {
-                triggerContainer = Instantiate(new GameObject(), environment);
-                triggerContainer.name = "EnvironmentTriggers";
-            }
-            return triggerContainer.transform;
-        }
-
-        private void TryCreateMoveTriggerContainer(Transform mainTriggerContainer) {
-            if (Helpers.TryFindByName(out GameObject _moveTriggerContainer, "MoveTriggers")) {
-                moveTriggerContainer = _moveTriggerContainer.transform;
-            }
-            else {
-                moveTriggerContainer = Instantiate(new GameObject(), mainTriggerContainer).transform;
-                moveTriggerContainer.name = "MoveTriggers";
-            }
-        }
-
-        private void TryCreateBreakTriggerContainer(Transform mainTriggerContainer) {
-            if (Helpers.TryFindByName(out GameObject _breakTriggerContainer, "BreakTriggers")) {
-                breakTriggerContainer = _breakTriggerContainer.transform;
-            }
-            else {
-                breakTriggerContainer = Instantiate(new GameObject(), mainTriggerContainer).transform;
-                breakTriggerContainer.name = "BreakTriggers";
+                targetsContainer = new GameObject("Targets").transform;
+                targetsContainer.SetParent(environment.transform);
             }
         }
 
