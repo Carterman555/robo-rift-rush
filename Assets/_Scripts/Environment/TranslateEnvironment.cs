@@ -1,4 +1,6 @@
+using SpeedPlatformer.Environment;
 using SpeedPlatformer.Triggers;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ namespace SpeedPlatformer {
     public class TranslateEnvironment : MonoBehaviour {
 
         [Header ("References")]
-        [SerializeField] private TriggerEvent moveTrigger;
+        //[SerializeField] private TriggerEvent moveTrigger;
         [SerializeField] private Transform targetTransform;
 
         [Header("Movement Parameters")]
@@ -31,9 +33,9 @@ namespace SpeedPlatformer {
 
         #region Set Methods
 
-        public void SetMoveTrigger(TriggerEvent trigger) {
-            moveTrigger = trigger;
-        }
+        //public void SetMoveTrigger(TriggerEvent trigger) {
+        //    moveTrigger = trigger;
+        //}
 
         #endregion
 
@@ -41,11 +43,16 @@ namespace SpeedPlatformer {
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void OnEnable() {
-            moveTrigger.OnTriggerEntered += TryStartMovement;
-        }
-        private void OnDisable() {
-            moveTrigger.OnTriggerEntered -= TryStartMovement;
+        //private void OnEnable() {
+        //    moveTrigger.OnTriggerEntered += TryStartMovement;
+        //}
+        //private void OnDisable() {
+        //    moveTrigger.OnTriggerEntered -= TryStartMovement;
+        //}
+
+        // start movement when inframe
+        private void OnTriggerEnter2D(Collider2D collision) {
+            TryStartMovement(collision);
         }
 
         private void TryStartMovement(Collider2D collision) {
@@ -106,20 +113,36 @@ namespace SpeedPlatformer {
             }
         }
 
-        public void TryUpdateMoveTriggerPosition() {
-            if (moveTrigger != null) {
-                moveTrigger.transform.position = transform.position;
+        //public void TryUpdateMoveTriggerPosition() {
+        //    if (moveTrigger != null) {
+        //        moveTrigger.transform.position = transform.position;
+        //    }
+        //}
+
+        //[ContextMenu("Create Move Trigger")]
+        //public void CreateMoveTrigger() {
+
+        //    //... add and assign moveTrigger component
+        //    moveTrigger = Helpers.CreateMoveTrigger(transform);
+
+        //    if (TryGetComponent(out RotateEnvironment rotateEnvironment)) {
+        //        rotateEnvironment.SetMoveTrigger(moveTrigger);
+        //    }
+        //}
+
+        [ContextMenu("Create Target")]
+        public void CreateTarget() {
+            if (Helpers.TryFindByName(out GameObject targetsContainer, "Targets")) {
+                GameObject target = new GameObject("Target_" + Helpers.TryGetEndingNumber(name, '_'));
+
+                target.transform.SetParent(targetsContainer.transform);
+                target.AddComponent<SelectableCircle>();
+                target.transform.position = transform.position;
+
+                targetTransform = target.transform;
             }
-        }
-
-        [ContextMenu("Create Move Trigger")]
-        public void CreateMoveTrigger() {
-
-            //... add and assign moveTrigger component
-            moveTrigger = Helpers.CreateMoveTrigger(transform);
-
-            if (TryGetComponent(out RotateEnvironment rotateEnvironment)) {
-                rotateEnvironment.SetMoveTrigger(moveTrigger);
+            else {
+                Debug.LogWarning("Could not find 'Targets'!");
             }
         }
     }
@@ -133,11 +156,13 @@ namespace SpeedPlatformer {
             TranslateEnvironment movingEnvironment = target as TranslateEnvironment;
 
             //... move the trigger with the section when it's moved in editor mode
-            movingEnvironment.TryUpdateMoveTriggerPosition();
+            //movingEnvironment.TryUpdateMoveTriggerPosition();
 
             if (!movingEnvironment.startAtMaxMoveSpeed) {
                 movingEnvironment.moveAcceleration = EditorGUILayout.FloatField("Move Acceleration", movingEnvironment.moveAcceleration);
             }
+
+
         }
     }
 #endif

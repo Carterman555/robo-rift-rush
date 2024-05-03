@@ -106,7 +106,7 @@ public static class Helpers
         collider.isTrigger = true;
 
         // use the environments collider bounds to setup the bounds of the move trigger
-        Bounds environmentBounds = transform.GetComponent<CompositeCollider2D>().bounds;
+        Bounds environmentBounds = transform.GetComponent<Collider2D>().bounds;
 
         Vector2 offset = environmentBounds.center - collider.bounds.center;
         collider.offset = offset;

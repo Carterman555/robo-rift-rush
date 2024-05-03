@@ -150,7 +150,7 @@ namespace SpeedPlatformer {
             moveTrigger = Helpers.CreateMoveTrigger(transform);
 
             if (TryGetComponent(out TranslateEnvironment translateEnvironment)) {
-                translateEnvironment.SetMoveTrigger(moveTrigger);
+                //translateEnvironment.SetMoveTrigger(moveTrigger);
             }
         }
     }
