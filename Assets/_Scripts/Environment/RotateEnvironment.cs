@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEditor;
-using SpeedPlatformer.Triggers;
+using System;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class RotateEnvironment : MonoBehaviour {
 
-        [Header("References")]
-        [SerializeField] private TriggerEvent moveTrigger;
-
+        //[Header("References")]
+        //[SerializeField] private TriggerEvent moveTrigger; // TODO - delete or keep all move trigger related code
 
         [Header("Rotate Parameters")]
         [SerializeField] private bool rotateClockwise = true;
@@ -40,9 +39,9 @@ namespace SpeedPlatformer {
 
         #region Set Methods
 
-        public void SetMoveTrigger(TriggerEvent trigger) {
-            moveTrigger = trigger;
-        }
+        //public void SetMoveTrigger(TriggerEvent trigger) {
+        //    moveTrigger = trigger;
+        //}
 
         #endregion
 
@@ -51,11 +50,16 @@ namespace SpeedPlatformer {
             currentRotation = transform.eulerAngles.z;
         }
 
-        private void OnEnable() {
-            moveTrigger.OnTriggerEntered += TryStartMovement;
-        }
-        private void OnDisable() {
-            moveTrigger.OnTriggerEntered -= TryStartMovement;
+        //private void OnEnable() {
+        //    moveTrigger.OnTriggerEntered += TryStartMovement;
+        //}
+        //private void OnDisable() {
+        //    moveTrigger.OnTriggerEntered -= TryStartMovement;
+        //}
+
+        // start movement when inframe
+        private void OnTriggerEnter2D(Collider2D collision) {
+            TryStartMovement(collision);
         }
 
         private float rotationSpeed;
@@ -139,20 +143,33 @@ namespace SpeedPlatformer {
             bool stoppedRotating = Mathf.Abs(rotationSpeed) < 0.05f;
             if (stoppedRotating) {
                 rb.angularVelocity = 0f;
+                TryEnableFloatingMovement();
                 enabled = false;
             }
         }
 
-        [ContextMenu("Create Move Trigger")]
-        public void CreateMoveTrigger() {
-
-            //... add and assign moveTrigger component
-            moveTrigger = Helpers.CreateMoveTrigger(transform);
-
+        // enable floating movement if not translating
+        private void TryEnableFloatingMovement() {
             if (TryGetComponent(out TranslateEnvironment translateEnvironment)) {
-                //translateEnvironment.SetMoveTrigger(moveTrigger);
+                if (!translateEnvironment.enabled) {
+                    GetComponent<FloatingIslandMovementPerlin>().enabled = true;
+                }
+            }
+            else {
+                GetComponent<FloatingIslandMovementPerlin>().enabled = true;
             }
         }
+
+        //[ContextMenu("Create Move Trigger")]
+        //public void CreateMoveTrigger() {
+
+        //    //... add and assign moveTrigger component
+        //    moveTrigger = Helpers.CreateMoveTrigger(transform);
+
+        //    if (TryGetComponent(out TranslateEnvironment translateEnvironment)) {
+        //        translateEnvironment.SetMoveTrigger(moveTrigger);
+        //    }
+        //}
     }
 
 #if UNITY_EDITOR

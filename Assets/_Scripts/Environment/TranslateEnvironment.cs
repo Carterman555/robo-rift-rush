@@ -1,16 +1,15 @@
-using SpeedPlatformer.Environment;
-using SpeedPlatformer.Triggers;
-using Unity.VisualScripting;
+using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class TranslateEnvironment : MonoBehaviour {
 
         [Header ("References")]
-        //[SerializeField] private TriggerEvent moveTrigger;
+        //[SerializeField] private TriggerEvent moveTrigger; // TODO - delete or keep all move trigger related code
         [SerializeField] private Transform targetTransform;
+        private Vector3 targetPos;
 
         [Header("Movement Parameters")]
         [SerializeField] private float maxMoveSpeed;
@@ -41,6 +40,9 @@ namespace SpeedPlatformer {
 
         private void Awake() {
             rb = GetComponent<Rigidbody2D>();
+
+            //... store starting pos because it is a child of the island and will change as island moves
+            targetPos = targetTransform.position;
         }
 
         //private void OnEnable() {
@@ -86,13 +88,13 @@ namespace SpeedPlatformer {
         }
 
         private void MoveEnvironment() {
-            Vector3 moveDirection = (targetTransform.position - transform.position).normalized;
+            Vector3 moveDirection = (targetPos - transform.position).normalized;
             rb.velocity = moveDirection * moveSpeed;
         }
 
         private void CheckNearTarget() {
             float distanceToDeaccelerate = 2f;
-            float distanceFromTarget = (targetTransform.position - transform.position).magnitude;
+            float distanceFromTarget = (targetPos - transform.position).magnitude;
             if (distanceFromTarget < distanceToDeaccelerate) {
                 currentMovement = MovementType.Deaccelerating;
 
@@ -109,7 +111,20 @@ namespace SpeedPlatformer {
             bool stoppedMoving = Mathf.Abs(moveSpeed) < 0.05f;
             if (stoppedMoving) {
                 rb.velocity = Vector3.zero;
+                TryEnableFloatingMovement();
                 enabled = false;
+            }
+        }
+
+        // enable floating movement if not rotating
+        private void TryEnableFloatingMovement() {
+            if (TryGetComponent(out RotateEnvironment rotateEnvironment)) {
+                if (!rotateEnvironment.enabled) {
+                    GetComponent<FloatingIslandMovementPerlin>().enabled = true;
+                }
+            }
+            else {
+                GetComponent<FloatingIslandMovementPerlin>().enabled = true;
             }
         }
 
@@ -129,22 +144,6 @@ namespace SpeedPlatformer {
         //        rotateEnvironment.SetMoveTrigger(moveTrigger);
         //    }
         //}
-
-        [ContextMenu("Create Target")]
-        public void CreateTarget() {
-            if (Helpers.TryFindByName(out GameObject targetsContainer, "Targets")) {
-                GameObject target = new GameObject("Target_" + Helpers.TryGetEndingNumber(name, '_'));
-
-                target.transform.SetParent(targetsContainer.transform);
-                target.AddComponent<SelectableCircle>();
-                target.transform.position = transform.position;
-
-                targetTransform = target.transform;
-            }
-            else {
-                Debug.LogWarning("Could not find 'Targets'!");
-            }
-        }
     }
 
 #if UNITY_EDITOR

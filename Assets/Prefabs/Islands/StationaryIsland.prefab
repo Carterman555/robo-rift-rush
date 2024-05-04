@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678604, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 704.3911
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678604, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -41.189934
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678604, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678833, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_Name
-      value: SmoothSection_14
+      value: StationaryIsland
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678834, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.size
@@ -730,6 +730,10 @@ PrefabInstance:
     - target: {fileID: 2095602633381678834, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[6].rightTangent.y
       value: 0.6316135
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095602633381678835, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678835, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_LocalAABB.m_Center.x
