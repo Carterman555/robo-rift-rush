@@ -49,13 +49,13 @@ namespace SpeedPlatformer {
         private void Update() {
             if (touchingPlayer && !touchingGrapple) {
                 Vector2 velocity = rb.velocity;
-                velocity += GetVelocityFromRotation(playerController.transform.position, rb.angularVelocity);
+                velocity += Helpers.GetVelocityFromRotation(transform.position, playerController.transform.position, rb.angularVelocity);
                 playerController.SetEnvironmentVelocity(velocity);
             }
 
             if (touchingGrapple) {
 
-                Vector2 velocity = rb.velocity + GetVelocityFromRotation(playerGrapple.GetGrapplePointPosition(), rb.angularVelocity);
+                Vector2 velocity = rb.velocity + Helpers.GetVelocityFromRotation(transform.position, playerGrapple.GetGrapplePointPosition(), rb.angularVelocity);
                 playerController.SetEnvironmentVelocity(velocity);
                 playerGrapple.SetEnvironmentVelocity(velocity);
 
@@ -63,23 +63,6 @@ namespace SpeedPlatformer {
             }
         }
 
-        private Vector2 GetVelocityFromRotation(Vector3 objectPos, float angularVelocityDegrees) {
-
-            // Calculate the angular velocity of the square in radians per second
-            float angularVelocity = angularVelocityDegrees * Mathf.Deg2Rad;
-
-            // Calculate the position of the circle relative to the square
-            Vector3 relativePosition = objectPos - transform.position;
-
-            // Calculate the velocity of the circle
-            Vector2 velocity = new Vector2(
-                -relativePosition.y * angularVelocity,
-                relativePosition.x * angularVelocity
-            );
-
-            Debug.DrawRay(objectPos, velocity);
-
-            return velocity;
-        }
+        
     }
 }

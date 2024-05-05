@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2095602633381678605}
   - component: {fileID: 5279235632964621631}
   - component: {fileID: 372692031203548261}
+  - component: {fileID: 4983076594773432126}
   m_Layer: 3
   m_Name: Island
   m_TagString: Untagged
@@ -257,3 +258,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa7c9a49d7074645b0931c9fb160cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4983076594773432126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095602633381678833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd9c7183270cad4c8a4a593ed9f3fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandSize: 3
+  surfaceSlantRandomness: 0

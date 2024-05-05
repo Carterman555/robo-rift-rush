@@ -28,6 +28,38 @@ namespace SpeedPlatformer.Environment {
 
         private Rigidbody2D rb;
 
+        #region Get Methods
+
+        public float GetMoveAngle() {
+            return moveAngle;
+        }
+
+        public float GetMaxMoveSpeed() {
+            return maxMoveSpeed;
+        }
+
+        public bool GetStartMaxSpeed() {
+            return startAtMaxMoveSpeed;
+        }
+
+        public float GetMaxRotationSpeed() {
+            return maxRotationSpeed;
+        }
+
+        public bool GetStartMaxRotationSpeed() {
+            return startAtMaxRotationSpeed;
+        }
+
+        public bool GetContinuousMovement() {
+            return continuousMovement;
+        }
+
+        public float GetMoveDistance() {
+            return moveDistance;
+        }
+
+        #endregion
+
         private void Awake() {
             rb = GetComponent<Rigidbody2D>();
         }

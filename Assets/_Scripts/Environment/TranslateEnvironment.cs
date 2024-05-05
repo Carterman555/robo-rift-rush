@@ -28,6 +28,10 @@ namespace SpeedPlatformer.Environment {
             return currentMovement == MovementType.Deaccelerating;
         }
 
+        public Vector3 GetTargetPosition() {
+            return targetTransform.position;
+        }
+
         #endregion
 
         #region Set Methods

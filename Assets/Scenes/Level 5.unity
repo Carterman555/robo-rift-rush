@@ -8755,8 +8755,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 276504294}
   moveAngle: 180
   maxMoveSpeed: 0.5
-  maxRotationSpeed: -0.75
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: -0.75
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!61 &1157900695 stripped
@@ -11065,8 +11068,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 827703575}
   moveAngle: 193.6
   maxMoveSpeed: 0.5
-  maxRotationSpeed: -0.25
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: -0.25
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!1001 &1399555455
@@ -12642,8 +12648,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 1693118900}
   moveAngle: 170.88
   maxMoveSpeed: 3
-  maxRotationSpeed: 2
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: 2
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!66 &1660272295
@@ -16527,8 +16536,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 1030842336}
   moveAngle: 174.68
   maxMoveSpeed: 0.5
-  maxRotationSpeed: 0.25
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: 0.25
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!1001 &1985139991
@@ -17675,8 +17687,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 77865502}
   moveAngle: 198.78
   maxMoveSpeed: 2
-  maxRotationSpeed: 1
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: 1
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!4 &3476790705743941068
@@ -17736,8 +17751,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 1480787995}
   moveAngle: 161
   maxMoveSpeed: 2
-  maxRotationSpeed: 1
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: 1
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 1
   moveDistance: 0
 --- !u!66 &4738313825727967685

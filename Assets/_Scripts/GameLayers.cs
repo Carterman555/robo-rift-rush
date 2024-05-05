@@ -11,5 +11,6 @@ namespace SpeedPlatformer
         public static int TrapLayer { get; private set; } = 7;
         public static int CameraFrameLayer { get; private set; } = 8;
         public static int GrappleLayer { get; private set; } = 9;
+        public static int TileLayer { get; private set; } = 11;
     }
 }

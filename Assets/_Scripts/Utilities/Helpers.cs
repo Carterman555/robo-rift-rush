@@ -59,6 +59,25 @@ public static class Helpers
         return new Vector2(Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
     }
 
+    public static Vector2 GetVelocityFromRotation(Vector3 center, Vector3 objectPos, float angularVelocityDegrees) {
+
+        // Calculate the angular velocity of the square in radians per second
+        float angularVelocity = angularVelocityDegrees * Mathf.Deg2Rad;
+
+        // Calculate the position of the circle relative to the square
+        Vector3 relativePosition = objectPos - center;
+
+        // Calculate the velocity of the circle
+        Vector2 velocity = new Vector2(
+            -relativePosition.y * angularVelocity,
+            relativePosition.x * angularVelocity
+        );
+
+        Debug.DrawRay(objectPos, velocity);
+
+        return velocity;
+    }
+
     public static bool IsMouseOverUI()
     {
         if (EventSystem.current == null) EventSystem.current = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).GetComponent<EventSystem>();
