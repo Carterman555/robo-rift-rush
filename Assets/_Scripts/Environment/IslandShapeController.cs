@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -119,6 +120,32 @@ namespace SpeedPlatformer.Environment {
 
         private Vector3 GetRandomVector3(float randomness) {
             return new Vector3(Random.Range(-randomness, randomness), Random.Range(-randomness, randomness));
+        }
+
+        public void SetSurfaceFromPoints(Vector3 oldIslandPosition, List<Vector3> surfacePoints) {
+
+            // reverse points to make points go from right to left because that is the direction the points
+            // are added in the Randomize Shape method
+            surfacePoints.Reverse();
+
+            // line up right surface points by moving whole island (to keep new island shape and size)
+            Vector3 toRightSurfacePoint = surfacePoints[0] - spline.GetPosition(0);
+            transform.position += toRightSurfacePoint;
+
+            sprite = GetComponent<SpriteShapeController>();
+            spline = sprite.spline;
+            for (int pointIndex = 1; pointIndex < surfacePoints.Count; pointIndex++) { // starting at pointIndex = 1
+
+                // the surface points and sline point are both a set of local positions that have parents with
+                // different positions, so positions won't match. To fix this find position difference and add
+                // it to each spline point
+                Vector3 toNewToOldIsland = oldIslandPosition - transform.position;
+                Vector3 point = surfacePoints[pointIndex] + toNewToOldIsland;
+
+                // insert point between left corner and previous point on right
+                spline.InsertPointAt(pointIndex, point);
+                spline.SetTangentMode(pointIndex, ShapeTangentMode.Linear);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using SpeedPlatformer.Environment;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.U2D;
 
 namespace SpeedPlatformer.Editor {
 
@@ -17,13 +18,13 @@ namespace SpeedPlatformer.Editor {
         }
 
         private Transform islandContainer;
-        private Collider2D[] islandColliders;
-        private Collider2D[] objectColliders;
+        private Collider2D[] islandColliders = new Collider2D[0];
+        private Collider2D[] objectColliders = new Collider2D[0];
 
-        private GameObject stationaryIslandPrefab;
-        private GameObject translatingIslandPrefab;
-        private GameObject rotatingIslandPrefab;
-        private GameObject translatingRotatingIslandPrefab;
+        private IslandShapeController stationaryIslandPrefab;
+        private IslandShapeController translatingIslandPrefab;
+        private IslandShapeController rotatingIslandPrefab;
+        private IslandShapeController translatingRotatingIslandPrefab;
 
         private void OnGUI() {
             GUILayout.Label("Selected Objects: " + Selection.gameObjects.Length);
@@ -44,19 +45,19 @@ namespace SpeedPlatformer.Editor {
                 SetupSelection();
             }
 
-            stationaryIslandPrefab = EditorGUILayout.ObjectField("Stationary Island Prefab", stationaryIslandPrefab, typeof(GameObject), true) as GameObject;
-            translatingIslandPrefab = EditorGUILayout.ObjectField("Translating Island Prefab", translatingIslandPrefab, typeof(GameObject), true) as GameObject;
-            rotatingIslandPrefab = EditorGUILayout.ObjectField("Rotating Island Prefab", rotatingIslandPrefab, typeof(GameObject), true) as GameObject;
-            translatingRotatingIslandPrefab = EditorGUILayout.ObjectField("Translating Rotating Island Prefab", translatingRotatingIslandPrefab, typeof(GameObject), true) as GameObject;
+            stationaryIslandPrefab = EditorGUILayout.ObjectField("Stationary Island Prefab", stationaryIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
+            translatingIslandPrefab = EditorGUILayout.ObjectField("Translating Island Prefab", translatingIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
+            rotatingIslandPrefab = EditorGUILayout.ObjectField("Rotating Island Prefab", rotatingIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
+            translatingRotatingIslandPrefab = EditorGUILayout.ObjectField("Translating Rotating Island Prefab", translatingRotatingIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
 
             if (GUILayout.Button("Remake Selected Islands")) {
                 RemakeIslands(Selection.gameObjects);
             }
 
             if (GUILayout.Button("Test Surface")) {
-                List<Transform> surfaceTile = GetSurfaceTiles(Selection.gameObjects[0]);
-                foreach (Transform t in surfaceTile) {
-                    t.GetComponent<SpriteRenderer>().color = Color.red;
+                List<Vector3> points = GetPointsFromTiles(GetSurfaceTiles(Selection.gameObjects[0]));
+                for (int i = 0; i < points.Count; i++) {
+                    Debug.DrawLine(points[i], points[i] + Vector3.up * 0.3f);
                 }
             }
         }
@@ -95,16 +96,24 @@ namespace SpeedPlatformer.Editor {
             foreach (GameObject oldIsland in oldIslands) {
                 if (!IsValidIsland(oldIsland)) return;
 
-                GameObject newIsland = CreateMatchingNewIsland(oldIsland);
+                IslandShapeController newIsland = CreateMatchingNewIsland(oldIsland);
 
                 // randomize new island shape based on old island width and height
                 Vector3 oldIslandSize = oldIsland.GetComponent<CompositeCollider2D>().bounds.extents;
-                newIsland.GetComponent<IslandShapeController>().RandomizeShape(oldIslandSize.x * 2, oldIslandSize.y * 2);
-                //newIsland.GetComponent<IslandShapeController>().RandomizeShape(oldIslandSize.x * 2, oldIslandSize.x * 0.5f); // for just surface islands
+                newIsland.RandomizeShape(oldIslandSize.x * 2, oldIslandSize.y * 2);
+                //newIsland.RandomizeShape(oldIslandSize.x * 2, oldIslandSize.x * 0.5f); // for just surface islands
 
+                List<Transform> surfaceTiles = GetSurfaceTiles(Selection.gameObjects[0]);
 
+                //... set same position so relative position of children are same for matching surface
+                //newIsland.transform.position = oldIsland.transform.position;
+
+                List<Vector3> surfacePoints = GetPointsFromTiles(surfaceTiles);
+                newIsland.SetSurfaceFromPoints(oldIsland.transform.position, surfacePoints);
             }
         }
+
+        
 
         // makes sure the island has all the components to transform it
         private bool IsValidIsland(GameObject oldIsland) {
@@ -112,7 +121,7 @@ namespace SpeedPlatformer.Editor {
         }
 
         // instantiate a certain prefab based how the old island moves
-        private GameObject CreateMatchingNewIsland(GameObject oldIsland) {
+        private IslandShapeController CreateMatchingNewIsland(GameObject oldIsland) {
             bool translatingIsland = false;
             bool rotatingIsland = false;
 
@@ -125,7 +134,7 @@ namespace SpeedPlatformer.Editor {
                 }
             }
 
-            GameObject matchingPrefab = null;
+            IslandShapeController matchingPrefab = null;
 
             if (!translatingIsland && !rotatingIsland) {
                 matchingPrefab = stationaryIslandPrefab;
@@ -140,7 +149,7 @@ namespace SpeedPlatformer.Editor {
                 matchingPrefab = translatingRotatingIslandPrefab;
             }
 
-            GameObject newIsland = Instantiate(matchingPrefab, oldIsland.transform.position, oldIsland.transform.rotation, oldIsland.transform.parent);
+            IslandShapeController newIsland = Instantiate(matchingPrefab, oldIsland.transform.position, oldIsland.transform.rotation, oldIsland.transform.parent);
             return newIsland;
         }
 
@@ -188,6 +197,36 @@ namespace SpeedPlatformer.Editor {
             surfaceTiles.Add(highestTileWithCurrentX);
 
             return surfaceTiles;
+        }
+
+        private List<Vector3> GetPointsFromTiles(List<Transform> surfaceTiles) {
+
+            List<Vector3> surfacePoints = new List<Vector3>();
+
+            // to get the corner positions from the centers of the tiles
+            Vector3 toLeftCorner = new Vector3(-1f, 1f);
+            Vector3 toRightCorner = new Vector3(1f, 1f);
+
+            Vector3 firstTileLeftCorner = surfaceTiles[0].position + toLeftCorner;
+            surfacePoints.Add(firstTileLeftCorner);
+
+            float currentY = surfaceTiles[0].localPosition.y;
+            for (int tileIndex = 1; tileIndex < surfaceTiles.Count; tileIndex++) {
+                if (currentY != surfaceTiles[tileIndex].localPosition.y) {
+                    currentY = surfaceTiles[tileIndex].localPosition.y;
+
+                    Vector3 previousTileRightCorner = surfaceTiles[tileIndex - 1].localPosition + toRightCorner;
+                    surfacePoints.Add(previousTileRightCorner);
+
+                    Vector3 currentTileLeftCorner = surfaceTiles[tileIndex].localPosition + toLeftCorner;
+                    surfacePoints.Add(currentTileLeftCorner);
+                }
+            }
+
+            Vector3 lastTileRightCorner = surfaceTiles[surfaceTiles.Count - 1].localPosition + toRightCorner;
+            surfacePoints.Add(lastTileRightCorner);
+
+            return surfacePoints;
         }
 
         private void ParentTouchingObjects() {
