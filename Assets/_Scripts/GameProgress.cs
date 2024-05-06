@@ -16,7 +16,9 @@ namespace SpeedPlatformer.Management
         }
 
         public static void ContinueNextLevel() {
+            Debug.Log("Old Level: " + level);
             level++;
+            Debug.Log("Current Level: " + level);
             SceneManager.LoadScene(GetLevelScene());
         }
 

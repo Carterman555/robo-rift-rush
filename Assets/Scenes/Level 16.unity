@@ -981,7 +981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1646091520}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -1602,7 +1601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 671192931}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -13010,7 +13008,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 678733665}
-  translationMovement: 1
   moveAngle: 5
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 0
@@ -16904,7 +16901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1147266222}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 15
   startAtMaxMoveSpeed: 0
@@ -18156,7 +18152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 994909721}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -24361,7 +24356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1900172624}
-  translationMovement: 1
   moveAngle: 364.7
   maxMoveSpeed: 3
   startAtMaxMoveSpeed: 1
@@ -25390,7 +25384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 92312233}
-  translationMovement: 1
   moveAngle: 100.6
   maxMoveSpeed: 6
   startAtMaxMoveSpeed: 1
@@ -30775,7 +30768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1184301396}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -34634,7 +34626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1370886610}
-  translationMovement: 1
   moveAngle: -1.61
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -41398,7 +41389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 867384254}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 1.5
   startAtMaxMoveSpeed: 1
@@ -42928,7 +42918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 186620827}
-  translationMovement: 1
   moveAngle: -8
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -49686,7 +49675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 75324243}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 3
   startAtMaxMoveSpeed: 1
@@ -55671,7 +55659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1211043224}
-  translationMovement: 1
   moveAngle: 321.73
   maxMoveSpeed: 15
   startAtMaxMoveSpeed: 0
@@ -57948,7 +57935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1135113554}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 0
   startAtMaxMoveSpeed: 1
@@ -61766,7 +61752,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 787332041}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 4
   startAtMaxMoveSpeed: 1
@@ -70462,7 +70447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 726607607}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 4
   startAtMaxMoveSpeed: 1
@@ -71379,7 +71363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1608845518}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 4
   startAtMaxMoveSpeed: 0
@@ -76681,7 +76664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 388412083}
-  translationMovement: 1
   moveAngle: 180
   maxMoveSpeed: 2
   startAtMaxMoveSpeed: 1
@@ -78138,7 +78120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 851751412}
-  translationMovement: 1
   moveAngle: 95
   maxMoveSpeed: 5
   startAtMaxMoveSpeed: 0
@@ -89434,7 +89415,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 46449300}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 3
   startAtMaxMoveSpeed: 1
@@ -91851,7 +91831,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 512594674}
-  translationMovement: 1
   moveAngle: 191.2
   maxMoveSpeed: 3
   startAtMaxMoveSpeed: 1
@@ -94789,7 +94768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTrigger: {fileID: 1803666809}
-  translationMovement: 1
   moveAngle: 0
   maxMoveSpeed: 3
   startAtMaxMoveSpeed: 1
@@ -96315,6 +96293,14 @@ PrefabInstance:
       propertyPath: grappleTrigger
       value: 
       objectReference: {fileID: 77527184}
+    - target: {fileID: 6916853991358414902, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -279.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916853991358414902, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -89.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850
