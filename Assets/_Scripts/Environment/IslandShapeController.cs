@@ -124,28 +124,36 @@ namespace SpeedPlatformer.Environment {
 
         public void SetSurfaceFromPoints(Vector3 oldIslandPosition, List<Vector3> surfacePoints) {
 
-            // reverse points to make points go from right to left because that is the direction the points
-            // are added in the Randomize Shape method
+            //... reverse points to make points go from right to left because that is the direction the points
+            //... are added in the Randomize Shape method
             surfacePoints.Reverse();
 
+            //... the surface points and sline point are both a set of local positions that have parents with
+            //... different positions, so positions won't match. To fix this find position difference and add
+            //... it to each spline point
+            Vector3 toNewToOldIsland = oldIslandPosition - transform.position;
+
             // line up right surface points by moving whole island (to keep new island shape and size)
-            Vector3 toRightSurfacePoint = surfacePoints[0] - spline.GetPosition(0);
+            Vector3 toRightSurfacePoint = surfacePoints[0] + toNewToOldIsland - spline.GetPosition(0);
             transform.position += toRightSurfacePoint;
+
+            //... update difference
+            toNewToOldIsland = oldIslandPosition - transform.position;
 
             sprite = GetComponent<SpriteShapeController>();
             spline = sprite.spline;
-            for (int pointIndex = 1; pointIndex < surfacePoints.Count; pointIndex++) { // starting at pointIndex = 1
-
-                // the surface points and sline point are both a set of local positions that have parents with
-                // different positions, so positions won't match. To fix this find position difference and add
-                // it to each spline point
-                Vector3 toNewToOldIsland = oldIslandPosition - transform.position;
+            // starting at pointIndex = 1 and loops til end to last because the right and left spline points on surface
+            // already exist. They just need to be moved.
+            for (int pointIndex = 1; pointIndex < surfacePoints.Count - 1; pointIndex++) { 
                 Vector3 point = surfacePoints[pointIndex] + toNewToOldIsland;
 
                 // insert point between left corner and previous point on right
                 spline.InsertPointAt(pointIndex, point);
                 spline.SetTangentMode(pointIndex, ShapeTangentMode.Linear);
             }
+
+            Vector3 leftPointPos = surfacePoints[surfacePoints.Count - 1] + toNewToOldIsland;
+            spline.SetPosition(surfacePoints.Count - 1, leftPointPos);
         }
     }
 }

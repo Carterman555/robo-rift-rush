@@ -105,11 +105,30 @@ namespace SpeedPlatformer.Editor {
 
                 List<Transform> surfaceTiles = GetSurfaceTiles(Selection.gameObjects[0]);
 
-                //... set same position so relative position of children are same for matching surface
-                //newIsland.transform.position = oldIsland.transform.position;
-
                 List<Vector3> surfacePoints = GetPointsFromTiles(surfaceTiles);
                 newIsland.SetSurfaceFromPoints(oldIsland.transform.position, surfacePoints);
+
+                // set move values
+                if (newIsland.TryGetComponent(out TranslateIsland translateIsland)) {
+
+                    MovingEnvironment oldMovement = oldIsland.GetComponent<MovingEnvironment>();
+
+                    // get pos for target
+
+                    float moveDistance; 
+
+                    if (oldMovement.GetContinuousMovement()) {
+                        float distanceForContinuous = 30f;
+                        moveDistance = distanceForContinuous;
+                    }
+                    else {
+                        moveDistance = oldMovement.GetMoveDistance();
+                    }
+
+
+
+                    translateIsland
+                }
             }
         }
 
@@ -203,27 +222,39 @@ namespace SpeedPlatformer.Editor {
 
             List<Vector3> surfacePoints = new List<Vector3>();
 
-            // to get the corner positions from the centers of the tiles
-            Vector3 toLeftCorner = new Vector3(-1f, 1f);
-            Vector3 toRightCorner = new Vector3(1f, 1f);
-
-            Vector3 firstTileLeftCorner = surfaceTiles[0].position + toLeftCorner;
+            Vector3 firstTileLeftCorner = surfaceTiles[0].localPosition + new Vector3(-0.5f, 0.5f);
             surfacePoints.Add(firstTileLeftCorner);
 
-            float currentY = surfaceTiles[0].localPosition.y;
+            // for each y change, add 2 points to the list: one at the previous tile and one at the current tile
+            float previousY = surfaceTiles[0].localPosition.y;
             for (int tileIndex = 1; tileIndex < surfaceTiles.Count; tileIndex++) {
-                if (currentY != surfaceTiles[tileIndex].localPosition.y) {
-                    currentY = surfaceTiles[tileIndex].localPosition.y;
+                if (previousY != surfaceTiles[tileIndex].localPosition.y) {
 
-                    Vector3 previousTileRightCorner = surfaceTiles[tileIndex - 1].localPosition + toRightCorner;
-                    surfacePoints.Add(previousTileRightCorner);
+                    // the sprite shapes have an outline that goes past the spline points. To make the edge of the outline
+                    // align with the edge of the tiles, certain vectors have to be added based on whether the new spline
+                    // points above the previous or not.
+                    bool yIncreased = previousY < surfaceTiles[tileIndex].localPosition.y;
 
-                    Vector3 currentTileLeftCorner = surfaceTiles[tileIndex].localPosition + toLeftCorner;
-                    surfacePoints.Add(currentTileLeftCorner);
+                    if (yIncreased) {
+                        Vector3 previousTileRightCorner = surfaceTiles[tileIndex - 1].localPosition + new Vector3(1.5f, 0.5f);
+                        surfacePoints.Add(previousTileRightCorner);
+
+                        Vector3 currentTileLeftCorner = surfaceTiles[tileIndex].localPosition + new Vector3(-0.5f, 0.5f);
+                        surfacePoints.Add(currentTileLeftCorner);
+                    }
+                    else {
+                        Vector3 previousTileRightCorner = surfaceTiles[tileIndex - 1].localPosition + new Vector3(0.5f, 0.5f);
+                        surfacePoints.Add(previousTileRightCorner);
+
+                        Vector3 currentTileLeftCorner = surfaceTiles[tileIndex].localPosition + new Vector3(-1.5f, 0.5f); ;
+                        surfacePoints.Add(currentTileLeftCorner);
+                    }
+                    
+                    previousY = surfaceTiles[tileIndex].localPosition.y;
                 }
             }
 
-            Vector3 lastTileRightCorner = surfaceTiles[surfaceTiles.Count - 1].localPosition + toRightCorner;
+            Vector3 lastTileRightCorner = surfaceTiles[surfaceTiles.Count - 1].localPosition + new Vector3(0.5f, 0.5f);
             surfacePoints.Add(lastTileRightCorner);
 
             return surfacePoints;

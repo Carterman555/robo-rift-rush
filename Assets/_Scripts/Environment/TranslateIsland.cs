@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class TranslateEnvironment : MonoBehaviour {
+    public class TranslateIsland : MonoBehaviour {
 
         [Header ("References")]
         //[SerializeField] private TriggerEvent moveTrigger; // TODO - delete or keep all move trigger related code
@@ -36,9 +36,22 @@ namespace SpeedPlatformer.Environment {
 
         #region Set Methods
 
-        //public void SetMoveTrigger(TriggerEvent trigger) {
-        //    moveTrigger = trigger;
-        //}
+        public void SetTargetLocalPosition(Vector3 pos) {
+            targetTransform.localPosition = pos;
+            targetPos = targetTransform.position;
+        }
+
+        public void SetMaxMoveSpeed(float speed) {
+            maxMoveSpeed = speed;
+        }
+
+        public void SetStartMaxSpeed(bool max) {
+            startAtMaxMoveSpeed = max;
+        }
+
+        public void SetAcceleration(float acceleration) {
+            moveAcceleration = acceleration;
+        }
 
         #endregion
 
@@ -151,12 +164,12 @@ namespace SpeedPlatformer.Environment {
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(TranslateEnvironment))]
+    [CustomEditor(typeof(TranslateIsland))]
     public class TranslateEnvironmentEditor : Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
-            TranslateEnvironment movingEnvironment = target as TranslateEnvironment;
+            TranslateIsland movingEnvironment = target as TranslateIsland;
 
             //... move the trigger with the section when it's moved in editor mode
             //movingEnvironment.TryUpdateMoveTriggerPosition();

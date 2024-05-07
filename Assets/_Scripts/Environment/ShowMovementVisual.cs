@@ -16,7 +16,7 @@ namespace SpeedPlatformer.Environment {
 
             if (!ShowVisuals) return;
 
-            if (!TryGetComponent(out TranslateEnvironment translateEnvironment)) {
+            if (!TryGetComponent(out TranslateIsland translateEnvironment)) {
                 return;
             }
 

@@ -104,7 +104,7 @@ namespace SpeedPlatformer.Environment {
             
             // check if environment is done translating 
             if (rotationEndCondition == RotationEndCondition.MatchTranslate) {
-                if (TryGetComponent(out TranslateEnvironment translateEnvironment)){
+                if (TryGetComponent(out TranslateIsland translateEnvironment)){
                     if (translateEnvironment.Deaccelerating()) {
                         currentMovement = MovementType.Deaccelerating;
 
@@ -150,7 +150,7 @@ namespace SpeedPlatformer.Environment {
 
         // enable floating movement if not translating
         private void TryEnableFloatingMovement() {
-            if (TryGetComponent(out TranslateEnvironment translateEnvironment)) {
+            if (TryGetComponent(out TranslateIsland translateEnvironment)) {
                 if (!translateEnvironment.enabled) {
                     GetComponent<FloatingIslandMovementPerlin>().enabled = true;
                 }
