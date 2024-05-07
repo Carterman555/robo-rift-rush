@@ -135,7 +135,7 @@ namespace SpeedPlatformer.Environment {
 
         // enable floating movement if not rotating
         private void TryEnableFloatingMovement() {
-            if (TryGetComponent(out RotateEnvironment rotateEnvironment)) {
+            if (TryGetComponent(out RotateIsland rotateEnvironment)) {
                 if (!rotateEnvironment.enabled) {
                     GetComponent<FloatingIslandMovementPerlin>().enabled = true;
                 }

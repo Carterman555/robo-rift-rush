@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEditor;
-using System;
 
 namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class RotateEnvironment : MonoBehaviour {
+    public class RotateIsland : MonoBehaviour {
 
         //[Header("References")]
         //[SerializeField] private TriggerEvent moveTrigger; // TODO - delete or keep all move trigger related code
@@ -173,12 +172,12 @@ namespace SpeedPlatformer.Environment {
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(RotateEnvironment))]
+    [CustomEditor(typeof(RotateIsland))]
     public class RotateEnvironmentEditor : Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
-            RotateEnvironment rotateEnvironment = target as RotateEnvironment;
+            RotateIsland rotateEnvironment = target as RotateIsland;
 
             if (!rotateEnvironment.startAtMaxRotationSpeed) {
                 rotateEnvironment.RotationAcceleration = EditorGUILayout.FloatField("Rotation Acceleration", rotateEnvironment.RotationAcceleration);

@@ -10,7 +10,7 @@ namespace SpeedPlatformer.Environment {
         private Spline spline;
 
         [ContextMenu("Center Island On Sprite")]
-        private void CenterIslandOnSprite() {
+        public void CenterIslandOnSprite() {
 
             // set the island object to the center of the island
             sprite = GetComponent<SpriteShapeController>();

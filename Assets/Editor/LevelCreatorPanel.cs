@@ -108,31 +108,19 @@ namespace SpeedPlatformer.Editor {
                 List<Vector3> surfacePoints = GetPointsFromTiles(surfaceTiles);
                 newIsland.SetSurfaceFromPoints(oldIsland.transform.position, surfacePoints);
 
+                MovingEnvironment oldIslandMovement = oldIsland.GetComponent<MovingEnvironment>();
+
                 // set move values
                 if (newIsland.TryGetComponent(out TranslateIsland translateIsland)) {
+                    MatchTranslateIslandParameters(oldIslandMovement, translateIsland);
+                }
 
-                    MovingEnvironment oldMovement = oldIsland.GetComponent<MovingEnvironment>();
-
-                    // get pos for target
-
-                    float moveDistance; 
-
-                    if (oldMovement.GetContinuousMovement()) {
-                        float distanceForContinuous = 30f;
-                        moveDistance = distanceForContinuous;
-                    }
-                    else {
-                        moveDistance = oldMovement.GetMoveDistance();
-                    }
-
-
-
-                    translateIsland
+                // set rotation values
+                if (newIsland.TryGetComponent(out RotateIsland rotateIsland)) {
+                    MatchRotateIslandParameters(oldIslandMovement, rotateIsland);
                 }
             }
         }
-
-        
 
         // makes sure the island has all the components to transform it
         private bool IsValidIsland(GameObject oldIsland) {
@@ -258,6 +246,33 @@ namespace SpeedPlatformer.Editor {
             surfacePoints.Add(lastTileRightCorner);
 
             return surfacePoints;
+        }
+
+        private void MatchTranslateIslandParameters(MovingEnvironment movingEnvironment, TranslateIsland translateIsland) {
+            
+            // set pos for target
+            float moveDistance;
+            if (movingEnvironment.GetContinuousMovement()) {
+                float distanceForContinuous = 30f;
+                moveDistance = distanceForContinuous;
+            }
+            else {
+                moveDistance = movingEnvironment.GetMoveDistance();
+            }
+
+            Vector3 targetPosition = (Vector3)(movingEnvironment.GetMoveAngle().AngleToDirection() * moveDistance);
+            translateIsland.SetTargetLocalPosition(targetPosition);
+
+            // set move speed and acceleration
+            translateIsland.SetMaxMoveSpeed(movingEnvironment.GetMaxMoveSpeed());
+            translateIsland.SetStartMaxSpeed(movingEnvironment.GetStartMaxSpeed());
+            translateIsland.SetAcceleration(movingEnvironment.moveAcceleration);
+        }
+
+        private void MatchRotateIslandParameters(MovingEnvironment oldIslandMovement, RotateIsland rotateIsland) {
+            
+
+
         }
 
         private void ParentTouchingObjects() {
