@@ -27,11 +27,6 @@ namespace SpeedPlatformer.Editor {
         private IslandShapeController translatingRotatingIslandPrefab;
 
         private void OnGUI() {
-
-            GUILayout.Label("Setup Parents");
-
-            GUILayout.Space(5);
-
             GUILayout.Label("Selected Objects: " + Selection.gameObjects.Length);
 
             islandContainer = EditorGUILayout.ObjectField("Island Container", islandContainer, typeof(Transform), true) as Transform;
@@ -46,15 +41,9 @@ namespace SpeedPlatformer.Editor {
                 objectColliders = GetColArrayFromSelection();
             }
 
-            if (GUILayout.Button("Setup Parents")) {
-                SetupParents();
+            if (GUILayout.Button("Setup Selection")) {
+                SetupSelection();
             }
-
-            GUILayout.Space(20);
-
-            GUILayout.Label("Remake Islands");
-
-            GUILayout.Space(5);
 
             stationaryIslandPrefab = EditorGUILayout.ObjectField("Stationary Island Prefab", stationaryIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
             translatingIslandPrefab = EditorGUILayout.ObjectField("Translating Island Prefab", translatingIslandPrefab, typeof(IslandShapeController), true) as IslandShapeController;
@@ -65,24 +54,10 @@ namespace SpeedPlatformer.Editor {
                 RemakeIslands(Selection.gameObjects);
             }
 
-            if (GUILayout.Button("Undo New Islands")) {
-
-                List<GameObject> newIslands = new List<GameObject>();
-                foreach (Transform oldIsland in islandPairs.Keys) {
-                    MoveNontileChildren(islandPairs[oldIsland], oldIsland);
-                    newIslands.Add(islandPairs[oldIsland].gameObject);
-                }
-
-                for (int i = newIslands.Count - 1; i >= 0; i--) {
-                    DestroyImmediate(newIslands[i], false);
-                    newIslands.RemoveAt(i);
-                }
-            }
-
             if (GUILayout.Button("Test Surface")) {
-                List<Transform> transforms = GetSurfaceTiles(Selection.gameObjects[0]);
-                for (int i = 0; i < transforms.Count; i++) {
-                    transforms[i].GetComponent<SpriteRenderer>().color = Color.red;
+                List<Vector3> points = GetPointsFromTiles(GetSurfaceTiles(Selection.gameObjects[0]));
+                for (int i = 0; i < points.Count; i++) {
+                    Debug.DrawLine(points[i], points[i] + Vector3.up * 0.3f);
                 }
             }
         }
@@ -100,7 +75,7 @@ namespace SpeedPlatformer.Editor {
             return colliders;
         }
 
-        private void SetupParents() {
+        private void SetupSelection() {
             // go through each island, set parent, rename it, add components, add move trigger
             foreach (GameObject island in Selection.gameObjects) {
 
@@ -110,32 +85,6 @@ namespace SpeedPlatformer.Editor {
             }
         }
 
-        private void ParentTouchingObjects() {
-            foreach (Collider2D islandCollider in islandColliders) {
-                foreach (Collider2D objectCollider in objectColliders) {
-                    if (IsOverlapping(islandCollider, objectCollider)) {
-                        objectCollider.transform.SetParent(islandCollider.transform);
-                    }
-                }
-            }
-        }
-
-        private bool IsOverlapping(Collider2D colliderA, Collider2D colliderB) {
-            ContactFilter2D filter = new ContactFilter2D().NoFilter();
-            Collider2D[] colliders = new Collider2D[1];
-            int count = colliderA.OverlapCollider(filter, colliders);
-
-            for (int i = 0; i < count; i++) {
-                if (colliders[i] == colliderB) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private Dictionary<Transform, Transform> islandPairs = new Dictionary<Transform, Transform>();
-
         /// <summary>
         /// This method converts the old islands using tiles into the new island objects using sprite shapes. It goes
         /// through each old island and does these things:
@@ -144,14 +93,8 @@ namespace SpeedPlatformer.Editor {
         /// - set the movement values and target position
         /// </summary>
         private void RemakeIslands(GameObject[] oldIslands) {
-
-            islandPairs = new Dictionary<Transform, Transform>();
-
             foreach (GameObject oldIsland in oldIslands) {
-                if (!IsValidIsland(oldIsland)) {
-                    Debug.LogWarning(oldIsland.name + " is Not a Valid Island");
-                    continue;
-                }
+                if (!IsValidIsland(oldIsland)) return;
 
                 IslandShapeController newIsland = CreateMatchingNewIsland(oldIsland);
 
@@ -160,7 +103,7 @@ namespace SpeedPlatformer.Editor {
                 newIsland.RandomizeShape(oldIslandSize.x * 2, oldIslandSize.y * 2);
                 //newIsland.RandomizeShape(oldIslandSize.x * 2, oldIslandSize.x * 0.5f); // for just surface islands
 
-                List<Transform> surfaceTiles = GetSurfaceTiles(oldIsland);
+                List<Transform> surfaceTiles = GetSurfaceTiles(Selection.gameObjects[0]);
 
                 List<Vector3> surfacePoints = GetPointsFromTiles(surfaceTiles);
                 newIsland.SetSurfaceFromPoints(oldIsland.transform.position, surfacePoints);
@@ -176,20 +119,11 @@ namespace SpeedPlatformer.Editor {
                 if (newIsland.TryGetComponent(out RotateIsland rotateIsland)) {
                     MatchRotateIslandParameters(oldIslandMovement, rotateIsland);
                 }
-
-                MoveNontileChildren(oldIsland.transform, newIsland.transform);
-
-                islandPairs.Add(oldIsland.transform, newIsland.transform);
             }
         }
 
         // makes sure the island has all the components to transform it
         private bool IsValidIsland(GameObject oldIsland) {
-
-            if (!oldIsland.TryGetComponent(out CompositeCollider2D compositeCollider2D)) {
-                return false;
-            }
-
             return true;
         }
 
@@ -242,27 +176,27 @@ namespace SpeedPlatformer.Editor {
             }
 
             //... sort by x position
-            Transform[] sortedTiles = allTiles.OrderBy(t => t.localPosition.x).ToArray();
+            Transform[] sortedTiles = allTiles.OrderBy(t => t.position.x).ToArray();
 
             // add highest y pos of tiles with same x pos to surface tiles list
-            float currentX = sortedTiles[0].localPosition.x;
+            float currentX = sortedTiles[0].position.x;
             Transform highestTileWithCurrentX = null;
             float highestYWithCurrentX = float.MinValue;
             for (int i = 0; i < sortedTiles.Length; i++) {
 
                 // when x position changes look for new highest y
-                bool xPositionChanged = currentX != sortedTiles[i].localPosition.x;
+                bool xPositionChanged = currentX != sortedTiles[i].position.x;
                 if (xPositionChanged) {
                     surfaceTiles.Add(highestTileWithCurrentX);
 
-                    currentX = sortedTiles[i].localPosition.x;
+                    currentX = sortedTiles[i].position.x;
 
                     highestYWithCurrentX = float.MinValue;
                     highestTileWithCurrentX = null;
                 }
 
-                if (sortedTiles[i].localPosition.y > highestYWithCurrentX) {
-                    highestYWithCurrentX = sortedTiles[i].localPosition.y;
+                if (sortedTiles[i].position.y > highestYWithCurrentX) {
+                    highestYWithCurrentX = sortedTiles[i].position.y;
                     highestTileWithCurrentX = sortedTiles[i];
                 }
             }
@@ -336,35 +270,33 @@ namespace SpeedPlatformer.Editor {
         }
 
         private void MatchRotateIslandParameters(MovingEnvironment oldIslandMovement, RotateIsland rotateIsland) {
+            
 
-            bool rotateClockwise = oldIslandMovement.GetMaxRotationSpeed() < 0;
-            rotateIsland.SetRotateClockwise(rotateClockwise);
 
-            rotateIsland.SetMaxSpeed(Mathf.Abs(oldIslandMovement.GetMaxRotationSpeed()));
-            rotateIsland.startAtMaxRotationSpeed = oldIslandMovement.startAtMaxRotationSpeed;
-            rotateIsland.SetAcceleration(oldIslandMovement.rotationAcceleration);
+        }
 
-            if (rotateIsland.TryGetComponent(out TranslateIsland translateIsland)) {
-                rotateIsland.SetEndCondition(RotateIsland.RotationEndCondition.MatchTranslate);
-            }
-            else if (oldIslandMovement.continuousMovement) {
-                rotateIsland.SetEndCondition(RotateIsland.RotationEndCondition.Continuous);
-            }
-            else {
-                rotateIsland.SetEndCondition(RotateIsland.RotationEndCondition.Rotation);
-
-                Debug.LogWarning("Rotate Island End Rotation Not Set. Set in Inspector: " + rotateIsland.name);
+        private void ParentTouchingObjects() {
+            foreach (Collider2D islandCollider in islandColliders) {
+                foreach (Collider2D objectCollider in objectColliders) {
+                    if (IsOverlapping(islandCollider, objectCollider)) {
+                        objectCollider.transform.SetParent(islandCollider.transform);
+                    }
+                }
             }
         }
 
-        private void MoveNontileChildren(Transform oldParent, Transform newParent) {
-            Transform[] children = oldParent.GetDirectChildren();
-            foreach (Transform child in children) {
-                //... don't move tiles
-                if (child.gameObject.layer != GameLayers.TileLayer && !child.name.Equals("Target")) {
-                    child.SetParent(newParent);
+        private bool IsOverlapping(Collider2D colliderA, Collider2D colliderB) {
+            ContactFilter2D filter = new ContactFilter2D().NoFilter();
+            Collider2D[] colliders = new Collider2D[1];
+            int count = colliderA.OverlapCollider(filter, colliders);
+
+            for (int i = 0; i < count; i++) {
+                if (colliders[i] == colliderB) {
+                    return true;
                 }
             }
+
+            return false;
         }
     }
 #endif
