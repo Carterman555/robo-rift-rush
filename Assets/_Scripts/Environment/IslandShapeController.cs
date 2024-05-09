@@ -23,6 +23,14 @@ namespace SpeedPlatformer.Environment {
             for (int i = 0; i < spline.GetPointCount(); i++) {
                 spline.SetPosition(i, spline.GetPosition(i) - distanceMoved);
             }
+
+            // set position of all children back, except move target
+            Transform[] children = transform.GetDirectChildren();
+            foreach (Transform child in children) {
+                if (!child.name.Equals("Target")) {
+                    child.position -= distanceMoved;
+                }
+            }
         }
 
         [SerializeField] private float islandSize = 3f;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using Unity.VisualScripting;
 
 namespace SpeedPlatformer.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -14,10 +15,9 @@ namespace SpeedPlatformer.Environment {
         public bool startAtMaxRotationSpeed = true;
         [HideInInspector] public float RotationAcceleration;
 
-        private enum RotationEndCondition { MatchTranslate, Continuous, Rotation }
+        public enum RotationEndCondition { MatchTranslate, Continuous, Rotation }
         [SerializeField] private RotationEndCondition rotationEndCondition;
         [HideInInspector] public float EndRotation;
-
 
         enum MovementType { Waiting, Moving, Deaccelerating }
         private MovementType currentMovement = MovementType.Waiting;
@@ -41,6 +41,26 @@ namespace SpeedPlatformer.Environment {
         //public void SetMoveTrigger(TriggerEvent trigger) {
         //    moveTrigger = trigger;
         //}
+
+        public void SetRotateClockwise(bool clockwise) {
+            rotateClockwise = clockwise;
+        }
+
+        public void SetMaxSpeed(float maxSpeed) {
+            maxRotationSpeed = maxSpeed;
+        }
+
+        public void SetAcceleration(float acceleration) {
+            RotationAcceleration = acceleration;
+        }
+
+        public void SetEndCondition(RotationEndCondition endCondition) {
+            rotationEndCondition = endCondition;
+        }
+
+        public void SetEndRotation(float endRotation) {
+            EndRotation = endRotation;
+        }
 
         #endregion
 
