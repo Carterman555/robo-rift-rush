@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6868673425365733575}
   - component: {fileID: 6868673425365733574}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6868673425786648089}
   - component: {fileID: 6868673425786648090}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6868673425833689208}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6868673426725141621}
   - component: {fileID: 6868673426725141620}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

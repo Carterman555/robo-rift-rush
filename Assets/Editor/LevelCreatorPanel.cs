@@ -79,10 +79,15 @@ namespace SpeedPlatformer.Editor {
                 }
             }
 
-            if (GUILayout.Button("Test Surface")) {
-                List<Transform> transforms = GetSurfaceTiles(Selection.gameObjects[0]);
-                for (int i = 0; i < transforms.Count; i++) {
-                    transforms[i].GetComponent<SpriteRenderer>().color = Color.red;
+            if (GUILayout.Button("Add Copy Movement To Islands")) {
+                GameObject[] translateIslands = FindObjectsOfType<TranslateIsland>().Select(img => img.gameObject).ToArray();
+                GameObject[] gameObjectsWithSprite = FindObjectsOfType<RotateIsland>().Select(spr => spr.gameObject).ToArray();
+
+                // Combine the two arrays and remove duplicates
+                GameObject[] movingIslands = translateIslands.Union(gameObjectsWithSprite).ToArray();
+
+                foreach (GameObject island in movingIslands) {
+                    island.AddComponent<CopyMovementToPlayer>();
                 }
             }
         }

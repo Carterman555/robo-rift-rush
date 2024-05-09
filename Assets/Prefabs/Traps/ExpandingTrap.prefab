@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87f7084917842449bbe655ecb27d8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expandOnRight: 0
   rightExpandSpeed: 0
-  expandOnLeft: 0
   leftExpandSpeed: 0
+  maxRightExpandAmount: 0
+  maxLeftExpandAmount: 0
   visualTransform: {fileID: 2150258896157542858}
 --- !u!1 &2150258896157542857
 GameObject:
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2150258896157542858}
   - component: {fileID: 2150258896157542859}
   - component: {fileID: 2150258896157542860}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

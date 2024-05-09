@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 42906903}
   - component: {fileID: 42906902}
   - component: {fileID: 42906901}
+  - component: {fileID: 42906909}
   m_Layer: 3
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
@@ -373,7 +374,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -421,6 +422,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.008331299, y: -0.45461082, z: -0.0001}
     m_Extent: {x: 13, y: 4.9673615, z: 0.0001}
+--- !u!114 &42906909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42906899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &77527183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 375661806940587711, guid: 75309ab65049a414d8618994d148f099, type: 3}
@@ -670,6 +683,7 @@ GameObject:
   - component: {fileID: 280844068}
   - component: {fileID: 280844067}
   - component: {fileID: 280844066}
+  - component: {fileID: 280844075}
   m_Layer: 3
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
@@ -923,7 +937,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -971,6 +985,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.053375244, y: -0.21637774, z: -0.0001}
     m_Extent: {x: 13, y: 5.426813, z: 0.0001}
+--- !u!114 &280844075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280844064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297558406
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1015,7 @@ GameObject:
   - component: {fileID: 297558410}
   - component: {fileID: 297558409}
   - component: {fileID: 297558408}
+  - component: {fileID: 297558417}
   m_Layer: 3
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
@@ -1226,7 +1253,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1274,6 +1301,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.03768921, y: -0.18126154, z: -0.0001}
     m_Extent: {x: 12, y: 4.523593, z: 0.0001}
+--- !u!114 &297558417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297558406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &299233704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1527,7 @@ GameObject:
   - component: {fileID: 379954243}
   - component: {fileID: 379954242}
   - component: {fileID: 379954241}
+  - component: {fileID: 379954249}
   m_Layer: 3
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
@@ -1889,7 +1929,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1937,6 +1977,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.03778076, y: 0.07532501, z: -0.00049999997}
     m_Extent: {x: 41, y: 22.127237, z: 0.00049999997}
+--- !u!114 &379954249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379954239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519236593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,6 +2067,7 @@ GameObject:
   - component: {fileID: 557309605}
   - component: {fileID: 557309604}
   - component: {fileID: 557309603}
+  - component: {fileID: 557309612}
   m_Layer: 3
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
@@ -2290,7 +2343,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2338,6 +2391,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.07891846, y: -0.5740495, z: -0.0002}
     m_Extent: {x: 15, y: 5.74852, z: 0.0002}
+--- !u!114 &557309612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557309601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &628418385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,6 +2642,7 @@ GameObject:
   - component: {fileID: 779789725}
   - component: {fileID: 779789724}
   - component: {fileID: 779789723}
+  - component: {fileID: 779789732}
   m_Layer: 3
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
@@ -2804,7 +2870,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2852,6 +2918,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.11965871, y: 0.50883913, z: -0.0002}
     m_Extent: {x: 2.0952508, y: 4.5449114, z: 0.0002}
+--- !u!114 &779789732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779789721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &884689246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,6 +3163,7 @@ GameObject:
   - component: {fileID: 1349280029}
   - component: {fileID: 1349280028}
   - component: {fileID: 1349280027}
+  - component: {fileID: 1349280035}
   m_Layer: 3
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
@@ -3352,6 +3431,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.0332489, y: -0.17006874, z: -0.0001}
     m_Extent: {x: 9, y: 4.8621025, z: 0.0001}
+--- !u!114 &1349280035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349280025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1353662357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,6 +3570,7 @@ GameObject:
   - component: {fileID: 1606134843}
   - component: {fileID: 1606134842}
   - component: {fileID: 1606134841}
+  - component: {fileID: 1606134849}
   m_Layer: 3
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
@@ -3769,6 +3861,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.060333252, y: 0.11314964, z: -0.0002}
     m_Extent: {x: 10, y: 6.227614, z: 0.0002}
+--- !u!114 &1606134849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606134839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1619604313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,6 +4152,7 @@ GameObject:
   - component: {fileID: 1815381115}
   - component: {fileID: 1815381114}
   - component: {fileID: 1815381113}
+  - component: {fileID: 1815381121}
   m_Layer: 3
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
@@ -4304,6 +4409,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.3426504, y: 0.5966673, z: -0.0001}
     m_Extent: {x: 8.838557, y: 3.47831, z: 0.0001}
+--- !u!114 &1815381121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815381111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1845868360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4515,6 +4632,7 @@ GameObject:
   - component: {fileID: 2040683149}
   - component: {fileID: 2040683148}
   - component: {fileID: 2040683147}
+  - component: {fileID: 2040683154}
   m_Layer: 3
   m_Name: RotatingIsland(Clone)
   m_TagString: Untagged
@@ -4932,6 +5050,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.058799744, y: 0.9016218, z: -0.0002}
     m_Extent: {x: 53, y: 9.520072, z: 0.0002}
+--- !u!114 &2040683154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040683145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97c5ac4ebdc0c4e8356165c21c53ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2098882844
 GameObject:
   m_ObjectHideFlags: 0
