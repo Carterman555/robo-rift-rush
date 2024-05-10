@@ -163,5 +163,22 @@ namespace SpeedPlatformer.Environment {
             Vector3 leftPointPos = surfacePoints[surfacePoints.Count - 1] + toNewToOldIsland;
             spline.SetPosition(surfacePoints.Count - 1, leftPointPos);
         }
+    
+        public void SetAllCornerContinuous() {
+            sprite = GetComponent<SpriteShapeController>();
+            spline = sprite.spline;
+            
+            for (int pointIndex = 0; pointIndex < spline.GetPointCount(); pointIndex++) {
+
+                if (spline.GetTangentMode(pointIndex) != ShapeTangentMode.Continuous) {
+                    float tangentLength = spline.GetTangentMode(pointIndex) == ShapeTangentMode.Linear ? 0.5f : 5f;
+
+                    spline.SetTangentMode(pointIndex, ShapeTangentMode.Continuous);
+
+                    spline.SetRightTangent(pointIndex, Vector3.left * tangentLength);
+                    spline.SetLeftTangent(pointIndex, Vector3.right * tangentLength);
+                }
+            } 
+        }
     }
 }

@@ -90,6 +90,18 @@ namespace SpeedPlatformer.Editor {
                     island.AddComponent<CopyMovementToPlayer>();
                 }
             }
+
+            if (GUILayout.Button("Set Corner and PPU")) {
+
+                IslandShapeController[] islandShapeControllers = FindObjectsOfType<IslandShapeController>();
+
+                foreach (IslandShapeController islandShapeController in islandShapeControllers) {
+                    islandShapeController.SetAllCornerContinuous();
+                    if (islandShapeController.TryGetComponent(out SpriteShapeController spriteShapeController)) {
+                        spriteShapeController.fillPixelsPerUnit = 10f;
+                    }
+                }
+            }
         }
 
         private Collider2D[] GetColArrayFromSelection() {

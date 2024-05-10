@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: Test Sprite Shape Profile
+  m_Name: Env1 Sprite Shape Profile Inside Out
   m_EditorClassIdentifier: 
   m_Angles:
   - m_Start: 0
@@ -22,27 +22,27 @@ MonoBehaviour:
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
-    - {fileID: 9209538615602198030, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
+    - {fileID: 236789537256750330, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
   - m_CornerType: 1
     m_Sprites:
-    - {fileID: -2070156331017752233, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: -4531331156712209875, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
   - m_CornerType: 2
     m_Sprites:
-    - {fileID: 5908276767172957573, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: -8639215752252312754, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
   - m_CornerType: 3
     m_Sprites:
-    - {fileID: -4769935691659516414, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: -6016411145927934711, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
   - m_CornerType: 4
     m_Sprites:
-    - {fileID: -961734734098631188, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
   - m_CornerType: 5
     m_Sprites:
     - {fileID: -961734734098631188, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
   - m_CornerType: 6
     m_Sprites:
-    - {fileID: -961734734098631188, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
   - m_CornerType: 7
     m_Sprites:
-    - {fileID: -961734734098631188, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
+    - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
   m_FillOffset: 0
   m_UseSpriteBorders: 1
