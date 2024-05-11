@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678833, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_Name
-      value: SmoothSection_14
+      value: SmoothSection
       objectReference: {fileID: 0}
     - target: {fileID: 2095602633381678834, guid: 034dae53db2467644a16d929814ac3d0, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.size

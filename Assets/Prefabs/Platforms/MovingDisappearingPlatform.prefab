@@ -181,8 +181,11 @@ MonoBehaviour:
   moveTrigger: {fileID: 6211273908045399768}
   moveAngle: 90
   maxMoveSpeed: 5
-  maxRotationSpeed: 0
+  startAtMaxMoveSpeed: 1
   moveAcceleration: 20
+  maxRotationSpeed: 0
+  startAtMaxRotationSpeed: 1
+  rotationAcceleration: 0
   continuousMovement: 0
   moveDistance: 13.17
 --- !u!1 &7113956072148022772
@@ -236,7 +239,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

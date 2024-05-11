@@ -1,7 +1,6 @@
 using System;
 using TarodevController;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace SpeedPlatformer.Player
 {
