@@ -171,7 +171,7 @@ namespace SpeedPlatformer.Environment {
             for (int pointIndex = 0; pointIndex < spline.GetPointCount(); pointIndex++) {
 
                 if (spline.GetTangentMode(pointIndex) != ShapeTangentMode.Continuous) {
-                    float tangentLength = spline.GetTangentMode(pointIndex) == ShapeTangentMode.Linear ? 0.5f : 5f;
+                    float tangentLength = spline.GetTangentMode(pointIndex) == ShapeTangentMode.Linear ? 0.5f : 1f;
 
                     spline.SetTangentMode(pointIndex, ShapeTangentMode.Continuous);
 
