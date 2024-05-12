@@ -52,15 +52,26 @@ namespace SpeedPlatformer.Editor {
 
             GUILayout.Space(20);
 
-            if (GUILayout.Button("Add Copy Movement To Islands")) {
-                GameObject[] translateIslands = FindObjectsOfType<TranslateIsland>().Select(img => img.gameObject).ToArray();
-                GameObject[] gameObjectsWithSprite = FindObjectsOfType<RotateIsland>().Select(spr => spr.gameObject).ToArray();
+            if (GUILayout.Button("Fix Traps")) {
+                // Find all game objects with the custom tag "Trap"
+                GameObject[] traps = GameObject.FindGameObjectsWithTag("Trap");
 
-                // Combine the two arrays and remove duplicates
-                GameObject[] movingIslands = translateIslands.Union(gameObjectsWithSprite).ToArray();
+                foreach (GameObject trap in traps) {
+                    string trapName = trap.name;
 
-                foreach (GameObject island in movingIslands) {
-                    island.AddComponent<CopyMovementToPlayer>();
+                    // Check if the name starts with "staticTrap" or "movingTrap"
+                    if (trapName.StartsWith("StaticTrap") || trapName.StartsWith("MovingTrap")) {
+                        Debug.Log("Found trap: " + trapName);
+
+                        BoxCollider2D boxCollider = trap.GetComponent<BoxCollider2D>();
+
+                        int width = Mathf.RoundToInt(boxCollider.size.x * trap.transform.localScale.x);
+
+                        boxCollider.size = new Vector2(width, 1);
+                        trap.GetComponentInChildren<SpriteRenderer>().size = new Vector2(width, 1);
+
+                        trap.transform.localScale = Vector3.one;
+                    }
                 }
             }
         }
@@ -110,16 +121,6 @@ namespace SpeedPlatformer.Editor {
             }
 
             return false;
-        }
-
-        private void MoveNontileChildren(Transform oldParent, Transform newParent) {
-            Transform[] children = oldParent.GetDirectChildren();
-            foreach (Transform child in children) {
-                //... don't move tiles
-                if (child.gameObject.layer != GameLayers.TileLayer && !child.name.Equals("Target")) {
-                    child.SetParent(newParent);
-                }
-            }
         }
     }
 #endif
