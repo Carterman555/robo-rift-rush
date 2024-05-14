@@ -572,7 +572,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.14869595, y: -0.037174106}
-  m_Size: {x: 1.9913058, y: 2.7682617}
+  m_Size: {x: 2, y: 2.9}
   m_Direction: 0
 --- !u!50 &6916853990179449716
 Rigidbody2D:
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUnlocked: 0
+  startUnlocked: 1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8

@@ -6,7 +6,7 @@ public class ParallaxCamera : MonoBehaviour {
 
     private Vector3 oldPosition;
 
-    void Start() {
+    private void Awake() {
         oldPosition = transform.position;
     }
 
@@ -14,6 +14,7 @@ public class ParallaxCamera : MonoBehaviour {
         if (transform.position != oldPosition) {
             if (onCameraTranslate != null) {
                 Vector3 delta = oldPosition - transform.position;
+
                 onCameraTranslate(delta);
             }
 

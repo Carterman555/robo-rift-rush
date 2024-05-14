@@ -536,18 +536,18 @@ namespace TarodevController
             Vector2 rollingColOffset = new Vector2(0, -0.5f);
             col.offset = rollingColOffset;
 
-            Vector2 normalColSize = new Vector2(1, 1);
-            col.size = normalColSize;
+            Vector2 rollingColSize = new Vector2(1, 1);
+            col.size = rollingColSize;
         }
 
         private void StopRolling() {
             rolling = false;
             rollTimer = 0;
 
-            Vector2 normalColOffset = Vector2.zero;
-            col.offset = normalColOffset;
+            Vector2 normalColOffset = new Vector2(0.15f, 0);
+            col.offset = normalColOffset; 
 
-            Vector2 normalColSize = new Vector2(1, 2);
+            Vector2 normalColSize = new Vector2(2, 2.9f);
             col.size = normalColSize;
         }
 

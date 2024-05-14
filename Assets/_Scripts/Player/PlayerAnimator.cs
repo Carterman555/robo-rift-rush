@@ -60,17 +60,23 @@ namespace TarodevController {
 
             DetectGroundColor();
 
-            HandleSpriteFlip();
+            HandlePlayerDirection();
 
             HandleIdleSpeed();
         }
 
-        private void HandleSpriteFlip() {
-            if (_player.FrameInput.x > 0) {
-                playerTransform.eulerAngles = new Vector3(playerTransform.eulerAngles.x, 0f, playerTransform.eulerAngles.z);
+        private bool facingLeft = false;
+
+        private void HandlePlayerDirection() {
+            // face right if right input
+            if (_player.FrameInput.x > 0 && facingLeft) {
+                playerTransform.localScale = new Vector3(Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y);
+                facingLeft = false;
             }
-            else if (_player.FrameInput.x < 0) {
-                playerTransform.eulerAngles = new Vector3(playerTransform.eulerAngles.x, 180f, playerTransform.eulerAngles.z);
+            // face left if left input
+            else if (_player.FrameInput.x < 0 && !facingLeft) {
+                playerTransform.localScale = new Vector3(-Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y);
+                facingLeft = true;
             }
         }
 

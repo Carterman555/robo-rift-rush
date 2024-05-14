@@ -686,6 +686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment Setup 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2238767474641992005, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2915623558866083502, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3278,6 +3282,10 @@ PrefabInstance:
       propertyPath: grapplePoint
       value: 
       objectReference: {fileID: 91826548}
+    - target: {fileID: 8151505758919239919, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850
