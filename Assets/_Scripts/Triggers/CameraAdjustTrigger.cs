@@ -1,14 +1,36 @@
 using UnityEngine;
+using SpeedPlatformer.Setup;
+using SpeedPlatformer.Management;
 
 namespace SpeedPlatformer.Triggers
 {
     public class CameraAdjustTrigger : MonoBehaviour
     {
+        [SerializeField] private bool adjustPosition;
+        [SerializeField] private Transform centerTransform;
+
+        [SerializeField] private bool adjustSize;
         [SerializeField] private float size;
 
         private void OnTriggerEnter2D(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.PlayerLayer) {
-                AdjustCamera.Instance.Adjust(size);
+                if (adjustSize) {
+                    AdjustCamera.Instance.AdjustSize(size);
+                }
+                if (adjustPosition) {
+                    CameraManager.Instance.SwitchToStaticCamera(centerTransform.position);
+                }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.PlayerLayer) {
+                if (adjustSize) {
+                    AdjustCamera.Instance.ResetSize();
+                }
+                if (adjustPosition) {
+                    CameraManager.Instance.SwitchToPlayerCamera();
+                }
             }
         }
     }

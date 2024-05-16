@@ -1,5 +1,4 @@
 using SpeedPlatformer.Triggers;
-using UnityEditor;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment {
@@ -20,15 +19,12 @@ namespace SpeedPlatformer.Environment {
             }
         }
 
-        private void Update() {
-            breakTrigger.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        }
-
-        public void CreateBreakTrigger(Transform island) {
-            GameObject breakTriggerObj = new GameObject("BreakTrigger_" + name.TryGetEndingNumber('_'));
+        [ContextMenu("Create Break Trigger")]
+        public void CreateBreakTrigger() {
+            GameObject breakTriggerObj = new GameObject("BreakTrigger");
 
             breakTriggerObj.transform.position = transform.position;
-            breakTriggerObj.transform.SetParent(island);
+            breakTriggerObj.transform.SetParent(transform);
 
             BoxCollider2D collider = breakTriggerObj.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;
@@ -37,23 +33,4 @@ namespace SpeedPlatformer.Environment {
             breakTrigger = breakTriggerObj.AddComponent<TriggerEvent>();
         }
     }
-
-#if UNITY_EDITOR
-    [CustomEditor(typeof(BreakOnGroundContact))]
-    public class BreakOnGroundContactEditor : Editor {
-        public override void OnInspectorGUI() {
-            base.OnInspectorGUI();
-
-            BreakOnGroundContact breakOnGroundContact = target as BreakOnGroundContact;
-
-            // spawn in move trigger
-            if (GUILayout.Button("Create Break Trigger")) {
-
-                if (Helpers.TryFindByName(out GameObject triggerContainer, "BreakTriggers")) {
-                    breakOnGroundContact.CreateBreakTrigger(triggerContainer.transform);
-                }
-            }
-        }
-    }
-#endif
 }

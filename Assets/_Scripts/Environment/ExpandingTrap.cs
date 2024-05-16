@@ -18,12 +18,13 @@ namespace SpeedPlatformer.Environment.Traps {
         private float leftExpandAmount;
 
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private SpriteRenderer visualRenderer;
         private BoxCollider2D boxCollider;
 
         private bool hasBeenInFrame; // in frame currently or was in frame
 
         private void Awake() {
-            size = visualTransform.localScale.x;
+            size = visualRenderer.size.x * 2;
             center = 0;
 
             boxCollider = GetComponent<BoxCollider2D>();
@@ -54,7 +55,7 @@ namespace SpeedPlatformer.Environment.Traps {
                 center -= leftSizeIncrease * 0.5f; // move center so only expands out left
             }
 
-            visualTransform.localScale = new Vector3(size, visualTransform.localScale.y);
+            visualRenderer.size = new Vector3(size / 2, visualTransform.localScale.y);
             visualTransform.localPosition = new Vector3(center, 0);
 
             boxCollider.size = new Vector2(size, boxCollider.size.y);

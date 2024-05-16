@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace TarodevController {
     /// <summary>
@@ -8,55 +9,49 @@ namespace TarodevController {
     public class PlayerAnimator : MonoBehaviour {
         [Header("References")]
         [SerializeField]
-        private Animator _anim;
+        private Animator anim;
 
         [SerializeField] private Transform playerTransform;
 
-        [Header("Settings")]
-        [SerializeField, Range(1f, 3f)]
-        private float _maxIdleSpeed = 2;
-
-        [SerializeField] private float _maxTilt = 5;
-        [SerializeField] private float _tiltSpeed = 20;
-
-        //[Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
-        //[SerializeField] private ParticleSystem _launchParticles;
-        //[SerializeField] private ParticleSystem _moveParticles;
-        //[SerializeField] private ParticleSystem _landParticles;
+        [Header("Particles")]
+        [SerializeField] private ParticleSystem jumpParticles;
+        [SerializeField] private ParticleSystem landParticles;
+        [SerializeField] private ParticleSystem moveGroundParticles;
+        [SerializeField] private ParticleSystem moveAirParticles;
 
         //[Header("Audio Clips")] [SerializeField]
         //private AudioClip[] _footsteps;
 
         //private AudioSource _source;
-        private IPlayerController _player;
-        private bool _grounded;
-        private ParticleSystem.MinMaxGradient _currentGradient;
+        private IPlayerController player;
+        private bool grounded;
+        private ParticleSystem.MinMaxGradient currentGradient;
 
         private static readonly int IsRunningKey = Animator.StringToHash("running");
         private static readonly int TakeOffKey = Animator.StringToHash("takeOff");
-        private static readonly int JumpingKey = Animator.StringToHash("jumping");
+        private static readonly int GroundedKey = Animator.StringToHash("grounded");
 
         private void Awake() {
             //_source = GetComponent<AudioSource>();
-            _player = GetComponentInParent<IPlayerController>();
+            player = GetComponentInParent<IPlayerController>();
         }
 
         private void OnEnable() {
-            _player.Jumped += OnJumped;
-            _player.GroundedChanged += OnGroundedChanged;
+            player.Jumped += OnJumped;
+            player.GroundedChanged += OnGroundedChanged;
 
-            //_moveParticles.Play();
+            moveGroundParticles.Play();
         }
 
         private void OnDisable() {
-            _player.Jumped -= OnJumped;
-            _player.GroundedChanged -= OnGroundedChanged;
+            player.Jumped -= OnJumped;
+            player.GroundedChanged -= OnGroundedChanged;
 
-            //_moveParticles.Stop();
+            moveGroundParticles.Stop();
         }
 
         private void Update() {
-            if (_player == null) return;
+            if (player == null) return;
 
             DetectGroundColor();
 
@@ -69,69 +64,105 @@ namespace TarodevController {
 
         private void HandlePlayerDirection() {
             // face right if right input
-            if (_player.FrameInput.x > 0 && facingLeft) {
+            if (player.FrameInput.x > 0 && facingLeft) {
                 playerTransform.localScale = new Vector3(Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y);
                 facingLeft = false;
             }
             // face left if left input
-            else if (_player.FrameInput.x < 0 && !facingLeft) {
+            else if (player.FrameInput.x < 0 && !facingLeft) {
                 playerTransform.localScale = new Vector3(-Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y);
                 facingLeft = true;
             }
         }
 
         private void HandleIdleSpeed() {
-            _anim.SetBool(IsRunningKey, _player.FrameInput.x != 0);
-            //_moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+
+            bool hasHorizontalInput = player.FrameInput.x != 0;
+            anim.SetBool(IsRunningKey, hasHorizontalInput);
+
+            if (hasHorizontalInput && !moveAirParticles.isPlaying) {
+                moveAirParticles.Play();
+            }
+            else if (!hasHorizontalInput && moveGroundParticles.isPlaying) {
+                moveAirParticles.Stop();
+            }
+
+            float inputStrength = Mathf.Abs(player.FrameInput.x);
+            moveGroundParticles.transform.localScale = Vector3.MoveTowards(moveGroundParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
         }
 
         private void OnJumped() {
-            _anim.SetTrigger(TakeOffKey);
-            //_anim.ResetTrigger(GroundedKey);
+            anim.SetTrigger(TakeOffKey);
 
-
-            if (_grounded) // Avoid coyote
+            if (grounded) // Avoid coyote
             {
-                //SetColor(_jumpParticles);
-                //SetColor(_launchParticles);
-                //_jumpParticles.Play();
+                SetColor(jumpParticles);
+                jumpParticles.Play();
             }
         }
 
         private void OnGroundedChanged(bool grounded, float impact) {
-            _grounded = grounded;
+            this.grounded = grounded;
 
             if (grounded) {
-                _anim.SetBool(JumpingKey, false);
+                anim.SetBool(GroundedKey, true);
 
-                //DetectGroundColor();
-                //SetColor(_landParticles);
+                DetectGroundColor();
+                SetColor(landParticles);
 
-                //_anim.SetTrigger(GroundedKey);
                 //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-                //_moveParticles.Play();
+                moveGroundParticles.Play();
+                moveAirParticles.Play();
 
-                //_landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
-                //_landParticles.Play();
+                landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
+                landParticles.Play();
             }
             else {
-                _anim.SetBool(JumpingKey, true);
-                //_moveParticles.Stop();
+                anim.SetBool(GroundedKey, false);
+                moveGroundParticles.Stop();
+                moveAirParticles.Stop();
             }
         }
+
+        [SerializeField] private Color IslandParticlesEnv1;
 
         private void DetectGroundColor() {
             var hit = Physics2D.Raycast(transform.position, Vector3.down, 2);
 
-            if (!hit || hit.collider.isTrigger || !hit.transform.TryGetComponent(out SpriteRenderer r)) return;
-            var color = r.color;
-            _currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
-            //SetColor(_moveParticles);
+            if (!hit || hit.collider.isTrigger) return;
+
+            Color color;
+            if (hit.transform.TryGetComponent(out SpriteRenderer renderer)) {
+                Sprite sprite = renderer.sprite;
+
+                Texture2D texture = sprite.texture;
+
+                // Convert the sprite's rect from pixel space to UV space
+                Rect rect = sprite.textureRect;
+                rect.x /= texture.width;
+                rect.y /= texture.height;
+                rect.width /= texture.width;
+                rect.height /= texture.height;
+
+                // Sample the color from the center of the sprite
+                color = texture.GetPixelBilinear(rect.center.x, rect.center.y);
+            }
+            else if (hit.transform.TryGetComponent(out SpriteShapeController shapeController)) {
+                color = IslandParticlesEnv1;
+            }
+            else {
+                return;
+            }
+
+            
+
+            currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
+            SetColor(moveGroundParticles);
         }
 
         private void SetColor(ParticleSystem ps) {
             var main = ps.main;
-            main.startColor = _currentGradient;
+            main.startColor = currentGradient;
         }
     }
 }
