@@ -400,6 +400,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogWidth: 14.13
   fogSpeed: 8
+--- !u!4 &390902938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
+  m_PrefabInstance: {fileID: 5499219931373613549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &485855950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7408100744603319295, guid: 3f7de751224eb57438de38bf2267ae74, type: 3}
@@ -686,10 +691,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment Setup 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2238767474641992005, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2915623558866083502, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -734,6 +735,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3236239575623803248, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 390902938}
+    - target: {fileID: 5640262747367850105, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 390902938}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
 --- !u!4 &1118220163 stripped

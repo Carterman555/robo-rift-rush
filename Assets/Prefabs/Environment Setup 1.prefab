@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 4036453003057455418}
   - component: {fileID: 1211398645579295181}
   - component: {fileID: 5034723236965749291}
+  - component: {fileID: 5640262747367850105}
   m_Layer: 0
   m_Name: EnvironmentParticles
   m_TagString: Untagged
@@ -5467,6 +5468,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5640262747367850105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312990091653494573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc42035fbaa2ad45be7b6eb03154846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
 --- !u!1 &1845801279625752686
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,6 +6287,7 @@ GameObject:
   - component: {fileID: 1287611474044640399}
   - component: {fileID: 5388342160426472158}
   - component: {fileID: 6134439032481465987}
+  - component: {fileID: 3236239575623803248}
   m_Layer: 0
   m_Name: Speed Particles 2
   m_TagString: Untagged
@@ -11081,3 +11096,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateMult: 4
+--- !u!114 &3236239575623803248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170756614803771540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc42035fbaa2ad45be7b6eb03154846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
