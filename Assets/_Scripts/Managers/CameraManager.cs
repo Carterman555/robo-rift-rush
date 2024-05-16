@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 namespace SpeedPlatformer.Management {
     public class CameraManager : StaticInstance<CameraManager> {
@@ -15,15 +16,13 @@ namespace SpeedPlatformer.Management {
             cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         }
 
-        public void SwitchToCannonCamera() {
-            // make camera transition faster
-            float transitionDuration = 0.5f;
-            cinemachineBrain.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, transitionDuration);
-
-            mainCamera.enabled = false;
-            cannonCamera.enabled = true;
+        private void OnEnable() {
+            mainCamera.enabled = true;
+            cannonCamera.enabled = false;
             staticCamera.enabled = false;
         }
+
+        #region Adjust Position
 
         public void SwitchToPlayerCamera() {
             // make camera transition slower
@@ -32,6 +31,16 @@ namespace SpeedPlatformer.Management {
 
             mainCamera.enabled = true;
             cannonCamera.enabled = false;
+            staticCamera.enabled = false;
+        }
+
+        public void SwitchToCannonCamera() {
+            // make camera transition faster
+            float transitionDuration = 0.5f;
+            cinemachineBrain.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, transitionDuration);
+
+            mainCamera.enabled = false;
+            cannonCamera.enabled = true;
             staticCamera.enabled = false;
         }
 
@@ -50,5 +59,32 @@ namespace SpeedPlatformer.Management {
 
             staticCamera.ForceCameraPosition(new Vector3(center.x, center.y, -10), Quaternion.identity);
         }
+
+        #endregion
+
+        #region Adjust Size
+
+        private float originalSize;
+
+        public void AdjustSize(float size) {
+            originalSize = mainCamera.m_Lens.OrthographicSize;
+
+            // smooth size transistions for main and static camera
+            DOTween.To(() => mainCamera.m_Lens.OrthographicSize, newSize => mainCamera.m_Lens.OrthographicSize = newSize, size, duration: 1f)
+                    .SetEase(Ease.OutQuad);
+
+            DOTween.To(() => staticCamera.m_Lens.OrthographicSize, newSize => staticCamera.m_Lens.OrthographicSize = newSize, size, duration: 1f)
+                    .SetEase(Ease.OutQuad);
+        }
+
+        public void ResetSize() {
+            DOTween.To(() => mainCamera.m_Lens.OrthographicSize, newSize => mainCamera.m_Lens.OrthographicSize = newSize, originalSize, duration: 1f)
+                    .SetEase(Ease.OutQuad);
+
+            DOTween.To(() => staticCamera.m_Lens.OrthographicSize, newSize => staticCamera.m_Lens.OrthographicSize = newSize, originalSize, duration: 1f)
+                    .SetEase(Ease.OutQuad);
+        }
+
+        #endregion
     }
 }

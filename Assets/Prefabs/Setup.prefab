@@ -142,7 +142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2050965293}
   - component: {fileID: 2050965296}
-  - component: {fileID: 2050965295}
   - component: {fileID: 2050965294}
   m_Layer: 0
   m_Name: cm
@@ -177,49 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2050965295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050965292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.5
-  m_LookaheadSmoothing: 4
-  m_LookaheadIgnoreY: 1
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
-  m_TargetMovementOnly: 1
-  m_ScreenX: 0.5
-  m_ScreenY: 0.6
-  m_CameraDistance: 10
-  m_DeadZoneWidth: 0.1
-  m_DeadZoneHeight: 0.1
-  m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.4
-  m_SoftZoneHeight: 0.3
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
-  m_GroupFramingMode: 2
-  m_AdjustmentMode: 0
-  m_GroupFramingSize: 0.8
-  m_MaxDollyIn: 5000
-  m_MaxDollyOut: 5000
-  m_MinimumDistance: 1
-  m_MaximumDistance: 5000
-  m_MinimumFOV: 3
-  m_MaximumFOV: 60
-  m_MinimumOrthoSize: 1
-  m_MaximumOrthoSize: 5000
 --- !u!114 &2050965294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,8 +203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3723595872292027993}
   - component: {fileID: 2780414322098525337}
-  - component: {fileID: 7537738157140272854}
-  - component: {fileID: 4963123204619287003}
   m_Layer: 0
   m_Name: CMCannonCamera
   m_TagString: Untagged
@@ -309,34 +263,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 7343760892805656728}
---- !u!114 &7537738157140272854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184755928672384525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cc33ab3ce373f41a426ed81c67b970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticCam: {fileID: 0}
---- !u!114 &4963123204619287003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184755928672384525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 0}
-  m_Damping: 0.5
-  m_MaxWindowSize: -1
 --- !u!1 &5499219930816984543
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +378,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5499219931130883110}
   - component: {fileID: 5499219931130883105}
-  - component: {fileID: 5499219931130883104}
   - component: {fileID: 1801116740}
   m_Layer: 0
   m_Name: CMMainCamera
@@ -514,19 +439,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 5499219930816984542}
---- !u!114 &5499219931130883104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499219931130883111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cc33ab3ce373f41a426ed81c67b970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticCam: {fileID: 0}
 --- !u!114 &1801116740
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15083,6 +15083,36 @@ Transform:
   m_Father: {fileID: 6916853991358414902}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5594664300180198524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6553690837876298953}
+  m_Layer: 6
+  m_Name: PlayerGrapplePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6553690837876298953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594664300180198524}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0092370855, w: 0.9999574}
+  m_LocalPosition: {x: 0.015, y: 1.281, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4060544085440198190}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6440881480876411620
 GameObject:
   m_ObjectHideFlags: 0
@@ -15113,6 +15143,7 @@ Transform:
   m_Children:
   - {fileID: 5675908765223460946}
   - {fileID: 548089499882249201}
+  - {fileID: 6553690837876298953}
   m_Father: {fileID: 6916853991358414902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.059}
@@ -15183,7 +15214,6 @@ GameObject:
   - component: {fileID: 6916853990179449675}
   - component: {fileID: 6916853990179449719}
   - component: {fileID: 5400878577179821067}
-  - component: {fileID: 3929349992693057859}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -15292,13 +15322,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUnlocked: 1
+  startUnlocked: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
   trapLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  playerGrapplePoint: {fileID: 0}
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
   launchSpeed: 75
@@ -15315,21 +15346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPlayerYPos: -40
---- !u!114 &3929349992693057859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6916853990179449673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8e40fde7998e541b7c15eeefbd5603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boostDrain: 0
-  boostRegen: 0.3
+  killPlayerYPos: -80
 --- !u!1 &6916853991358414901
 GameObject:
   m_ObjectHideFlags: 0

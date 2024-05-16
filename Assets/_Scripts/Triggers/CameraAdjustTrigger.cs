@@ -1,5 +1,4 @@
 using UnityEngine;
-using SpeedPlatformer.Setup;
 using SpeedPlatformer.Management;
 
 namespace SpeedPlatformer.Triggers
@@ -15,7 +14,7 @@ namespace SpeedPlatformer.Triggers
         private void OnTriggerEnter2D(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.PlayerLayer) {
                 if (adjustSize) {
-                    AdjustCamera.Instance.AdjustSize(size);
+                    CameraManager.Instance.AdjustSize(size);
                 }
                 if (adjustPosition) {
                     CameraManager.Instance.SwitchToStaticCamera(centerTransform.position);
@@ -26,7 +25,7 @@ namespace SpeedPlatformer.Triggers
         private void OnTriggerExit2D(Collider2D collision) {
             if (collision.gameObject.layer == GameLayers.PlayerLayer) {
                 if (adjustSize) {
-                    AdjustCamera.Instance.ResetSize();
+                    CameraManager.Instance.ResetSize();
                 }
                 if (adjustPosition) {
                     CameraManager.Instance.SwitchToPlayerCamera();

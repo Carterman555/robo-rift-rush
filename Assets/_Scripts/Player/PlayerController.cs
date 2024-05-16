@@ -27,6 +27,7 @@ namespace TarodevController
         #region Interface
 
         public Vector2 FrameInput => frameInput.Move;
+        public Vector2 FrameVelocity => frameVelocity;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
         public bool BoostInput => frameInput.BoostHeld;

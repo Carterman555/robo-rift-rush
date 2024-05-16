@@ -17,6 +17,9 @@ namespace SpeedPlatformer.Player
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private LayerMask trapLayerMask;
 
+        [Tooltip("The point on the player where the grapple starts")]
+        [SerializeField] private Transform playerGrapplePoint;
+
         [SerializeField] private LineRenderer grappleLine;
         [SerializeField] private Transform grapplePoint;
 
@@ -85,7 +88,7 @@ namespace SpeedPlatformer.Player
 
             if (!unlocked) return;
 
-            grappleLine.SetPosition(0, transform.position);
+            grappleLine.SetPosition(0, playerGrapplePoint.position);
 
             if (state == GrappleState.Deactive) {
                 if (Input.GetMouseButtonDown(0)) {
@@ -170,13 +173,13 @@ namespace SpeedPlatformer.Player
                 grapplePoint.gameObject.SetActive(true);
                 grappleLine.enabled = true;
 
-                SetGrappleObjectPos(transform.position);
+                SetGrappleObjectPos(playerGrapplePoint.position);
 
-                launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerGrapplePoint.position).normalized;
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
-                joint.distance = Vector3.Distance(transform.position, grapplePoint.position);
+                joint.distance = Vector3.Distance(playerGrapplePoint.position, grapplePoint.position);
 
                 playerController.StartSwing(grapplePoint.position);
             }
