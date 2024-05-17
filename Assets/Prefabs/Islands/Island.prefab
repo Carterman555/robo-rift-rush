@@ -82,18 +82,18 @@ SpriteShapeRenderer:
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: 018b3c7c3adde7647bef733e919ca40b, type: 3}
   m_Sprites:
-  - {fileID: 9209538615602198030, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
-  - {fileID: 236789537256750330, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
-  - {fileID: -4531331156712209875, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
-  - {fileID: -8639215752252312754, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
-  - {fileID: -6016411145927934711, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
-  - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
-  - {fileID: -961734734098631188, guid: 1435ab23b8e224f45b3f10153a176c53, type: 3}
-  - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
-  - {fileID: 8114967996528279021, guid: 9b3cac8e692284544a5cdb57e894ef8a, type: 3}
+  - {fileID: -3124143898847452750, guid: f4186097bfa025b4eb81234b9f69fb8e, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 58.32738, y: -10.863098, z: -0.00005}
-    m_Extent: {x: 59.282745, y: 28.525642, z: 0.00005}
+    m_Center: {x: 11.897514, y: -0.65009165, z: -0.00035}
+    m_Extent: {x: 16.567575, y: 6.8037124, z: 0.00035}
 --- !u!114 &2095602633381678834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
       corner: 1
       m_CornerMode: 1
   m_SpriteShape: {fileID: 11400000, guid: 2b2735f9684ca4a4fa10bc902930cd16, type: 2}
-  m_FillPixelPerUnit: 128
+  m_FillPixelPerUnit: 10
   m_StretchTiling: 1
   m_SplineDetail: 16
   m_AdaptiveUV: 1
@@ -211,16 +211,26 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -3.1452045, y: -3.566599}
-  - {x: -4.829343, y: 6.2007847}
-  - {x: 10.998831, y: 5.4035153}
-  - {x: 28.674992, y: 5.7670035}
-  - {x: 26.469614, y: -4.039347}
-  - {x: 15.2610235, y: -7.4849806}
-  - {x: 5.9860134, y: -5.853454}
-  - {x: -2.4049892, y: -3.7519813}
-  - {x: -2.5132766, y: -3.7248611}
-  - {x: -3.1452045, y: -3.566599}
+  - {x: -2.926324, y: -3.3636951}
+  - {x: -3.2464457, y: -2.9787173}
+  - {x: -4.670061, y: 5.2770824}
+  - {x: -4.529882, y: 5.935352}
+  - {x: -3.8932385, y: 6.15362}
+  - {x: 11.007582, y: 5.403077}
+  - {x: 27.71791, y: 5.7473226}
+  - {x: 28.361107, y: 5.510496}
+  - {x: 28.440884, y: 4.7252774}
+  - {x: 26.56517, y: -3.614491}
+  - {x: 26.257492, y: -3.8431733}
+  - {x: 26.053913, y: -4.167074}
+  - {x: 15.43337, y: -7.4319983}
+  - {x: 15.244725, y: -7.2284446}
+  - {x: 15.083252, y: -7.453804}
+  - {x: 6.049336, y: -5.867199}
+  - {x: 5.996832, y: -5.856164}
+  - {x: -2.5606825, y: -3.7129889}
+  - {x: -2.6711183, y: -3.6853309}
+  - {x: -2.926324, y: -3.3636951}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

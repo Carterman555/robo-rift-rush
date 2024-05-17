@@ -48,6 +48,9 @@ namespace SpeedPlatformer.Environment {
             sprite = GetComponent<SpriteShapeController>();
             spline = sprite.spline;
 
+            // save top left point to reposition island at end
+            Vector3 oldTopLeftPoint = GetTopLeftPoint(spline);
+
             // remove all but 2 points
             for (int i = spline.GetPointCount() - 1; i >= 2; i--) {
                 spline.RemovePointAt(i);
@@ -62,17 +65,18 @@ namespace SpeedPlatformer.Environment {
 
             // Set the spline points that make up the surface. The inner tangents positions are Vector3.zero so the top is
             // flat.
-            Vector3 tangentPos = new Vector3(0, -5f);
 
+            // top right point
             spline.SetPosition(0, new Vector3(width, Random.Range(-surfaceSlantRandomness, surfaceSlantRandomness)));
-            spline.SetTangentMode(0, ShapeTangentMode.Broken);
-            spline.SetLeftTangent(0, tangentPos);
-            spline.SetRightTangent(0, Vector3.zero);
+            spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+            spline.SetLeftTangent(0, new Vector3(3f, 0));
+            spline.SetRightTangent(0, new Vector3(-3f, 0));
 
+            // top left point
             spline.SetPosition(1, new Vector3(0, Random.Range(-surfaceSlantRandomness, surfaceSlantRandomness)));
-            spline.SetTangentMode(1, ShapeTangentMode.Broken);
-            spline.SetLeftTangent(1, Vector3.zero);
-            spline.SetRightTangent(1, tangentPos);
+            spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+            spline.SetLeftTangent(1, new Vector3(3f, 0));
+            spline.SetRightTangent(1, new Vector3(-3f, 0));
 
             // get random height based on chosen island size
             if (height == -1) {
@@ -113,10 +117,30 @@ namespace SpeedPlatformer.Environment {
                 spline.SetRightTangent(currentPointIndex, -randomDirection * 3f);
             }
 
+            Vector3 newTopLeftPoint = GetTopLeftPoint(spline);
+
+            Vector3 toOldPosition = oldTopLeftPoint - newTopLeftPoint;
+            MoveAllPoints(spline, toOldPosition);
+
             CenterIslandOnSprite();
 
             // for some reason the island is inside out so change sign of collider offset
             sprite.colliderOffset = -0.5f;
+        }
+
+        private Vector3 GetTopLeftPoint(Spline spline) {
+            // Initialize with the first point
+            Vector3 topLeftPoint = spline.GetPosition(0);
+
+            for (int pointIndex = 0; pointIndex < spline.GetPointCount(); pointIndex++) {
+                Vector3 point = spline.GetPosition(pointIndex);
+                // Check if the current point is more top-left
+                if (point.y > topLeftPoint.y || (point.y == topLeftPoint.y && point.x < topLeftPoint.x)) {
+                    topLeftPoint = point;
+                }
+            }
+
+            return topLeftPoint;
         }
 
         // get curve from width and height using quadratic equation
@@ -128,6 +152,12 @@ namespace SpeedPlatformer.Environment {
 
         private Vector3 GetRandomVector3(float randomness) {
             return new Vector3(Random.Range(-randomness, randomness), Random.Range(-randomness, randomness));
+        }
+
+        private void MoveAllPoints(Spline spline, Vector3 distance) {
+            for (int i = 0; i < spline.GetPointCount(); i++) {
+                spline.SetPosition(i, spline.GetPosition(i) + distance);
+            }
         }
     }
 }
