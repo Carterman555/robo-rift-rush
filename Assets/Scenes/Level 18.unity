@@ -13551,11 +13551,6 @@ Transform:
   m_Father: {fileID: 1430520997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &484118297 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6553690837876298953, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-  m_PrefabInstance: {fileID: 6916853990194047764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &538200836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22644,14 +22639,6 @@ PrefabInstance:
       propertyPath: grapplePoint
       value: 
       objectReference: {fileID: 77527183}
-    - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: startUnlocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: playerGrapplePoint
-      value: 
-      objectReference: {fileID: 484118297}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850

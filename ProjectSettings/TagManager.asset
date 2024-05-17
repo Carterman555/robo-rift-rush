@@ -72,3 +72,6 @@ TagManager:
   - name: Foreground
     uniqueID: 896268107
     locked: 0
+  - name: WinFade
+    uniqueID: 201567417
+    locked: 0

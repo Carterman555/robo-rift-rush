@@ -26,6 +26,8 @@ namespace SpeedPlatformer.Player
         [SerializeField] private float launchSpeed;
         [SerializeField] private float maxDistance;
 
+        [SerializeField] private float correctRotationSpeed;
+
         private GrappleState state;
 
         private static bool unlocked;
@@ -94,11 +96,15 @@ namespace SpeedPlatformer.Player
                 if (Input.GetMouseButtonDown(0)) {
                     ChangeState(GrappleState.Launching);
                 }
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, correctRotationSpeed * Time.deltaTime);
             }
             else if (state == GrappleState.Launching) {
 
                 Vector2 newPosition = (Vector2)grapplePoint.position + (launchDirection * launchSpeed * Time.deltaTime);
                 SetGrappleObjectPos(newPosition);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, correctRotationSpeed * Time.deltaTime);
 
                 distanceTraveled += launchSpeed * Time.deltaTime;
                 if (distanceTraveled > maxDistance) {
@@ -118,6 +124,11 @@ namespace SpeedPlatformer.Player
             }
             else if (state == GrappleState.Grappled) {
                 ReleaseGrappleCheck();
+
+                if (!playerController.GroundBlockingPlayer) {
+                    Vector3 directionToGrapple = grapplePoint.position - transform.position;
+                    transform.up = directionToGrapple;
+                }
             }
         }
 
@@ -129,14 +140,6 @@ namespace SpeedPlatformer.Player
 
                 SetGrappleObjectPos(newPosition);
             }
-        }
-
-        
-
-        private Vector2 RotateVector(Vector2 vector, float angle) {
-            float cos = Mathf.Cos(angle);
-            float sin = Mathf.Sin(angle);
-            return new Vector2(vector.x * cos - vector.y * sin, vector.x * sin + vector.y * cos);
         }
 
         private void ReleaseGrappleCheck() {
@@ -176,12 +179,16 @@ namespace SpeedPlatformer.Player
                 SetGrappleObjectPos(playerGrapplePoint.position);
 
                 launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerGrapplePoint.position).normalized;
+
+                grapplePoint.up = launchDirection;
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
                 joint.distance = Vector3.Distance(playerGrapplePoint.position, grapplePoint.position);
 
                 playerController.StartSwing(grapplePoint.position);
+
+                grapplePoint.rotation = Quaternion.identity;
             }
         }
 

@@ -7,8 +7,12 @@ namespace SpeedPlatformer {
 
 		private Transform cameraTransform;
 
-		private void Update() {
-			transform.position = cameraTransform.position + (Vector3) offset;
+        private void Awake() {
+			cameraTransform = Camera.main.transform;
+        }
+
+        private void Update() {
+			transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y) + (Vector3) offset;
 		}
 
 	}

@@ -9,9 +9,15 @@ namespace SpeedPlatformer {
 		private float disappearTimer;
 
 		private bool disappearing = false;
-		
 
-		private void OnCollisionEnter2D(Collision2D collision) {
+		private float startingAlpha;
+
+        private void Awake() {
+            startingAlpha = visual.color.a;
+        }
+
+
+        private void OnCollisionEnter2D(Collision2D collision) {
 			if (collision.gameObject.layer == GameLayers.PlayerLayer) {
 				disappearing = true;
 			}
@@ -23,10 +29,10 @@ namespace SpeedPlatformer {
 				disappearTimer += Time.deltaTime;
 
 				Color color = visual.color;
-				color.a = 1f - (disappearTimer / disappearTime);
+				color.a = startingAlpha - (disappearTimer / disappearTime);
 				visual.color = color;
 
-				if (disappearTimer > disappearTime) {
+				if (color.a <= 0) {
 					Destroy(gameObject);
 				}
 			}

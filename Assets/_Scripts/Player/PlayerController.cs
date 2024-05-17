@@ -1,8 +1,6 @@
 ﻿using SpeedPlatformer;
 using SpeedPlatformer.Triggers;
 using System;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace TarodevController
@@ -65,6 +63,10 @@ namespace TarodevController
             {
                 frameInput.Move.x = Mathf.Abs(frameInput.Move.x) < stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(frameInput.Move.x);
                 frameInput.Move.y = Mathf.Abs(frameInput.Move.y) < stats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(frameInput.Move.y);
+            }
+
+            if (forcingRun) {
+                frameInput.Move.x = forceRunDirection;
             }
 
             if (frameInput.JumpDown)
@@ -177,9 +179,26 @@ namespace TarodevController
             this.canBoost = canBoost;
         }
 
+        // force player run for win animation
+        private int forceRunDirection;
+        private bool forcingRun = false;
+
+        public void ForceRun(int direction) {
+            forcingRun = true;
+            forceRunDirection = direction;
+        }
+
+        public void StopForceRun() {
+            forcingRun = false;
+        }
+
         private void HandleDirection()
         {
             if (swinging) return;
+
+            if (forcingRun) {
+                frameInput.Move.x = forceRunDirection;
+            }
 
             if (frameInput.Move.x == 0)
             {
@@ -427,6 +446,8 @@ namespace TarodevController
             }
         }
 
+        public bool GroundBlockingPlayer => (leftGroundBlockingPlayer && swingingLeft) || (rightGroundBlockingPlayer && !swingingLeft);
+
         /// <summary>
         /// There is a left and right trigger to detect if the player is touching the ground. This is so that the
         /// when the ground is blocking their swing movement so they can't gain speed and launch upon releasing.
@@ -434,8 +455,7 @@ namespace TarodevController
         /// direction.
         /// </summary>
         private void TryIncreaseSwingSpeed(float acceleration) {
-            bool groundBlockingPlayer = (leftGroundBlockingPlayer && swingingLeft) || (rightGroundBlockingPlayer && !swingingLeft);
-            if (!groundBlockingPlayer) {
+            if (!GroundBlockingPlayer) {
                 swingSpeed += acceleration * Time.fixedDeltaTime;
             }
         }

@@ -15322,18 +15322,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUnlocked: 0
+  startUnlocked: 1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
   trapLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  playerGrapplePoint: {fileID: 0}
+  playerGrapplePoint: {fileID: 6553690837876298953}
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
   launchSpeed: 75
   maxDistance: 40
+  correctRotationSpeed: 150
 --- !u!114 &5400878577179821067
 MonoBehaviour:
   m_ObjectHideFlags: 0
