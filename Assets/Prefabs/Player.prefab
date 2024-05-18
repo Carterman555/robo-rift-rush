@@ -15347,7 +15347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPlayerYPos: -80
+  killPlayerYPos: -15
 --- !u!1 &6916853991358414901
 GameObject:
   m_ObjectHideFlags: 0

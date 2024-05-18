@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace SpeedPlatformer {
@@ -7,7 +6,9 @@ namespace SpeedPlatformer {
 
 		private SpriteRenderer speedFade;
 
-        float fadeDuration = 2.5f;
+        public bool Faded() {
+            return speedFade.color.a == 1f;
+        }
 
         protected override void Awake() {
             base.Awake();
@@ -18,12 +19,16 @@ namespace SpeedPlatformer {
             FadeIn();
         }
 
-        public void FadeIn() {
+        public void FadeIn(float fadeDuration = 2.5f) {
+            speedFade.DOKill();
+
             speedFade.Fade(1f);
             speedFade.DOFade(0f, fadeDuration);
         }
 
-        public void FadeOut() {
+        public void FadeOut(float fadeDuration = 2.5f) {
+            speedFade.DOKill();
+
             speedFade.Fade(0f);
             speedFade.DOFade(1f, fadeDuration);
         }

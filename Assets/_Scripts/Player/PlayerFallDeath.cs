@@ -7,8 +7,21 @@ namespace SpeedPlatformer
     {
         [SerializeField] private float killPlayerYPos;
 
+        private bool startFade;
+
+        private void Awake() {
+            startFade = false;
+        }
+
         private void Update() {
-            if (transform.position.y < killPlayerYPos) {
+            if (!startFade && transform.position.y < killPlayerYPos) {
+                startFade = true;
+
+                float fadeDuration = 1f;
+                LevelTransitionFade.Instance.FadeOut(fadeDuration);
+            }
+
+            if (startFade && LevelTransitionFade.Instance.Faded()) {
                 GameProgress.ResetLevel();
             }
         }
