@@ -1,11 +1,9 @@
+using SpeedPlatformer.Audio;
 using System;
 using UnityEngine;
 using UnityEngine.U2D;
 
 namespace TarodevController {
-    /// <summary>
-    /// VERY primitive animator example.
-    /// </summary>
     public class PlayerAnimator : MonoBehaviour {
         [Header("References")]
         [SerializeField]
@@ -19,10 +17,6 @@ namespace TarodevController {
         [SerializeField] private ParticleSystem moveGroundParticles;
         [SerializeField] private ParticleSystem moveAirParticles;
 
-        //[Header("Audio Clips")] [SerializeField]
-        //private AudioClip[] _footsteps;
-
-        //private AudioSource _source;
         private IPlayerController player;
         private bool grounded;
         private ParticleSystem.MinMaxGradient currentGradient;
@@ -32,7 +26,6 @@ namespace TarodevController {
         private static readonly int GroundedKey = Animator.StringToHash("grounded");
 
         private void Awake() {
-            //_source = GetComponent<AudioSource>();
             player = GetComponentInParent<IPlayerController>();
         }
 
@@ -75,6 +68,8 @@ namespace TarodevController {
             }
         }
 
+        private bool walking;
+
         private void HandleIdleSpeed() {
 
             bool hasHorizontalInput = player.FrameInput.x != 0;
@@ -87,12 +82,25 @@ namespace TarodevController {
                 moveAirParticles.Stop();
             }
 
+            bool nowWalking = hasHorizontalInput && grounded;
+            if (!walking && nowWalking) {
+                AudioSystem.Instance.SetWalking(true);
+                walking = true;
+            }
+            if (walking && !nowWalking) {
+                AudioSystem.Instance.SetWalking(false);
+                walking = false;
+            }
+
+
             float inputStrength = Mathf.Abs(player.FrameInput.x);
             moveGroundParticles.transform.localScale = Vector3.MoveTowards(moveGroundParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
         }
 
         private void OnJumped() {
             anim.SetTrigger(TakeOffKey);
+
+            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Jump, false);
 
             if (grounded) // Avoid coyote
             {
@@ -110,12 +118,13 @@ namespace TarodevController {
                 DetectGroundColor();
                 SetColor(landParticles);
 
-                //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
                 moveGroundParticles.Play();
                 moveAirParticles.Play();
 
                 landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
                 landParticles.Play();
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Land, false, impact / 60f);
             }
             else {
                 anim.SetBool(GroundedKey, false);
@@ -153,8 +162,6 @@ namespace TarodevController {
             else {
                 return;
             }
-
-            
 
             currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
             SetColor(moveGroundParticles);

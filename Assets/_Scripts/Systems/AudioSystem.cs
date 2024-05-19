@@ -1,24 +1,83 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary>
-/// Insanely basic audio system which supports 3D sound.
-/// Ensure you change the 'Sounds' audio source to use 3D spatial blend if you intend to use 3D sounds.
-/// </summary>
-public class AudioSystem : StaticInstance<AudioSystem> {
-    [SerializeField] private AudioSource _musicSource;
-    [SerializeField] private AudioSource _soundsSource;
+namespace SpeedPlatformer.Audio {
+    public class AudioSystem : StaticInstance<AudioSystem> {
 
-    public void PlayMusic(AudioClip clip) {
-        _musicSource.clip = clip;
-        _musicSource.Play();
-    }
+        [SerializeField] private AudioSource musicSource;
+        [SerializeField] private AudioSource soundsSource;
 
-    public void PlaySound(AudioClip clip, Vector3 pos, float vol = 1) {
-        _soundsSource.transform.position = pos;
-        PlaySound(clip, vol);
-    }
+        [SerializeField] private ScriptableSounds soundClips;
+        public static ScriptableSounds SoundClips => Instance.soundClips;
 
-    public void PlaySound(AudioClip clip, float vol = 1) {
-        _soundsSource.PlayOneShot(clip, vol);
+        private float musicVolume = 1f;
+        private float soundEffectsVolume = 1f;
+
+        private bool walking;
+
+        #region Get Methods
+
+        public float GetMusicVolume() {
+            return musicVolume;
+        }
+
+        public float GetSoundEffectsVolume() {
+            return soundEffectsVolume;
+        }
+
+        #endregion
+
+        #region Set Methods
+
+        public void SetMusicVolume(float volume) {
+            musicVolume = volume;
+            musicSource.volume = musicVolume;
+        }
+
+        public void SetSoundEffectsVolume(float volume) {
+            soundEffectsVolume = volume;
+        }
+
+        public void SetWalking(bool walking) {
+            this.walking = walking;
+            stepTimer = float.MaxValue; // to play walk sound right when start walking
+        }
+
+        #endregion
+
+        private void Update() {
+            HandleStepAudio();
+        }
+
+        public void PlayMusic(AudioClip clip) {
+            musicSource.clip = clip;
+            musicSource.Play();
+        }
+
+        public void PlaySound(AudioClip clip, bool randomizePitch = true, float vol = 1) {
+
+            if (randomizePitch) {
+                soundsSource.pitch = Random.Range(1f, 1.5f);
+            }
+            else {
+                soundsSource.pitch = 1f;
+            }
+
+            soundsSource.PlayOneShot(clip, soundEffectsVolume * vol);
+        }
+
+        private float stepTimer;
+
+        private void HandleStepAudio() {
+
+            if (walking) {
+                float stepFrequency = 0.15f;
+                stepTimer += Time.deltaTime;
+                if (stepTimer > stepFrequency) {
+                    stepTimer = 0;
+                    PlaySound(soundClips.Steps.RandomSound(), false);
+                }
+            }
+        }
     }
 }

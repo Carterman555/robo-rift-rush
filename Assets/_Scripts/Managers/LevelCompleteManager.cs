@@ -1,3 +1,4 @@
+using SpeedPlatformer.Audio;
 using SpeedPlatformer.Triggers;
 using TarodevController;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace SpeedPlatformer {
                 FindObjectOfType<PlayerController>().ForceRun((int)Mathf.Sign(direction));
 
                 LevelTransitionFade.Instance.FadeOut();
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.CompleteLevel, false);
             }
         }
     }

@@ -95,6 +95,10 @@ public static class Helpers
         return false;
     }
 
+    public static AudioClip RandomSound(this AudioClip[] clips) {
+        return clips[Random.Range(0, clips.Length)];
+    }
+
     # region Game Specific
 
     public static int TryGetEndingNumber(this string objectName, char charBeforeNumber) {
