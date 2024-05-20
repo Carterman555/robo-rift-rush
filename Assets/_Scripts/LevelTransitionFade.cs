@@ -19,14 +19,14 @@ namespace SpeedPlatformer {
             FadeIn();
         }
 
-        public void FadeIn(float fadeDuration = 2.5f) {
+        public void FadeIn(float fadeDuration = 1.25f) {
             speedFade.DOKill();
 
             speedFade.Fade(1f);
             speedFade.DOFade(0f, fadeDuration);
         }
 
-        public void FadeOut(float fadeDuration = 2.5f) {
+        public void FadeOut(float fadeDuration = 1.25f) {
             speedFade.DOKill();
 
             speedFade.Fade(0f);

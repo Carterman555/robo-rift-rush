@@ -9753,7 +9753,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f1018069c9e7e6c49ba36ba6ed0f8d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14642,7 +14642,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f1018069c9e7e6c49ba36ba6ed0f8d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14725,7 +14725,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f1018069c9e7e6c49ba36ba6ed0f8d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14878,7 +14878,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f1018069c9e7e6c49ba36ba6ed0f8d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15167,7 +15167,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f1018069c9e7e6c49ba36ba6ed0f8d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15323,12 +15323,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startUnlocked: 1
-  groundLayerMask:
+  grappleSurfaceLayerMask:
     serializedVersion: 2
-    m_Bits: 8
-  trapLayerMask:
+    m_Bits: 8192
+  obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   playerGrapplePoint: {fileID: 6553690837876298953}
   grappleLine: {fileID: 0}
   grapplePoint: {fileID: 0}
@@ -15423,6 +15423,7 @@ MonoBehaviour:
   moveGroundParticles: {fileID: 850693820}
   moveAirParticles: {fileID: 5539952041510788098}
   IslandParticlesEnv1: {r: 0.37647063, g: 0.050980397, b: 0.6784314, a: 1}
+  fadeDuration: 0.5
 --- !u!1 &8004870952799498629
 GameObject:
   m_ObjectHideFlags: 0

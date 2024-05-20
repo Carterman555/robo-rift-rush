@@ -1,3 +1,4 @@
+using SpeedPlatformer.Audio;
 using SpeedPlatformer.Management;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace SpeedPlatformer
 
                 float fadeDuration = 1f;
                 LevelTransitionFade.Instance.FadeOut(fadeDuration);
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.FallVoid, false);
             }
 
             if (startFade && LevelTransitionFade.Instance.Faded()) {

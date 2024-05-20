@@ -1,8 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpeedPlatformer.Audio {
-    public class AudioSystem : StaticInstance<AudioSystem> {
+    public class AudioSystem : Singleton<AudioSystem> {
 
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource soundsSource;
@@ -44,6 +44,17 @@ namespace SpeedPlatformer.Audio {
         }
 
         #endregion
+
+        private void OnEnable() {
+            SceneManager.sceneLoaded += StopWalkingSound;
+        }
+        private void OnDisable() {
+            SceneManager.sceneLoaded -= StopWalkingSound;
+        }
+
+        private void StopWalkingSound(Scene arg0, LoadSceneMode arg1) {
+            SetWalking(false);
+        }
 
         private void Update() {
             HandleStepAudio();

@@ -31,6 +31,12 @@ namespace TarodevController
         public bool BoostInput => frameInput.BoostHeld;
         public bool Rolling => rolling;
 
+        public void Disable() {
+            rb.velocity = Vector2.zero;
+            frameInput.Move = Vector2.zero;
+            enabled = false;
+        }
+
         #endregion
 
         private float time;
@@ -85,7 +91,7 @@ namespace TarodevController
             HandleGravity();
             HandleCannonForce();
             HandleSwing();
-            HandleRoll();
+            //HandleRoll();
 
             ApplyMovement();
         }
@@ -124,6 +130,12 @@ namespace TarodevController
                 grounded = false;
                 frameLeftGrounded = time;
                 GroundedChanged?.Invoke(false, 0);
+            }
+
+            // smash player
+            if (groundHit && ceilingHit) {
+                PlayerAnimator.Instance.StartDeathFade();
+                col.enabled = false;
             }
 
             Physics2D.queriesStartInColliders = cachedQueryStartInColliders;
@@ -611,5 +623,7 @@ namespace TarodevController
 
         public event Action Jumped;
         public Vector2 FrameInput { get; }
+
+        public void Disable();
     }
 }

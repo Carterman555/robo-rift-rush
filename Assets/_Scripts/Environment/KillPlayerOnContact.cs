@@ -1,4 +1,4 @@
-using SpeedPlatformer.Management;
+using TarodevController;
 using UnityEngine;
 
 namespace SpeedPlatformer.Environment
@@ -7,8 +7,8 @@ namespace SpeedPlatformer.Environment
     {        
         private void OnTriggerEnter2D(Collider2D collision) {
             int playerLayer = 6;
-            if (collision.gameObject.layer == playerLayer) {
-                GameProgress.ResetLevel();
+            if (collision.gameObject.layer == playerLayer && !PlayerAnimator.Instance.IsFading()) {
+                PlayerAnimator.Instance.StartDeathFade();
             }
         }
     }

@@ -4355,10 +4355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
-    - target: {fileID: 5400878577179821067, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: killPlayerYPos
-      value: -15
-      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449673, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4415,10 +4411,6 @@ PrefabInstance:
       propertyPath: grapplePoint
       value: 
       objectReference: {fileID: 91826548}
-    - target: {fileID: 8151505758919239919, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850

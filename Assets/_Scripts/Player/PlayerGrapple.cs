@@ -2,20 +2,18 @@ using System;
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer.Player
-{
+namespace SpeedPlatformer.Player {
     enum GrappleState {
         Deactive = 0,
         Launching = 1,
         Grappled = 2
     }
 
-    public class PlayerGrapple : MonoBehaviour
-    {
+    public class PlayerGrapple : MonoBehaviour {
         [SerializeField] private bool startUnlocked;
 
-        [SerializeField] private LayerMask groundLayerMask;
-        [SerializeField] private LayerMask trapLayerMask;
+        [SerializeField] private LayerMask grappleSurfaceLayerMask;
+        [SerializeField] private LayerMask obstacleLayerMask;
 
         [Tooltip("The point on the player where the grapple starts")]
         [SerializeField] private Transform playerGrapplePoint;
@@ -111,12 +109,12 @@ namespace SpeedPlatformer.Player
                     ChangeState(GrappleState.Deactive);
                 }
 
-                if (DetectingGround(out Vector2 hitPoint)) {
+                if (DetectingGrappleSurface(out Vector2 hitPoint)) {
                     SetGrappleObjectPos(hitPoint);
                     ChangeState(GrappleState.Grappled);
                 }
 
-                if (DetectingTrap()) {
+                if (DetectingObstacle()) {
                     ChangeState(GrappleState.Deactive);
                 }
 
@@ -154,8 +152,8 @@ namespace SpeedPlatformer.Player
         /// When grapple gets launched: enable the grapple object and line, set their position, and get the target
         /// grapple position for the object to move towards
         /// 
-        /// When the grapple objects touches the ground layer, and grapples: enable the joint, set the distance, and start applying
-        /// swing physics
+        /// When the grapple objects touches the grapple surface layer, and grapples: enable the joint, set the
+        /// distance, and start applying swing physics
         /// </summary>
         private void ChangeState(GrappleState newState) {
 
@@ -192,26 +190,26 @@ namespace SpeedPlatformer.Player
             }
         }
 
-        private bool DetectingGround(out Vector2 hitPoint) {
+        private bool DetectingGrappleSurface(out Vector2 hitPoint) {
 
             float rayLength = 1f;
             RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
                 launchDirection,
                 rayLength,
-                groundLayerMask);
+                grappleSurfaceLayerMask);
 
-            bool hitGround = hit.collider != null;
-            hitPoint = hitGround ? hit.point : Vector2.zero;
-            return hitGround;
+            bool hitGrappleSurface = hit.collider != null;
+            hitPoint = hitGrappleSurface ? hit.point : Vector2.zero;
+            return hitGrappleSurface;
         }
 
-        private bool DetectingTrap() {
+        private bool DetectingObstacle() {
 
             float rayLength = 1f;
             RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
                 launchDirection,
                 rayLength,
-                trapLayerMask);
+                obstacleLayerMask);
 
             return hit.collider != null;
         }

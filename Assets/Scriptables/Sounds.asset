@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sounds
   m_EditorClassIdentifier: 
   steps:
-  - {fileID: 8300000, guid: 87bc7f208de85a44e880f74d8681bf7e, type: 3}
-  - {fileID: 8300000, guid: ad1f81bdce1866c42ad7a6e3a3412bd3, type: 3}
-  - {fileID: 8300000, guid: f7cdfb22f95c2934b86fba1da5bfbdc7, type: 3}
-  - {fileID: 8300000, guid: a5107052e2c08994c94312eb4bcb71fc, type: 3}
-  jump: {fileID: 8300000, guid: 73b28d71b4e0e7a41a0c1ff537e087e2, type: 3}
-  land: {fileID: 8300000, guid: 27fcce03b51c2a545be351c1f221c281, type: 3}
-  completeLevel: {fileID: 8300000, guid: e4ce8a87672ef8a4aae91822605a99b0, type: 3}
+  - {fileID: 8300000, guid: 8bac87ffbaef36345926807c903b1b61, type: 3}
+  - {fileID: 8300000, guid: 84d4c2fafb6d0554e9fafe3fca6af3ce, type: 3}
+  - {fileID: 8300000, guid: feb358612d0c92449beaeeb8ffea9325, type: 3}
+  - {fileID: 8300000, guid: ccc34d12807dc9b44bfb46d09ac1fd41, type: 3}
+  jump: {fileID: 8300000, guid: 7368d22fe1c58e345936601fc2c3a0a2, type: 3}
+  land: {fileID: 8300000, guid: 61174735a2a43124cb4d91e4dfba82b5, type: 3}
+  completeLevel: {fileID: 8300000, guid: ca39085ae1210244ab96ef7e1f1e88c7, type: 3}
+  fallVoid: {fileID: 8300000, guid: e882a9cb9579241439496a76e2847d93, type: 3}
+  wind: {fileID: 8300000, guid: 4604055cdb511454d9fac6ccb9e9fd63, type: 3}

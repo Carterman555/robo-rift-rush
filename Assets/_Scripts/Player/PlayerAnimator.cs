@@ -1,10 +1,13 @@
 using SpeedPlatformer.Audio;
+using SpeedPlatformer.Management;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
 
 namespace TarodevController {
-    public class PlayerAnimator : MonoBehaviour {
+    public class PlayerAnimator : StaticInstance<PlayerAnimator> {
+
         [Header("References")]
         [SerializeField]
         private Animator anim;
@@ -17,6 +20,8 @@ namespace TarodevController {
         [SerializeField] private ParticleSystem moveGroundParticles;
         [SerializeField] private ParticleSystem moveAirParticles;
 
+        private Material[] materials;
+
         private IPlayerController player;
         private bool grounded;
         private ParticleSystem.MinMaxGradient currentGradient;
@@ -25,8 +30,12 @@ namespace TarodevController {
         private static readonly int TakeOffKey = Animator.StringToHash("takeOff");
         private static readonly int GroundedKey = Animator.StringToHash("grounded");
 
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
             player = GetComponentInParent<IPlayerController>();
+
+            SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+            materials = spriteRenderers.Select(x => x.material).ToArray();
         }
 
         private void OnEnable() {
@@ -51,6 +60,8 @@ namespace TarodevController {
             HandlePlayerDirection();
 
             HandleIdleSpeed();
+
+            HandleDeathFade();
         }
 
         private bool facingLeft = false;
@@ -95,6 +106,8 @@ namespace TarodevController {
 
             float inputStrength = Mathf.Abs(player.FrameInput.x);
             moveGroundParticles.transform.localScale = Vector3.MoveTowards(moveGroundParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+
+            AudioSystem.Instance.SetMusicVolume(playerTransform.GetComponent<Rigidbody2D>().velocity.magnitude / 40f); // testing (remove)
         }
 
         private void OnJumped() {
@@ -171,5 +184,45 @@ namespace TarodevController {
             var main = ps.main;
             main.startColor = currentGradient;
         }
+
+        #region Death Fade
+
+        [SerializeField] private float fadeDuration;
+        private float fadeTimer;
+
+        private bool fading;
+
+        public void StartDeathFade() {
+            fading = true;
+        }
+
+        public bool IsFading() {
+            return fading;
+        }
+
+        /// <summary>
+        /// fade the player out then reset the level
+        /// </summary>
+        private void HandleDeathFade() {
+            if (!fading) return;
+
+            fadeTimer += Time.deltaTime;
+
+            float amountVisible = Mathf.InverseLerp(fadeDuration, 0, fadeTimer);
+            foreach (Material material in materials) {
+                material.SetFloat("_Fade", amountVisible);
+            }
+
+            player.Disable();
+
+            if (fadeTimer > fadeDuration) {
+                fadeTimer = 0;
+                fading = false;
+
+                GameProgress.ResetLevel();
+            }
+        }
+
+        #endregion
     }
 }

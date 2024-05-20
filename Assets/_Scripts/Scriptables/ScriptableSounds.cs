@@ -16,5 +16,11 @@ namespace SpeedPlatformer.Audio {
 
         [SerializeField] private AudioClip completeLevel;
         public AudioClip CompleteLevel => completeLevel;
+
+        [SerializeField] private AudioClip fallVoid;
+        public AudioClip FallVoid => fallVoid;
+
+        [SerializeField] private AudioClip wind;
+        public AudioClip Wind => wind;
     }
 }
