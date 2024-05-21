@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4830033280267411681}
   - component: {fileID: 4830033280267411680}
   - component: {fileID: 4830033280267411683}
+  - component: {fileID: 5185067378802459826}
   m_Layer: 7
   m_Name: StaticTrap
   m_TagString: Trap
@@ -93,6 +94,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4b24f368e1dee42ba5d5bbb5e57e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5185067378802459826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830033280267411677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35804ef769c24c9409973b1d15b7e529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikePrefab: {fileID: -5238806034828824164, guid: 79e970d40e05e4648b0dfa1e29053c5d, type: 3}
+  spriteRenderer: {fileID: 4830033281983599137}
+  moveSpeed: 10
 --- !u!1 &4830033281983599139
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +120,6 @@ GameObject:
   - component: {fileID: 4830033281983599136}
   - component: {fileID: 4830033281983599137}
   - component: {fileID: 4830033281983599142}
-  - component: {fileID: 1087112064816213413}
   m_Layer: 12
   m_Name: Visual
   m_TagString: Untagged
@@ -190,17 +205,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4b24f368e1dee42ba5d5bbb5e57e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1087112064816213413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4830033281983599139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35804ef769c24c9409973b1d15b7e529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spikePrefab: {fileID: -5238806034828824164, guid: 79e970d40e05e4648b0dfa1e29053c5d, type: 3}
-  moveSpeed: 10

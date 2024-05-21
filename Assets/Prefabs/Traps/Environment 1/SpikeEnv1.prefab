@@ -96,3 +96,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f382bfa976e87d4d8da4c399fe80d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alternateSound: {fileID: 8300000, guid: 2a4d8dc512380b449b49b709b8361cc7, type: 3}
+  soundDelay: 0.3

@@ -14,8 +14,8 @@ namespace SpeedPlatformer.Audio {
         private float musicVolume = 1f;
         private float sfxVolume = 1f;
 
-        // create pool for looping sounds
-        [SerializeField] private int sfxSourcePoolSize = 2; // Number of AudioSources in the pool
+        // Pool for regular SFX sources
+        [SerializeField] private int sfxSourcePoolSize = 2;
         private List<AudioSource> sfxSources;
 
         #region Get Methods
@@ -48,7 +48,6 @@ namespace SpeedPlatformer.Audio {
 
         #endregion
 
-
         private void Start() {
             InitializeSFXSources();
         }
@@ -65,6 +64,7 @@ namespace SpeedPlatformer.Audio {
         private void OnEnable() {
             SceneManager.sceneLoaded += StopWalkingSound;
         }
+
         private void OnDisable() {
             SceneManager.sceneLoaded -= StopWalkingSound;
         }
@@ -83,7 +83,6 @@ namespace SpeedPlatformer.Audio {
         }
 
         public void PlaySound(AudioClip clip, bool randomizePitch = true, float vol = 1) {
-
             AudioSource sfxSource = GetAvailableSFXSource();
             if (sfxSource == null) {
                 return;
@@ -120,14 +119,12 @@ namespace SpeedPlatformer.Audio {
         }
 
         private AudioSource GetAvailableSFXSource() {
-
-            //return sfxSources[0];
             foreach (var source in sfxSources) {
-                if (!source.isPlaying) {
+                if (!source.loop) {
                     return source;
                 }
             }
-            Debug.LogWarning("All sources are playing");
+            Debug.LogWarning("All sources are looping");
             return null; // All sources are currently playing
         }
 
@@ -137,7 +134,6 @@ namespace SpeedPlatformer.Audio {
         private float stepTimer;
 
         private void HandleStepAudio() {
-
             if (walking) {
                 float stepFrequency = 0.15f;
                 stepTimer += Time.deltaTime;

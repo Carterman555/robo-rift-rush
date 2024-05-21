@@ -6993,7 +6993,7 @@ GameObject:
   - component: {fileID: 513634035}
   - component: {fileID: 513634034}
   - component: {fileID: 513634033}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: StationaryIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7348,7 +7348,7 @@ GameObject:
   - component: {fileID: 597937377}
   - component: {fileID: 597937376}
   - component: {fileID: 597937384}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7681,7 +7681,7 @@ GameObject:
   - component: {fileID: 604061588}
   - component: {fileID: 604061587}
   - component: {fileID: 604061586}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: StationaryIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7964,7 +7964,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -8437,7 +8437,7 @@ GameObject:
   - component: {fileID: 698691773}
   - component: {fileID: 698691772}
   - component: {fileID: 698691781}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9029,7 +9029,7 @@ GameObject:
   - component: {fileID: 740611148}
   - component: {fileID: 740611147}
   - component: {fileID: 740611146}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: StationaryIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9304,7 +9304,7 @@ GameObject:
   - component: {fileID: 747742288}
   - component: {fileID: 747742287}
   - component: {fileID: 747742286}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: StationaryIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10086,7 +10086,7 @@ GameObject:
   - component: {fileID: 1081964189}
   - component: {fileID: 1081964188}
   - component: {fileID: 1081964197}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11934,7 +11934,7 @@ GameObject:
   - component: {fileID: 1588864297}
   - component: {fileID: 1588864296}
   - component: {fileID: 1588864295}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: StationaryIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

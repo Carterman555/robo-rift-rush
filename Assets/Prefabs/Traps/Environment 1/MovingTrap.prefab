@@ -289,7 +289,6 @@ GameObject:
   - component: {fileID: 2816476095613345100}
   - component: {fileID: 2816476095613345101}
   - component: {fileID: 2816476095613345098}
-  - component: {fileID: 1151808283337677662}
   - component: {fileID: 2030000366}
   m_Layer: 12
   m_Name: Visual
@@ -378,20 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4b24f368e1dee42ba5d5bbb5e57e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1151808283337677662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816476095613345103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35804ef769c24c9409973b1d15b7e529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spikePrefab: {fileID: -5238806034828824164, guid: 79e970d40e05e4648b0dfa1e29053c5d, type: 3}
-  moveSpeed: 10
 --- !u!114 &2030000366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +404,7 @@ GameObject:
   - component: {fileID: 2816476096046608268}
   - component: {fileID: 2816476096046608271}
   - component: {fileID: 2816476096046608304}
+  - component: {fileID: 6309519910255254096}
   m_Layer: 7
   m_Name: MovingTrap
   m_TagString: Trap
@@ -514,3 +500,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveVector: {x: 12, y: 0}
   speed: 6
+--- !u!114 &6309519910255254096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816476096046608305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35804ef769c24c9409973b1d15b7e529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikePrefab: {fileID: -5238806034828824164, guid: 79e970d40e05e4648b0dfa1e29053c5d, type: 3}
+  spriteRenderer: {fileID: 2816476095613345101}
+  moveSpeed: 10

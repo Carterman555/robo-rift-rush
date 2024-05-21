@@ -3115,7 +3115,7 @@ GameObject:
   - component: {fileID: 363957714}
   - component: {fileID: 363957713}
   - component: {fileID: 363957722}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6962,6 +6962,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
+    - target: {fileID: 1115728561, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1056035779096401823, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
       propertyPath: m_Vertices.Array.size
       value: 336
@@ -16355,7 +16359,7 @@ GameObject:
   - component: {fileID: 1596297924}
   - component: {fileID: 1596297923}
   - component: {fileID: 1596297932}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingRotatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17340,7 +17344,7 @@ GameObject:
   - component: {fileID: 2005255419}
   - component: {fileID: 2005255418}
   - component: {fileID: 2005255426}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: TranslatingIsland(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17804,62 +17808,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806399295306, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.r
-      value: 0.5660378
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587682, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c0ac39a945d198740aed6fadd5e93380, type: 3}
-    - target: {fileID: 375661806940587682, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5647059
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587682, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5647059
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587682, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5647059
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587710, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587711, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 375661806940587711, guid: 75309ab65049a414d8618994d148f099, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 375661807578164438, guid: 75309ab65049a414d8618994d148f099, type: 3}
       propertyPath: m_Name
       value: PlayerGrapple

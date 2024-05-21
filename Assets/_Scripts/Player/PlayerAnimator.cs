@@ -203,6 +203,8 @@ namespace TarodevController {
 
         public void StartDeathFade() {
             fading = true;
+
+            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapDeath, false, 0.5f);
         }
 
         public bool IsFading() {

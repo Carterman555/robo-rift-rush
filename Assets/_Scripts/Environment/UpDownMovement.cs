@@ -1,3 +1,4 @@
+using SpeedPlatformer.Audio;
 using UnityEngine;
 
 namespace SpeedPlatformer {
@@ -7,7 +8,21 @@ namespace SpeedPlatformer {
 		private float distance;
 		private float speed;
 
-		public void Setup(bool reversed, float distance, float speed) {
+		private bool hasReachedExtreme = false;
+
+		// only return true on one frame for every time it's at an extreme
+		public bool AtExtreme() {
+            bool atExtreme = Mathf.Abs(Mathf.Sin(Time.time * speed)) >= 0.99f;
+
+            if (atExtreme && !hasReachedExtreme) {
+                hasReachedExtreme = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Setup(bool reversed, float distance, float speed) {
             this.reversed = reversed;
 			this.distance = distance;
 			this.speed = speed;
@@ -24,6 +39,11 @@ namespace SpeedPlatformer {
             }
 
 			transform.localPosition = new Vector3(transform.localPosition.x, yPos);
+
+            bool atExtreme = Mathf.Abs(Mathf.Sin(Time.time * speed)) >= 0.99f;
+            if (!atExtreme) {
+                hasReachedExtreme = false;
+            }
         }
     }
 }

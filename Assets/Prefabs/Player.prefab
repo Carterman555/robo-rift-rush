@@ -15322,7 +15322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUnlocked: 1
+  startUnlocked: 0
   grappleSurfaceLayerMask:
     serializedVersion: 2
     m_Bits: 8192
