@@ -708,6 +708,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3000860682474791231, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd153d8c33b6e4479abf0e769252c0d, type: 3}
 --- !u!4 &1118220163 stripped
@@ -4420,9 +4424,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3337723477361989596, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
+      propertyPath: m_Volume
+      value: 0.237
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337723477361989596, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 00c87b41cebe1ac44ab32a88fd66e042, type: 3}
     - target: {fileID: 8968868931434288233, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
       propertyPath: m_Name
       value: Systems
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968868931434288233, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8968868931434288238, guid: 728a4814bca61624e89e3c5904d7114d, type: 3}
       propertyPath: m_RootOrder

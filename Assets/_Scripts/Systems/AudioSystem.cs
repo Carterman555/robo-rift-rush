@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,15 +6,17 @@ namespace SpeedPlatformer.Audio {
     public class AudioSystem : Singleton<AudioSystem> {
 
         [SerializeField] private AudioSource musicSource;
-        [SerializeField] private AudioSource soundsSource;
+        [SerializeField] private GameObject sfxSourcesObject;
 
         [SerializeField] private ScriptableSounds soundClips;
         public static ScriptableSounds SoundClips => Instance.soundClips;
 
         private float musicVolume = 1f;
-        private float soundEffectsVolume = 1f;
+        private float sfxVolume = 1f;
 
-        private bool walking;
+        // create pool for looping sounds
+        [SerializeField] private int sfxSourcePoolSize = 2; // Number of AudioSources in the pool
+        private List<AudioSource> sfxSources;
 
         #region Get Methods
 
@@ -21,8 +24,8 @@ namespace SpeedPlatformer.Audio {
             return musicVolume;
         }
 
-        public float GetSoundEffectsVolume() {
-            return soundEffectsVolume;
+        public float GetSFXVolume() {
+            return sfxVolume;
         }
 
         #endregion
@@ -34,8 +37,8 @@ namespace SpeedPlatformer.Audio {
             musicSource.volume = musicVolume;
         }
 
-        public void SetSoundEffectsVolume(float volume) {
-            soundEffectsVolume = volume;
+        public void SetSFXVolume(float volume) {
+            sfxVolume = volume;
         }
 
         public void SetWalking(bool walking) {
@@ -44,6 +47,20 @@ namespace SpeedPlatformer.Audio {
         }
 
         #endregion
+
+
+        private void Start() {
+            InitializeSFXSources();
+        }
+
+        private void InitializeSFXSources() {
+            sfxSources = new List<AudioSource>();
+            for (int i = 0; i < sfxSourcePoolSize; i++) {
+                AudioSource source = sfxSourcesObject.AddComponent<AudioSource>();
+                source.playOnAwake = false;
+                sfxSources.Add(source);
+            }
+        }
 
         private void OnEnable() {
             SceneManager.sceneLoaded += StopWalkingSound;
@@ -67,16 +84,56 @@ namespace SpeedPlatformer.Audio {
 
         public void PlaySound(AudioClip clip, bool randomizePitch = true, float vol = 1) {
 
+            AudioSource sfxSource = GetAvailableSFXSource();
+            if (sfxSource == null) {
+                return;
+            }
+
             if (randomizePitch) {
-                soundsSource.pitch = Random.Range(1f, 1.5f);
+                sfxSource.pitch = Random.Range(1f, 1.5f);
             }
             else {
-                soundsSource.pitch = 1f;
+                sfxSource.pitch = 1f;
             }
 
-            soundsSource.PlayOneShot(clip, soundEffectsVolume * vol);
+            sfxSource.PlayOneShot(clip, sfxVolume * vol);
         }
 
+        public AudioSource PlayLoopingSound(AudioClip clip, float vol = 1) {
+            AudioSource sfxSource = GetAvailableSFXSource();
+            if (sfxSource == null) {
+                return null;
+            }
+
+            sfxSource.loop = true;
+            sfxSource.clip = clip;
+            sfxSource.volume = sfxVolume * vol;
+            sfxSource.Play();
+
+            return sfxSource;
+        }
+
+        public void StopLoopingSound(AudioSource sfxSource) {
+            sfxSource.Stop();
+            sfxSource.loop = false;
+            sfxSource.clip = null;
+        }
+
+        private AudioSource GetAvailableSFXSource() {
+
+            //return sfxSources[0];
+            foreach (var source in sfxSources) {
+                if (!source.isPlaying) {
+                    return source;
+                }
+            }
+            Debug.LogWarning("All sources are playing");
+            return null; // All sources are currently playing
+        }
+
+        #region Walking Sound Effect
+
+        private bool walking;
         private float stepTimer;
 
         private void HandleStepAudio() {
@@ -90,5 +147,7 @@ namespace SpeedPlatformer.Audio {
                 }
             }
         }
+
+        #endregion
     }
 }

@@ -30,12 +30,21 @@ namespace TarodevController {
         private static readonly int TakeOffKey = Animator.StringToHash("takeOff");
         private static readonly int GroundedKey = Animator.StringToHash("grounded");
 
+        // static to persist through scene change
+        private static AudioSource windSource;
+
         protected override void Awake() {
             base.Awake();
             player = GetComponentInParent<IPlayerController>();
 
             SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
             materials = spriteRenderers.Select(x => x.material).ToArray();
+        }
+
+        private void Start() {
+            if (windSource == null) {
+                windSource = AudioSystem.Instance.PlayLoopingSound(AudioSystem.SoundClips.Wind, 0.5f); // testing (remove)
+            }
         }
 
         private void OnEnable() {
@@ -103,11 +112,11 @@ namespace TarodevController {
                 walking = false;
             }
 
-
             float inputStrength = Mathf.Abs(player.FrameInput.x);
             moveGroundParticles.transform.localScale = Vector3.MoveTowards(moveGroundParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
 
-            AudioSystem.Instance.SetMusicVolume(playerTransform.GetComponent<Rigidbody2D>().velocity.magnitude / 40f); // testing (remove)
+            float windVolume = Mathf.InverseLerp(0, 60f, Mathf.Abs(playerTransform.GetComponent<Rigidbody2D>().velocity.x));
+            windSource.volume = windVolume;
         }
 
         private void OnJumped() {
