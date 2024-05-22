@@ -75,6 +75,7 @@ namespace SpeedPlatformer.Audio {
 
         private void Update() {
             HandleStepAudio();
+            HandleMusic();
         }
 
         public void PlayMusic(AudioClip clip) {
@@ -128,6 +129,12 @@ namespace SpeedPlatformer.Audio {
             return null; // All sources are currently playing
         }
 
+        private void HandleMusic() {
+            if (!musicSource.isPlaying) {
+                musicSource.PlayOneShot(SoundClips.MusicEnv1.RandomClip());
+            }
+        }
+
         #region Walking Sound Effect
 
         private bool walking;
@@ -139,7 +146,7 @@ namespace SpeedPlatformer.Audio {
                 stepTimer += Time.deltaTime;
                 if (stepTimer > stepFrequency) {
                     stepTimer = 0;
-                    PlaySound(soundClips.Steps.RandomSound(), false);
+                    PlaySound(soundClips.Steps.RandomClip(), false);
                 }
             }
         }

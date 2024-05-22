@@ -29,6 +29,8 @@ namespace SpeedPlatformer {
 
                 LevelTransitionFade.Instance.FadeOut();
 
+                LevelTimer.Instance.StopTimer();
+
                 AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.CompleteLevel, false, 0.75f);
             }
         }

@@ -1,5 +1,4 @@
 using SpeedPlatformer.Audio;
-using System;
 using TarodevController;
 using UnityEngine;
 
@@ -111,8 +110,16 @@ namespace SpeedPlatformer.Player {
                 }
 
                 if (DetectingGrappleSurface(out Vector2 hitPoint)) {
-                    SetGrappleObjectPos(hitPoint);
-                    ChangeState(GrappleState.Grappled);
+
+                    // so can only grapple to surfaces above player
+                    if (IsWithinUpVector(launchDirection)) {
+                        SetGrappleObjectPos(hitPoint);
+                        ChangeState(GrappleState.Grappled);
+                    }
+                    else {
+                        ChangeState(GrappleState.Deactive);
+                        AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, false, 0.5f);
+                    }
                 }
 
                 if (DetectingObstacle()) {
@@ -218,6 +225,14 @@ namespace SpeedPlatformer.Player {
                 obstacleLayerMask);
 
             return hit.collider != null;
+        }
+
+        public bool IsWithinUpVector(Vector3 direction) {
+            direction.Normalize();
+            float angle = Vector3.Angle(direction, Vector3.up);
+
+            float thresholdAngle = 70f;
+            return angle <= thresholdAngle;
         }
 
         private void SetGrappleObjectPos(Vector3 pos) {

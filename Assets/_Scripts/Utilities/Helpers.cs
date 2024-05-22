@@ -95,7 +95,7 @@ public static class Helpers
         return false;
     }
 
-    public static AudioClip RandomSound(this AudioClip[] clips) {
+    public static AudioClip RandomClip(this AudioClip[] clips) {
         return clips[Random.Range(0, clips.Length)];
     }
 

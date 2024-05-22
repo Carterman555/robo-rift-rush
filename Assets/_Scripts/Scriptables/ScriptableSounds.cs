@@ -5,7 +5,10 @@ namespace SpeedPlatformer.Audio {
 	[CreateAssetMenu(fileName = "Sounds", menuName = "Resources/Sounds")]
 	public class ScriptableSounds : ScriptableObject {
 
-		[SerializeField] private AudioClip[] steps;
+        [SerializeField] private AudioClip[] musicEnv1;
+        public AudioClip[] MusicEnv1 => musicEnv1;
+
+        [SerializeField] private AudioClip[] steps;
 		public AudioClip[] Steps => steps;
 
 		[SerializeField] private AudioClip jump;

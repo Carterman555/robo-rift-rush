@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d518e5e97ab13ef4faa6356d403a0691, type: 3}
   m_Name: Sounds
   m_EditorClassIdentifier: 
+  musicEnv1:
+  - {fileID: 8300000, guid: 033983e3b377f214e9c25a23f0e92880, type: 3}
+  - {fileID: 8300000, guid: d91616d8fc9329047838190b69c39eeb, type: 3}
+  - {fileID: 8300000, guid: aa92d46323c1b65408b9f487445783db, type: 3}
+  - {fileID: 8300000, guid: 93f233f854548c34499dbff8592004f4, type: 3}
+  - {fileID: 8300000, guid: 00c87b41cebe1ac44ab32a88fd66e042, type: 3}
+  - {fileID: 8300000, guid: 944dc9bf0196c1e42afd6179bf6f2d3b, type: 3}
   steps:
   - {fileID: 8300000, guid: 8bac87ffbaef36345926807c903b1b61, type: 3}
   - {fileID: 8300000, guid: 84d4c2fafb6d0554e9fafe3fca6af3ce, type: 3}

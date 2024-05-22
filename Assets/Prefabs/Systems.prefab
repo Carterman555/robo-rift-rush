@@ -84,11 +84,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 00c87b41cebe1ac44ab32a88fd66e042, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -247,10 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 3337723477361989596}
   sfxSourcesObject: {fileID: 7305397815125304176}
-  movingSFXSourcePrefab: {fileID: 0}
   soundClips: {fileID: 11400000, guid: a5cfced2012edfe42897f0913f28e674, type: 2}
   sfxSourcePoolSize: 2
-  movingSFXSourcePoolSize: 10
 --- !u!1 &8968868931434288233
 GameObject:
   m_ObjectHideFlags: 0
