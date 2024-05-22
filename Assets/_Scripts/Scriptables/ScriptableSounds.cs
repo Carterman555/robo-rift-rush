@@ -23,10 +23,22 @@ namespace SpeedPlatformer.Audio {
         [SerializeField] private AudioClip trapDeath;
         public AudioClip TrapDeath => trapDeath;
 
-        [SerializeField] private AudioClip trapMovement;
-        public AudioClip TrapMovement => trapMovement;
+        [SerializeField] private AudioClip trapSpike;
+        public AudioClip TrapSpike => trapSpike;
 
         [SerializeField] private AudioClip wind;
         public AudioClip Wind => wind;
+
+        [SerializeField] private AudioClip grappleLaunch;
+        public AudioClip GrappleLaunch => grappleLaunch;
+
+        [SerializeField] private AudioClip grappleBreak;
+        public AudioClip GrappleBreak => grappleBreak;
+
+        [SerializeField] private AudioClip grappleRetract;
+        public AudioClip GrappleRetract => grappleRetract;
+
+        [SerializeField] private AudioClip grappleAttach;
+        public AudioClip GrappleAttach => grappleAttach;
     }
 }

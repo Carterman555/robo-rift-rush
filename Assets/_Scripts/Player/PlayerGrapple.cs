@@ -1,3 +1,4 @@
+using SpeedPlatformer.Audio;
 using System;
 using TarodevController;
 using UnityEngine;
@@ -116,6 +117,7 @@ namespace SpeedPlatformer.Player {
 
                 if (DetectingObstacle()) {
                     ChangeState(GrappleState.Deactive);
+                    AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, false, 0.5f);
                 }
 
                 ReleaseGrappleCheck();
@@ -179,6 +181,8 @@ namespace SpeedPlatformer.Player {
                 launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerGrapplePoint.position).normalized;
 
                 grapplePoint.up = launchDirection;
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleLaunch, false, 0.3f);
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
@@ -187,6 +191,8 @@ namespace SpeedPlatformer.Player {
                 playerController.StartSwing(grapplePoint.position);
 
                 grapplePoint.rotation = Quaternion.identity;
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleAttach, false, 0.5f);
             }
         }
 

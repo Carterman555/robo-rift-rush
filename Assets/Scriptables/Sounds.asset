@@ -22,5 +22,9 @@ MonoBehaviour:
   completeLevel: {fileID: 8300000, guid: ca39085ae1210244ab96ef7e1f1e88c7, type: 3}
   fallVoid: {fileID: 8300000, guid: e882a9cb9579241439496a76e2847d93, type: 3}
   trapDeath: {fileID: 8300000, guid: da7cd799282f47f4fbf8bbd844a6ed69, type: 3}
-  trapMovement: {fileID: 8300000, guid: 2a4d8dc512380b449b49b709b8361cc7, type: 3}
+  trapSpike: {fileID: 8300000, guid: 2a4d8dc512380b449b49b709b8361cc7, type: 3}
   wind: {fileID: 8300000, guid: ef1f7d4cad298a146bd8dfa3fe0cdb70, type: 3}
+  grappleLaunch: {fileID: 8300000, guid: 482beb3fcf35f8f40a1b1ffebaaba59f, type: 3}
+  grappleBreak: {fileID: 8300000, guid: 10ee39ceaf1855a4bac81aff3d1191f6, type: 3}
+  grappleRetract: {fileID: 0}
+  grappleAttach: {fileID: 8300000, guid: ae06b1511495c2c4bbab2763d608a704, type: 3}

@@ -68,14 +68,14 @@ namespace SpeedPlatformer {
         private void Update() {
             if (inFrame && firstSpike.AtExtreme() && !isTrapSoundPlaying) {
                 isTrapSoundPlaying = true;
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapMovement, true, 0.5f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapSpike, true, 0.3f);
                 StartCoroutine(ResetTrapSound());
             }
         }
 
         private IEnumerator ResetTrapSound() {
             // Assuming the sound length is known or you have a way to determine when the sound ends.
-            yield return new WaitForSeconds(AudioSystem.SoundClips.TrapMovement.length / 2f);
+            yield return new WaitForSeconds(AudioSystem.SoundClips.TrapSpike.length / 2f);
             isTrapSoundPlaying = false;
         }
 

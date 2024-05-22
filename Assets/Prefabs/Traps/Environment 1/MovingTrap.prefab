@@ -500,6 +500,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveVector: {x: 12, y: 0}
   speed: 6
+  moveClip: {fileID: 8300000, guid: 015fe1b2b84f58140b57827971a4326d, type: 3}
+  switchDirectionClip: {fileID: 8300000, guid: 4dd0542e2d1c49b48adffc4907a9db82, type: 3}
 --- !u!114 &6309519910255254096
 MonoBehaviour:
   m_ObjectHideFlags: 0
