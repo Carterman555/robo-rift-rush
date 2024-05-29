@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using SpeedPlatformer.Audio;
 using UnityEngine;
 
 namespace SpeedPlatformer {
@@ -16,16 +16,17 @@ namespace SpeedPlatformer {
             startingAlpha = visual.color.a;
         }
 
-
         private void OnCollisionEnter2D(Collision2D collision) {
-			if (collision.gameObject.layer == GameLayers.PlayerLayer) {
+			if (collision.gameObject.layer == GameLayers.PlayerLayer && !disappearing) {
 				disappearing = true;
-			}
-		}
+
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.PlatformDisappear, .1f, 1f);
+            }
+        }
 
 		private void Update() {
 			if (disappearing) {
-				float disappearTime = 1f;
+				float disappearTime = 1f; // alpha starts at 170, so really takes .666 seconds to disappear
 				disappearTimer += Time.deltaTime;
 
 				Color color = visual.color;
@@ -36,8 +37,6 @@ namespace SpeedPlatformer {
 					Destroy(gameObject);
 				}
 			}
- 			
 		}
-
 	}
 }

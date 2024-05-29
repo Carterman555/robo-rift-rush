@@ -1,6 +1,9 @@
+using ClipperLib;
 using SpeedPlatformer.Audio;
+using SpeedPlatformer.Environment;
 using TarodevController;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace SpeedPlatformer.Player {
     enum GrappleState {
@@ -37,6 +40,8 @@ namespace SpeedPlatformer.Player {
         private DistanceJoint2D joint;
 
         private Vector2 environmentVelocity;
+
+        private SurfaceSlopeFinder surfaceSlopeFinder;
 
         #region Get Methods
 
@@ -78,6 +83,8 @@ namespace SpeedPlatformer.Player {
             if (!unlocked && startUnlocked) {
                 unlocked = true;
             }
+
+            surfaceSlopeFinder = new SurfaceSlopeFinder();
         }
 
         /// <summary>
@@ -109,22 +116,25 @@ namespace SpeedPlatformer.Player {
                     ChangeState(GrappleState.Deactive);
                 }
 
-                if (DetectingGrappleSurface(out Vector2 hitPoint)) {
+                if (DetectingGrappleSurface(out Vector2 hitPoint, out Spline spline)) {
 
                     // so can only grapple to surfaces above player
                     if (IsWithinUpVector(launchDirection)) {
                         SetGrappleObjectPos(hitPoint);
+
+                        SetGrappleDirection(spline, hitPoint);
+
                         ChangeState(GrappleState.Grappled);
                     }
                     else {
                         ChangeState(GrappleState.Deactive);
-                        AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, false, 0.5f);
+                        AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, 0, 0.5f);
                     }
                 }
 
                 if (DetectingObstacle()) {
                     ChangeState(GrappleState.Deactive);
-                    AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, false, 0.5f);
+                    AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, 0, 0.5f);
                 }
 
                 ReleaseGrappleCheck();
@@ -189,7 +199,7 @@ namespace SpeedPlatformer.Player {
 
                 grapplePoint.up = launchDirection;
 
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleLaunch, false, 0.3f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleLaunch, 0, 0.3f);
             }
             else if (newState == GrappleState.Grappled) {
                 joint.enabled = true;
@@ -197,13 +207,12 @@ namespace SpeedPlatformer.Player {
 
                 playerController.StartSwing(grapplePoint.position);
 
-                grapplePoint.rotation = Quaternion.identity;
 
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleAttach, false, 0.5f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleAttach, 0, 0.5f);
             }
         }
 
-        private bool DetectingGrappleSurface(out Vector2 hitPoint) {
+        private bool DetectingGrappleSurface(out Vector2 hitPoint, out Spline spline) {
 
             float rayLength = 1f;
             RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
@@ -212,7 +221,19 @@ namespace SpeedPlatformer.Player {
                 grappleSurfaceLayerMask);
 
             bool hitGrappleSurface = hit.collider != null;
-            hitPoint = hitGrappleSurface ? hit.point : Vector2.zero;
+            if (hitGrappleSurface) {
+                hitPoint = hit.point;
+                if (hit.transform.TryGetComponent(out SpriteShapeController spriteShapeController)) {
+                    spline = spriteShapeController.spline;
+                }
+                else {
+                    spline = null;
+                }
+            }
+            else {
+                hitPoint = Vector2.zero;
+                spline = null;
+            }
             return hitGrappleSurface;
         }
 
@@ -238,6 +259,16 @@ namespace SpeedPlatformer.Player {
         private void SetGrappleObjectPos(Vector3 pos) {
             grapplePoint.position = pos;
             grappleLine.SetPosition(1, pos);
+        }
+
+        private void SetGrappleDirection(Spline spline, Vector3 point) {
+            if (spline != null) {
+                grapplePoint.up = surfaceSlopeFinder.GetDirectionAtPoint(spline, point);
+            }
+            else {
+                grapplePoint.rotation = Quaternion.identity;
+            }
+            grapplePoint.rotation = Quaternion.identity;
         }
     }
 }

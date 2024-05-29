@@ -21,7 +21,7 @@ namespace SpeedPlatformer
                 float fadeDuration = 1f;
                 LevelTransitionFade.Instance.FadeOut(fadeDuration);
 
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.FallVoid, false);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.FallVoid, 0);
             }
 
             if (startFade && LevelTransitionFade.Instance.Faded()) {

@@ -122,7 +122,7 @@ namespace TarodevController {
         private void OnJumped() {
             anim.SetTrigger(TakeOffKey);
 
-            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Jump, false);
+            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Jump, 0);
 
             if (grounded) // Avoid coyote
             {
@@ -146,7 +146,7 @@ namespace TarodevController {
                 landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
                 landParticles.Play();
 
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Land, false, impact / 60f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.Land, 0, impact / 60f);
             }
             else {
                 anim.SetBool(GroundedKey, false);
@@ -204,7 +204,7 @@ namespace TarodevController {
         public void StartDeathFade() {
             fading = true;
 
-            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapDeath, false, 0.5f);
+            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapDeath, 0, 0.5f);
         }
 
         public bool IsFading() {

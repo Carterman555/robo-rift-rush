@@ -64,7 +64,7 @@ namespace SpeedPlatformer.Environment {
         private void Update() {
             if (inFrame && !isTrapSoundPlaying) {
                 isTrapSoundPlaying = true;
-                AudioSystem.Instance.PlaySound(moveClip, true, 0.5f);
+                AudioSystem.Instance.PlaySound(moveClip, 0.25f, 0.5f);
                 StartCoroutine(ResetTrapSound());
             }
         }

@@ -68,7 +68,7 @@ namespace SpeedPlatformer {
         private void Update() {
             if (inFrame && firstSpike.AtExtreme() && !isTrapSoundPlaying) {
                 isTrapSoundPlaying = true;
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapSpike, true, 0.3f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.TrapSpike, 0.25f, 0.3f);
                 StartCoroutine(ResetTrapSound());
             }
         }

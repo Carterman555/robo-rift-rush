@@ -38,10 +38,10 @@ namespace SpeedPlatformer.Audio {
         [SerializeField] private AudioClip grappleBreak;
         public AudioClip GrappleBreak => grappleBreak;
 
-        [SerializeField] private AudioClip grappleRetract;
-        public AudioClip GrappleRetract => grappleRetract;
-
         [SerializeField] private AudioClip grappleAttach;
         public AudioClip GrappleAttach => grappleAttach;
+
+        [SerializeField] private AudioClip platformDisappear;
+        public AudioClip PlatformDisappear => platformDisappear;
     }
 }

@@ -83,18 +83,13 @@ namespace SpeedPlatformer.Audio {
             musicSource.Play();
         }
 
-        public void PlaySound(AudioClip clip, bool randomizePitch = true, float vol = 1) {
+        public void PlaySound(AudioClip clip, float pitchRandomize = 0.25f, float vol = 1) {
             AudioSource sfxSource = GetAvailableSFXSource();
             if (sfxSource == null) {
                 return;
             }
 
-            if (randomizePitch) {
-                sfxSource.pitch = Random.Range(1f, 1.5f);
-            }
-            else {
-                sfxSource.pitch = 1f;
-            }
+            sfxSource.pitch = Random.Range(1f - pitchRandomize, 1f + pitchRandomize);
 
             sfxSource.PlayOneShot(clip, sfxVolume * vol);
         }
@@ -146,7 +141,7 @@ namespace SpeedPlatformer.Audio {
                 stepTimer += Time.deltaTime;
                 if (stepTimer > stepFrequency) {
                     stepTimer = 0;
-                    PlaySound(soundClips.Steps.RandomClip(), false);
+                    PlaySound(soundClips.Steps.RandomClip(), 0);
                 }
             }
         }

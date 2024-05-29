@@ -31,7 +31,7 @@ namespace SpeedPlatformer {
 
                 LevelTimer.Instance.StopTimer();
 
-                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.CompleteLevel, false, 0.75f);
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.CompleteLevel, 0, 0.75f);
             }
         }
 
