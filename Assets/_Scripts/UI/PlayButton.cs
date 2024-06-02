@@ -2,7 +2,7 @@ using SpeedPlatformer.Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.UI {
 	public class PlayButton : GameButton {
 
         protected override void OnClicked() {

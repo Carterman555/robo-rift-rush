@@ -9,7 +9,10 @@ namespace SpeedPlatformer
         protected override void Awake() {
             base.Awake();
 
-            GameProgress.Initialize(SceneManager.GetActiveScene().name.TryGetEndingNumber(' ')); // this probably shouldn't be on game manager
+            // this probably shouldn't be on game manager
+            if (SceneManager.GetActiveScene().name.TryGetEndingNumber(' ', out int levelNum)) {
+                GameProgress.Initialize(levelNum); 
+            }
         }
     }
 }

@@ -101,45 +101,18 @@ public static class Helpers
 
     # region Game Specific
 
-    public static int TryGetEndingNumber(this string objectName, char charBeforeNumber) {
+    public static bool TryGetEndingNumber(this string objectName, char charBeforeNumber, out int endingNumber) {
         int lastUnderscoreIndex = objectName.LastIndexOf(charBeforeNumber);
         if (lastUnderscoreIndex != -1 && lastUnderscoreIndex < objectName.Length - 1) {
             string endingNumberString = objectName.Substring(lastUnderscoreIndex + 1);
-            if (int.TryParse(endingNumberString, out int endingNumber)) {
-                return endingNumber;
+            if (int.TryParse(endingNumberString, out int _endingNumber)) {
+                endingNumber = _endingNumber;
+                return true;
             }
         }
 
-        Debug.LogError("Could Not Get Ending Number: " + objectName);
-        return -1;
-    }
-
-    public static TriggerEvent CreateMoveTrigger(Transform transform) {
-
-        //if (!Helpers.TryFindByName(out GameObject moveTriggerContainer, "MoveTriggers")) {
-        //   Debug.LogWarning("Could not find MoveTriggers");
-        //}
-        //GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), moveTriggerContainer.transform);
-        GameObject moveTriggerObj = GameObject.Instantiate(new GameObject(), transform);
-
-        moveTriggerObj.transform.position = transform.position;
-        moveTriggerObj.name = "MoveTrigger_" + transform.name.TryGetEndingNumber('_');
-
-        BoxCollider2D collider = moveTriggerObj.AddComponent<BoxCollider2D>();
-        collider.isTrigger = true;
-
-        // use the environments collider bounds to setup the bounds of the move trigger
-        Bounds environmentBounds = transform.GetComponent<Collider2D>().bounds;
-
-        Vector2 offset = environmentBounds.center - collider.bounds.center;
-        collider.offset = offset;
-
-        float xSize = environmentBounds.size.x / collider.bounds.size.x;
-        float ySize = environmentBounds.size.y / collider.bounds.size.y;
-        collider.size = new Vector2(xSize, ySize);
-
-        //... add and return moveTrigger component
-        return moveTriggerObj.AddComponent<TriggerEvent>();
+        endingNumber = -1;
+        return false;
     }
 
     #endregion

@@ -1,6 +1,7 @@
 using SpeedPlatformer.Audio;
 using SpeedPlatformer.Management;
 using SpeedPlatformer.Triggers;
+using SpeedPlatformer.UI;
 using TarodevController;
 using UnityEngine;
 

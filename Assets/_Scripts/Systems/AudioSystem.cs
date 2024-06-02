@@ -11,8 +11,10 @@ namespace SpeedPlatformer.Audio {
         [SerializeField] private ScriptableSounds soundClips;
         public static ScriptableSounds SoundClips => Instance.soundClips;
 
-        private float musicVolume = 1f;
-        private float sfxVolume = 1f;
+        private float musicVolume = 0.5f;
+        private float musicVolumeMult = 0.15f; // cause music too loud
+
+        private float sfxVolume = 0.5f;
 
         // Pool for regular SFX sources
         [SerializeField] private int sfxSourcePoolSize = 2;
@@ -21,7 +23,7 @@ namespace SpeedPlatformer.Audio {
         #region Get Methods
 
         public float GetMusicVolume() {
-            return musicVolume;
+            return musicVolume / musicVolumeMult;
         }
 
         public float GetSFXVolume() {
@@ -33,7 +35,7 @@ namespace SpeedPlatformer.Audio {
         #region Set Methods
 
         public void SetMusicVolume(float volume) {
-            musicVolume = volume;
+            musicVolume = volume * musicVolumeMult;
             musicSource.volume = musicVolume;
         }
 

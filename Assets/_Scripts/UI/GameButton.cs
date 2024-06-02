@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.UI {
 	public class GameButton : MonoBehaviour {
 
         private Button button;

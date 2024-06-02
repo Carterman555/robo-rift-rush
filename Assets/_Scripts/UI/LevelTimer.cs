@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace SpeedPlatformer.UI {
 	public class LevelTimer : StaticInstance<LevelTimer> {
 
         private TextMeshProUGUI timerText;

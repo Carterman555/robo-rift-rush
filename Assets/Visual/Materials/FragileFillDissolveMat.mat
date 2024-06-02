@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
+  m_Name: FragileFillDissolveMat
   m_Shader: {fileID: -6465566751694194690, guid: 35b7f09ea3a59ae438d1bc65c46e6b3d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,7 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Scale: 10
-    - _Fade: 1
+    - Scale: 2.32
+    - Thickness: 0.03
+    - WorldPos: 0
+    - _Fade: 0.666
     m_Colors: []
   m_BuildTextureStacks: []
