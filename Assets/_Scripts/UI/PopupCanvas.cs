@@ -1,4 +1,5 @@
 using DG.Tweening;
+using SpeedPlatformer.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace SpeedPlatformer.UI {
             }
         }
 
-        public void ActivateUIObject(string name) {
+        public void ActivateUIObject(string name, bool playAudio = true) {
             // if the object is already active, return
             if (_activePopups[name]) return;
 
@@ -51,12 +52,14 @@ namespace SpeedPlatformer.UI {
                 _activePopups[name] = true;
             });
 
-            //AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.UIPanelSlide);
+            if (playAudio) {
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.UISlide, 0f, 0.1f);
+            }
 
-            OnObjectActivated.Invoke(name);
+            OnObjectActivated?.Invoke(name);
         }
 
-        public void DeactivateUIObject(string name) {
+        public void DeactivateUIObject(string name, bool playAudio = true) {
             // if the object is already deactive, return
             if (!_activePopups[name]) return;
 
@@ -80,7 +83,9 @@ namespace SpeedPlatformer.UI {
                 _activePopups[name] = false;
             });
 
-            //AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.UIPanelSlide);
+            if (playAudio) {
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.UISlide, 0f, 0.1f);
+            }
         }
     }
 

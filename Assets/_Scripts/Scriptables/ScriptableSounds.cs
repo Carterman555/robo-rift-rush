@@ -43,5 +43,21 @@ namespace SpeedPlatformer.Audio {
 
         [SerializeField] private AudioClip platformDisappear;
         public AudioClip PlatformDisappear => platformDisappear;
+
+        [SerializeField] private AudioClip islandDissolve;
+        public AudioClip IslandDissolve => islandDissolve;
+
+        [Header("UI")]
+        [SerializeField] private AudioClip mouseOn;
+        public AudioClip MouseOn => mouseOn;
+
+        [SerializeField] private AudioClip mouseOff;
+        public AudioClip MouseOff => mouseOff;
+
+        [SerializeField] private AudioClip buttonClick;
+        public AudioClip ButtonClick => buttonClick;
+
+        [SerializeField] private AudioClip _UISlide;
+        public AudioClip UISlide => _UISlide;
     }
 }

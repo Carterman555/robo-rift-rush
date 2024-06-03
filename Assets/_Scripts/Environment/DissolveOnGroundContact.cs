@@ -1,11 +1,10 @@
 using SpeedPlatformer.Audio;
-using SpeedPlatformer.Management;
 using SpeedPlatformer.Triggers;
 using UnityEngine;
 using UnityEngine.U2D;
 
 namespace SpeedPlatformer.Environment {
-    public class BreakOnGroundContact : MonoBehaviour {
+    public class DissolveOnGroundContact : MonoBehaviour {
 
         [SerializeField] private TriggerEvent breakTrigger;
 
@@ -42,6 +41,20 @@ namespace SpeedPlatformer.Environment {
             startFillVisible = fillMaterial.GetFloat("_Fade");
         }
 
+        private bool inFrame;
+
+        private void OnTriggerEnter2D(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.CameraFrameLayer) {
+                inFrame = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision) {
+            if (collision.gameObject.layer == GameLayers.CameraFrameLayer) {
+                inFrame = false;
+            }
+        }
+
         private bool dissolving = false;
 
         [SerializeField] private float dissolveDuration;
@@ -50,7 +63,10 @@ namespace SpeedPlatformer.Environment {
         public void StartDissolving() {
             dissolving = true;
 
-            //AudioSystem.Instance.PlaySound(AudioSystem.SoundClips., 0.25f, 1f);
+            // only play sound if on screen
+            if (inFrame) {
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.IslandDissolve, 0.25f, 1f);
+            }
         }
 
         // disolve then destroy
