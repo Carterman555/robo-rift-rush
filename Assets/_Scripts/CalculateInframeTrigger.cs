@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.Setup {
+namespace RoboRiftRush.Setup {
     public class CalculateInframeTrigger : MonoBehaviour {
         private Camera cam;
         private BoxCollider2D inframeTrigger;

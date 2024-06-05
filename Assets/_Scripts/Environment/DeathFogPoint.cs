@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class DeathFogPoint : MonoBehaviour
     {

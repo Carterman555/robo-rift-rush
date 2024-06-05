@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class FloatingIslandMovementPerlin : MonoBehaviour {
 
         private Vector2 originalPos;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class MovingTrapVisual : MonoBehaviour {
 
 		[SerializeField] private TrailRenderer leftTrailRenderer;

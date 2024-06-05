@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class DeathFogPrototype : MonoBehaviour
     {

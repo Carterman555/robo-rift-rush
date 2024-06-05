@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace SpeedPlatformer
+namespace RoboRiftRush
 {
     public static class CreateScriptTemplates
     {

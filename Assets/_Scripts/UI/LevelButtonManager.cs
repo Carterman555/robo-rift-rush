@@ -1,23 +1,13 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class LevelButtonManager : MonoBehaviour {
 
 		[SerializeField] private Transform levelContainer;
 		[SerializeField] private LevelButton levelPrefab;
 
-		private static bool createdLevels;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void Init() {
-            createdLevels = false;
-        }
-
-        private void Awake() {
-            if (!createdLevels) {
-                CreateLevels();
-                createdLevels = true;
-            }
+        private void Start() {
+            CreateLevels();
         }
 
         private void CreateLevels() {

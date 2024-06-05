@@ -1,9 +1,9 @@
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.UI;
+using RoboRiftRush.Audio;
+using RoboRiftRush.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
     public class VolumeSliders : MonoBehaviour {
 
         [SerializeField] private Slider _musicSlider;

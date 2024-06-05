@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpeedPlatformer
+namespace RoboRiftRush
 {
     public class ConstantRotateObject : MonoBehaviour
     {

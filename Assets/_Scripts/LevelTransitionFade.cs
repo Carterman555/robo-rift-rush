@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class LevelTransitionFade : StaticInstance<LevelTransitionFade> {
 
 		private SpriteRenderer speedFade;

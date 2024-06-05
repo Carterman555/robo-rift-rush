@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SpeedPlatformer.Triggers {
+namespace RoboRiftRush.Triggers {
     public class TriggerEvent : MonoBehaviour {
         public event Action<Collider2D> OnTriggerEntered;
         public event Action<Collider2D> OnTriggerExited;

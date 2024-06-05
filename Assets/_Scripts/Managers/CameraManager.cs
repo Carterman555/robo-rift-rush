@@ -2,7 +2,7 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 
-namespace SpeedPlatformer.Management {
+namespace RoboRiftRush.Management {
     public class CameraManager : StaticInstance<CameraManager> {
 
         [SerializeField] private CinemachineVirtualCamera mainCamera;

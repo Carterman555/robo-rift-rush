@@ -1,7 +1,7 @@
-using SpeedPlatformer.Player;
+using RoboRiftRush.Player;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
     public class UnlockGrapple : MonoBehaviour {
 
         private void Awake() {

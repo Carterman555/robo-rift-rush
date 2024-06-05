@@ -1,7 +1,7 @@
 using UnityEngine;
-using SpeedPlatformer.Management;
+using RoboRiftRush.Management;
 
-namespace SpeedPlatformer.Triggers
+namespace RoboRiftRush.Triggers
 {
     public class CameraAdjustTrigger : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-using SpeedPlatformer.Utilities;
+using RoboRiftRush.Utilities;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class DeathFogSpawner : MonoBehaviour
     {

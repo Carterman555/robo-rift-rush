@@ -1,8 +1,8 @@
-using SpeedPlatformer.Audio;
+using RoboRiftRush.Audio;
 using System.Collections;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class TrapSpikeManager : MonoBehaviour {
 
 		[SerializeField] private UpDownMovement spikePrefab;

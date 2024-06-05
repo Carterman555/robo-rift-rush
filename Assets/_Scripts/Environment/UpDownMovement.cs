@@ -1,7 +1,7 @@
-using SpeedPlatformer.Audio;
+using RoboRiftRush.Audio;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class UpDownMovement : MonoBehaviour {
 
 		private bool reversed;

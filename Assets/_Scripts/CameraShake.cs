@@ -2,7 +2,7 @@ using Cinemachine;
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer.Setup {
+namespace RoboRiftRush.Setup {
 	public class CameraShake : MonoBehaviour {
 
 		private CinemachineVirtualCamera cinemachineCamera;

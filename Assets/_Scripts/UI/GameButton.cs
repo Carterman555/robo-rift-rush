@@ -1,8 +1,8 @@
-using SpeedPlatformer.Audio;
+using RoboRiftRush.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
 	public class GameButton : MonoBehaviour {
 
         private Button button;

@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 5902968077370028231
     second: tutorial-set_2
+  - first:
+      213: -308731767564032119
+    second: tutorial-set_3
+  - first:
+      213: -2734573575136200628
+    second: tutorial-set_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,8 +126,8 @@ TextureImporter:
         width: 153
         height: 153
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 36, y: 0, z: 37, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -133,22 +139,64 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-set_2
+      name: tutorial-set_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 52
-        width: 162
-        height: 266
+        x: 317
+        y: 397
+        width: 179
+        height: 132
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c07c1ce03e8be150800000000000000
-      internalID: 5902968077370028231
+      spriteID: bcfc5611ea0eda780800000000000000
+      internalID: -8670026669397520437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutorial-set_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 53
+        width: 162
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 987a777d71a27bbf0800000000000000
+      internalID: -308731767564032119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutorial-set_4
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 135
+        width: 32
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4836d162d7dc0ad0800000000000000
+      internalID: -2734573575136200628
       vertices: []
       indices: 
       edges: []

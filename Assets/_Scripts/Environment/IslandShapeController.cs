@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
 
     public class IslandShapeController : MonoBehaviour {
 

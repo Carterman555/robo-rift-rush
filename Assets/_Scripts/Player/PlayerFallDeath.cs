@@ -1,8 +1,8 @@
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.Management;
+using RoboRiftRush.Audio;
+using RoboRiftRush.Management;
 using UnityEngine;
 
-namespace SpeedPlatformer
+namespace RoboRiftRush
 {
     public class PlayerFallDeath : MonoBehaviour
     {

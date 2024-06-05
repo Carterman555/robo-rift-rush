@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SpeedPlatformer.Audio {
+namespace RoboRiftRush.Audio {
     public class AudioSystem : Singleton<AudioSystem> {
 
         [SerializeField] private AudioSource musicSource;
@@ -101,7 +101,7 @@ namespace SpeedPlatformer.Audio {
             if (sfxSource == null) {
                 return null;
             }
-
+            
             sfxSource.loop = true;
             sfxSource.clip = clip;
             sfxSource.volume = sfxVolume * vol;

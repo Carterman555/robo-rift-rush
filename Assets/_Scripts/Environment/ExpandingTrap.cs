@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment.Traps {
+namespace RoboRiftRush.Environment.Traps {
 
     // TODO - maybe make line renderer instead
     public class ExpandingTrap : MonoBehaviour {

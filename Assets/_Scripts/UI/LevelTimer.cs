@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
 	public class LevelTimer : StaticInstance<LevelTimer> {
 
         private TextMeshProUGUI timerText;

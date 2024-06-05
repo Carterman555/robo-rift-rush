@@ -1,7 +1,8 @@
 using UnityEngine;
+using RoboRiftRush.UI;
 
-namespace SpeedPlatformer.UI {
-    public class PausePanel : Singleton<PausePanel> {
+namespace RoboRiftRush.Management {
+    public class PauseManager : Singleton<PauseManager> {
 
         public static bool Paused { get; private set; }
 
@@ -31,13 +32,21 @@ namespace SpeedPlatformer.UI {
         public void TogglePause() {
             Paused = !Paused;
             if (Paused) {
-                Time.timeScale = 0;
-                PopupCanvas.Instance.ActivateUIObject("PausePanel");
+                Pause();
             }
             else {
-                Time.timeScale = 1;
-                PopupCanvas.Instance.DeactivateUIObject("PausePanel");
+                Unpause();
             }
+        }
+
+        public void Pause() {
+            Time.timeScale = 0;
+            PopupCanvas.Instance.ActivateUIObject("PausePanel");
+        }
+
+        public void Unpause() {
+            Time.timeScale = 1;
+            PopupCanvas.Instance.DeactivateUIObject("PausePanel");
         }
     }
 }

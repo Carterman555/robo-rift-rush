@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
     public class GrowShrink : MonoBehaviour {
 
         [SerializeField] private float growAmount;

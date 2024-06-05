@@ -1,8 +1,8 @@
-using SpeedPlatformer.Management;
+using RoboRiftRush.Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SpeedPlatformer
+namespace RoboRiftRush
 {
     public class GameManager : StaticInstance<GameManager>
     {
@@ -11,7 +11,7 @@ namespace SpeedPlatformer
 
             // this probably shouldn't be on game manager
             if (SceneManager.GetActiveScene().name.TryGetEndingNumber(' ', out int levelNum)) {
-                GameProgress.Initialize(levelNum); 
+                GameProgress.SetLevel(levelNum); 
             }
         }
     }

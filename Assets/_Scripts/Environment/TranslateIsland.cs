@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class TranslateIsland : MonoBehaviour {
 

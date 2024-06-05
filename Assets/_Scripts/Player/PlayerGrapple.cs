@@ -1,11 +1,11 @@
 using ClipperLib;
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.Environment;
+using RoboRiftRush.Audio;
+using RoboRiftRush.Environment;
 using TarodevController;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace SpeedPlatformer.Player {
+namespace RoboRiftRush.Player {
     enum GrappleState {
         Deactive = 0,
         Launching = 1,

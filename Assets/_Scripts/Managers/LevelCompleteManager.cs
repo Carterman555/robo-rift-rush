@@ -1,11 +1,11 @@
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.Management;
-using SpeedPlatformer.Triggers;
-using SpeedPlatformer.UI;
+using RoboRiftRush.Audio;
+using RoboRiftRush.Management;
+using RoboRiftRush.Triggers;
+using RoboRiftRush.UI;
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class LevelCompleteManager : MonoBehaviour {
 
 		[SerializeField] private TriggerEvent startWinTrigger;

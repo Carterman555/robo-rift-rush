@@ -1,4 +1,4 @@
-using SpeedPlatformer.Triggers;
+using RoboRiftRush.Triggers;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;

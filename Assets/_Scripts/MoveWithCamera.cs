@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 	public class MoveWithCamera : MonoBehaviour {
 
 		[SerializeField] private Vector2 offset;

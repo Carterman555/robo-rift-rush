@@ -1,9 +1,9 @@
-using SpeedPlatformer.Management;
-using SpeedPlatformer.Triggers;
+using RoboRiftRush.Management;
+using RoboRiftRush.Triggers;
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class PlayerCannon : MonoBehaviour
     {

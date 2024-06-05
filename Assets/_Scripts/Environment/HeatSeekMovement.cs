@@ -1,7 +1,7 @@
-using SpeedPlatformer.Triggers;
+using RoboRiftRush.Triggers;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class HeatSeekMovement : MonoBehaviour
     {

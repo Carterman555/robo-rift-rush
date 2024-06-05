@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 4104476478112436890}
   - component: {fileID: 6575661388564050754}
   - component: {fileID: 350875785355759593}
+  - component: {fileID: 1832752260858297428}
   - component: {fileID: 7747384140560311284}
   m_Layer: 5
   m_Name: Level
@@ -256,6 +257,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1832752260858297428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121790807138126032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcb6655b0b4771458bb341aa825fef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7747384140560311284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +283,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playClickAudio: 1
   text: {fileID: 4732062427022782898}
+  image: {fileID: 6575661388564050754}

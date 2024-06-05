@@ -1,39 +1,39 @@
 using DG.Tweening;
-using SpeedPlatformer.Audio;
+using RoboRiftRush.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
     public class PopupCanvas : StaticInstance<PopupCanvas> {
 
         public static event Action<string> OnObjectActivated;
 
-        [SerializeField] private PopupData[] _popupData;
+        [SerializeField] private PopupData[] popupData;
 
         // name of popup, is the popup active
-        private Dictionary<string, bool> _activePopups = new Dictionary<string, bool>();
+        private Dictionary<string, bool> activePopups = new Dictionary<string, bool>();
 
         public bool GetPopupActive(string name) {
-            return _activePopups[name];
+            return activePopups[name];
         }
 
         protected override void Awake() {
             base.Awake();
 
             // initialize the dictionary as all popups are inactive
-            foreach (PopupData data in _popupData) {
-                _activePopups.Add(data.Name, data.StartActive);
+            foreach (PopupData data in popupData) {
+                activePopups.Add(data.Name, data.StartActive);
             }
         }
 
         public void ActivateUIObject(string name, bool playAudio = true) {
             // if the object is already active, return
-            if (_activePopups[name]) return;
+            if (activePopups[name]) return;
 
             PopupData currentPopup = default;
-            foreach (var popupData in from popupData in _popupData
+            foreach (var popupData in from popupData in popupData
                                       where popupData.Name == name
                                       select popupData) {
                 currentPopup = popupData;
@@ -49,7 +49,7 @@ namespace SpeedPlatformer.UI {
             currentPopup.Transform.position = currentPopup.HidePos;
             currentPopup.Transform.DOMove(currentPopup.ShowPos, 0.3f).SetEase(Ease.OutSine).SetUpdate(true).OnComplete(() => {
                 // set the dictionary to the panel being active
-                _activePopups[name] = true;
+                activePopups[name] = true;
             });
 
             if (playAudio) {
@@ -61,10 +61,10 @@ namespace SpeedPlatformer.UI {
 
         public void DeactivateUIObject(string name, bool playAudio = true) {
             // if the object is already deactive, return
-            if (!_activePopups[name]) return;
+            if (!activePopups[name]) return;
 
             PopupData currentPopup = default;
-            foreach (var popupData in from popupData in _popupData
+            foreach (var popupData in from popupData in popupData
                                       where popupData.Name == name
                                       select popupData) {
                 currentPopup = popupData;
@@ -80,13 +80,21 @@ namespace SpeedPlatformer.UI {
                 currentPopup.Transform.gameObject.SetActive(false);
 
                 // set the dictionary to the object being deactive
-                _activePopups[name] = false;
+                activePopups[name] = false;
             });
 
             if (playAudio) {
                 AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.UISlide, 0f, 0.1f);
             }
         }
+
+
+        private void OnDisable() {
+            foreach (var popupData in popupData) {
+                popupData.Transform.DOKill();
+            }
+        }
+
     }
 
     [Serializable]

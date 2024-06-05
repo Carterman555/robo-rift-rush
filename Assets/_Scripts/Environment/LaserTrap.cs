@@ -1,7 +1,7 @@
-using SpeedPlatformer.Management;
+using RoboRiftRush.Management;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class LaserTrap : MonoBehaviour
     {

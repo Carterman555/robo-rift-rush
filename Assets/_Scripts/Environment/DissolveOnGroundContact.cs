@@ -1,9 +1,9 @@
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.Triggers;
+using RoboRiftRush.Audio;
+using RoboRiftRush.Triggers;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
     public class DissolveOnGroundContact : MonoBehaviour {
 
         [SerializeField] private TriggerEvent breakTrigger;

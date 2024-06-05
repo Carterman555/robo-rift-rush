@@ -1,10 +1,10 @@
 using DG.Tweening;
-using SpeedPlatformer.Audio;
+using RoboRiftRush.Audio;
 using System.Collections;
 using UnityEngine;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
     public class BackForthMovement : MonoBehaviour {
 
         [SerializeField] private Vector2 moveVector;

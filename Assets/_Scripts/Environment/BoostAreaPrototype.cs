@@ -1,7 +1,7 @@
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
     public class BoostAreaPrototype : MonoBehaviour {
 
         [SerializeField] private float boostAmount;

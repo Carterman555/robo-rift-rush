@@ -1,7 +1,7 @@
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
     public class SpeedParticles : MonoBehaviour {
 
         [SerializeField] private int rateMult = 50;

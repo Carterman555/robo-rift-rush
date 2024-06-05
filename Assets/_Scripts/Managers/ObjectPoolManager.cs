@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace SpeedPlatformer.Utilities {
+namespace RoboRiftRush.Utilities {
     public class ObjectPoolManager : MonoBehaviour {
         public static List<PooledObjectInfo> ObjectPoolList;
 

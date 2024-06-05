@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment{
+namespace RoboRiftRush.Environment{
     public class SelectableCircle : MonoBehaviour {
         // draw circle to make selectable
         private void OnDrawGizmos() {

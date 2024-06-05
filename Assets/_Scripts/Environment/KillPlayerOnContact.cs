@@ -1,7 +1,7 @@
 using TarodevController;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class KillPlayerOnContact : MonoBehaviour
     {        

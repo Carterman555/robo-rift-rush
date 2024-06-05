@@ -1,6 +1,6 @@
-using SpeedPlatformer.Audio;
-using SpeedPlatformer.Management;
-using System;
+using RoboRiftRush.Audio;
+using RoboRiftRush.Management;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -41,7 +41,10 @@ namespace TarodevController {
             materials = spriteRenderers.Select(x => x.material).ToArray();
         }
 
-        private void Start() {
+        private IEnumerator Start() {
+
+            //... wait a frame to allow audio system to initialize
+            yield return null;
             if (windSource == null) {
                 windSource = AudioSystem.Instance.PlayLoopingSound(AudioSystem.SoundClips.Wind, 0.5f); // testing (remove)
             }
@@ -115,8 +118,10 @@ namespace TarodevController {
             float inputStrength = Mathf.Abs(player.FrameInput.x);
             moveGroundParticles.transform.localScale = Vector3.MoveTowards(moveGroundParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
 
-            float windVolume = Mathf.InverseLerp(0, 60f, Mathf.Abs(playerTransform.GetComponent<Rigidbody2D>().velocity.x));
-            windSource.volume = windVolume;
+            if (windSource != null) {
+                float windVolume = Mathf.InverseLerp(0, 60f, Mathf.Abs(playerTransform.GetComponent<Rigidbody2D>().velocity.x));
+                windSource.volume = windVolume;
+            }
         }
 
         private void OnJumped() {

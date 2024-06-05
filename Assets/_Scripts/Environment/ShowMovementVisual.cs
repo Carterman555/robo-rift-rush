@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
 
     public class ShowMovementVisual : MonoBehaviour {
 

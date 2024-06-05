@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
     [RequireComponent(typeof(Rigidbody2D))]
     public class VerticalMovement : MonoBehaviour {
 

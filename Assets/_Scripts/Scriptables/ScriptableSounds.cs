@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.Audio {
+namespace RoboRiftRush.Audio {
 
 	[CreateAssetMenu(fileName = "Sounds", menuName = "Resources/Sounds")]
 	public class ScriptableSounds : ScriptableObject {

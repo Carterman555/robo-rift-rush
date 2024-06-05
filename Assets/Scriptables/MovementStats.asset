@@ -15,18 +15,18 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 64
-  SnapInput: 1
+  SnapInput: 0
   VerticalDeadZoneThreshold: 0.3
   HorizontalDeadZoneThreshold: 0.1
-  MaxSpeed: 22
-  Acceleration: 200
-  GroundDeceleration: 120
-  AirDeceleration: 80
+  MaxSpeed: 35
+  Acceleration: 300
+  GroundDeceleration: 100
+  AirDeceleration: 50
   GroundingForce: -1
   GrounderDistance: 0.05
   JumpPower: 40
   MaxFallSpeed: 40
-  FallAcceleration: 110
+  FallAcceleration: 90
   JumpEndEarlyGravityModifier: 3
   CoyoteTime: 0.1
   JumpBuffer: 0.2
@@ -37,4 +37,9 @@ MonoBehaviour:
   CannonDeacceleration: 20
   TrampForceMult: 1.5
   MinTrampForce: 20
-  SwingGravity: 0
+  SwingAcceleration: 80
+  StartSwingBoost: 0
+  MinStartSwingSpeed: 0
+  ReleaseBoost: 0
+  MomentumControlAcceleration: 30
+  MaxSwingSpeedControl: 50

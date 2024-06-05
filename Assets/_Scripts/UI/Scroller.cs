@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
 	public class Scroller : MonoBehaviour {
 
 		private RawImage image;

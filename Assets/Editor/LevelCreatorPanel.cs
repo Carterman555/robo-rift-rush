@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEditor;
 using Codice.Client.Common;
 using System;
-using SpeedPlatformer.Environment;
+using RoboRiftRush.Environment;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.U2D;
 
-namespace SpeedPlatformer.Editor {
+namespace RoboRiftRush.Editor {
 
 #if UNITY_EDITOR
     public class LevelCreatorPanel : EditorWindow {

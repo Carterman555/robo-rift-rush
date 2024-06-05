@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using Unity.VisualScripting;
 
-namespace SpeedPlatformer.Environment {
+namespace RoboRiftRush.Environment {
     [RequireComponent(typeof(Rigidbody2D))]
     public class RotateIsland : MonoBehaviour {
 

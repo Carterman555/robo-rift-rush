@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer.UI {
+namespace RoboRiftRush.UI {
     public class ActivateButton : GameButton {
 
         [SerializeField] private string UIObject;

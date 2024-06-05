@@ -1,9 +1,9 @@
 using Blobber;
-using SpeedPlatformer.Utilities;
+using RoboRiftRush.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace SpeedPlatformer.Environment
+namespace RoboRiftRush.Environment
 {
     public class BallTrapLauncher : MonoBehaviour
     {
@@ -25,7 +25,6 @@ namespace SpeedPlatformer.Environment
         private void ShootBall() {
             Rigidbody2D ballTrap = ObjectPoolManager.SpawnObject(ballTrapPrefab, spawnPoint.position, Quaternion.identity, Parents.GetParent("Traps"));
 
-            print(transform.up);
             ballTrap.AddForce(shootForce * transform.up); 
         }
     }
