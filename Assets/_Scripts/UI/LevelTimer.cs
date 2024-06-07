@@ -1,8 +1,10 @@
+using Blobber;
+using RoboRiftRush.Management;
 using TMPro;
 using UnityEngine;
 
 namespace RoboRiftRush.UI {
-	public class LevelTimer : StaticInstance<LevelTimer> {
+	public class LevelTimer : StaticInstance<LevelTimer>, IDataPersistance {
 
         private TextMeshProUGUI timerText;
         private float time;
@@ -21,32 +23,29 @@ namespace RoboRiftRush.UI {
 
             time += Time.deltaTime;
 
-            int centisecondsInSecond = 100;
-            int secondsInMinute = 60;
-
-            int centiseconds = (int)((time * centisecondsInSecond) % centisecondsInSecond);
-            int seconds = (int)((time % secondsInMinute));
-            int minutes = (int)(time / secondsInMinute);
-
-            if (minutes == 0) {
-                timerText.text = FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
-            }
-            else {
-                timerText.text = FormatToTwoDigits(minutes) + ":" + FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
-            }
+            timerText.text = time.ToTimerFormat();
         }
 
-        private string FormatToTwoDigits(int num) {
-            if (num >= 10) {
-                return num.ToString();
-            }
-            else {
-                return "0" + num.ToString();
-            }
-        }
+        private static SerializableSaveDictionary<int, float> fastestTimes;
 
-        public void StopTimer() {
+        public void StopAndSaveTime() {
             runTimer = false;
+
+            int levelIndex = GameProgress.GetLevel() - 1;
+
+            print("Save");
+            if (time < fastestTimes[levelIndex]) {
+                fastestTimes[levelIndex] = time;
+            }
+        }
+
+        public void LoadData(GameData data) {
+            print("Load");
+            fastestTimes = data.FastestTimes;
+        }
+
+        public void SaveData(ref GameData data) {
+            data.FastestTimes = fastestTimes;
         }
     }
 }

@@ -1,3 +1,5 @@
+using Blobber;
+using RoboRiftRush.Audio;
 using RoboRiftRush.Management;
 using RoboRiftRush.UI;
 using TMPro;
@@ -5,19 +7,29 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace RoboRiftRush {
-	public class LevelButton : GameButton {
+	public class LevelButton : GameButton, IDataPersistance {
 
-        [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private TextMeshProUGUI levelText;
+        [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private Image image;
         private int levelNum;
 
         private bool levelLocked;
 
+        private float fastestTime;
+
         public void SetLevel(int num) {
             levelNum = num;
-            text.text = levelNum.ToString();
+            levelText.text = levelNum.ToString();
 
-            levelLocked = levelNum > GameProgress.GetHighestLevelUnlocked();
+            if (fastestTime != 0) {
+                timeText.text = "Time: " + fastestTime.ToTimerFormat();
+            }
+            else {
+                timeText.text = "Time: N/A";
+            }
+
+            levelLocked = levelNum > GameProgress.GetHighestLevelCompleted();
             if (levelLocked) {
                 image.color = Color.gray;
             }
@@ -26,12 +38,22 @@ namespace RoboRiftRush {
         protected override void OnClicked() {
 
             if (levelLocked) {
+                AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.ClickLocked, 0f, 0.5f);
                 return;
             }
 
             base.OnClicked();
             GameProgress.SetLevel(levelNum);
             GameProgress.ResetLevel();
+        }
+
+
+        public void LoadData(GameData data) {
+            int levelIndex = levelNum - 1;
+            fastestTime = data.FastestTimes[levelIndex];
+        }
+
+        public void SaveData(ref GameData data) {
         }
     }
 }

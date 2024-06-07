@@ -107,13 +107,34 @@ namespace RoboRiftRush.Player {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, correctRotationSpeed * Time.deltaTime);
             }
             else if (state == GrappleState.Launching) {
-
-                Vector2 newPosition = (Vector2)grapplePoint.position + (launchDirection * launchSpeed * Time.deltaTime);
-                SetGrappleObjectPos(newPosition);
-
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, correctRotationSpeed * Time.deltaTime);
 
-                distanceTraveled += launchSpeed * Time.deltaTime;
+                ReleaseGrappleCheck();
+            }
+            else if (state == GrappleState.Grappled) {
+                ReleaseGrappleCheck();
+
+                if (!playerController.GroundBlockingPlayer) {
+                    Vector3 directionToGrapple = grapplePoint.position - transform.position;
+                    transform.up = directionToGrapple;
+                }
+            }
+        }
+
+        private void FixedUpdate() {
+            if (state == GrappleState.Grappled) {
+
+                // so moves with translating environment
+                Vector3 newPosition = grapplePoint.position + ((Vector3)environmentVelocity * Time.fixedDeltaTime);
+
+                SetGrappleObjectPos(newPosition);
+            }
+            else if (state == GrappleState.Launching) {
+
+                Vector2 newPosition = (Vector2)grapplePoint.position + (launchDirection * launchSpeed * Time.fixedDeltaTime);
+                SetGrappleObjectPos(newPosition);
+
+                distanceTraveled += launchSpeed * Time.fixedDeltaTime;
                 if (distanceTraveled > maxDistance) {
                     ChangeState(GrappleState.Deactive);
                 }
@@ -135,26 +156,6 @@ namespace RoboRiftRush.Player {
                     ChangeState(GrappleState.Deactive);
                     AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.GrappleBreak, 0, 0.5f);
                 }
-
-                ReleaseGrappleCheck();
-            }
-            else if (state == GrappleState.Grappled) {
-                ReleaseGrappleCheck();
-
-                if (!playerController.GroundBlockingPlayer) {
-                    Vector3 directionToGrapple = grapplePoint.position - transform.position;
-                    transform.up = directionToGrapple;
-                }
-            }
-        }
-
-        private void FixedUpdate() {
-            if (state == GrappleState.Grappled) {
-
-                // so moves with translating environment
-                Vector3 newPosition = grapplePoint.position + ((Vector3)environmentVelocity * Time.fixedDeltaTime);
-
-                SetGrappleObjectPos(newPosition);
             }
         }
 
@@ -214,11 +215,19 @@ namespace RoboRiftRush.Player {
 
         private bool DetectingGrappleSurface(out Vector2 hitPoint) {
 
-            float rayLength = 1f;
-            RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
+            // start from a backwards position to make sure the ray cast detects the surface
+            // and doesn't glitch through
+            float backwardsDistance = 2f;
+            Vector2 backwards = -launchDirection * backwardsDistance;
+            Vector2 backwardsPoint = (Vector2)grapplePoint.position + backwards;
+
+            float rayLength = 4f;
+            RaycastHit2D hit = Physics2D.Raycast(backwardsPoint,
                 launchDirection,
                 rayLength,
                 grappleSurfaceLayerMask);
+
+            Debug.DrawLine(backwardsPoint, backwardsPoint + (launchDirection * rayLength));
 
             bool hitGrappleSurface = hit.collider != null;
             hitPoint = hitGrappleSurface ? hit.point : Vector2.zero;
@@ -227,8 +236,14 @@ namespace RoboRiftRush.Player {
 
         private bool DetectingObstacle() {
 
-            float rayLength = 1f;
-            RaycastHit2D hit = Physics2D.Raycast(grapplePoint.position,
+            // start from a backwards position to make sure the ray cast detects the surface
+            // and doesn't glitch through
+            float backwardsDistance = 2f;
+            Vector2 backwards = -launchDirection * backwardsDistance;
+            Vector2 backwardsPoint = (Vector2)grapplePoint.position + backwards;
+
+            float rayLength = 4f;
+            RaycastHit2D hit = Physics2D.Raycast(backwardsPoint,
                 launchDirection,
                 rayLength,
                 obstacleLayerMask);

@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: dbc23cfa003680f4d84d73d637a803ab
+guid: cec4b06fad38ef2408a69f1997ab7f86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9042491587812255614
-    second: tutorial-set_0
+      213: -6894947622123914580
+    second: object-set_0
   - first:
-      213: -8670026669397520437
-    second: tutorial-set_1
+      213: 4213450825485059622
+    second: object-set_1
   - first:
-      213: 5902968077370028231
-    second: tutorial-set_2
+      213: -3866414183454572135
+    second: object-set_2
   - first:
-      213: -308731767564032119
-    second: tutorial-set_3
+      213: -3435021690780171849
+    second: object-set_4
   - first:
-      213: -2734573575136200628
-    second: tutorial-set_4
+      213: 115784758261635352
+    second: object-set_5
+  - first:
+      213: 6844381317578117905
+    second: object-set_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -80,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -92,7 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -104,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -118,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tutorial-set_0
+      name: object-set_0
       rect:
         serializedVersion: 2
         x: 74
@@ -126,20 +129,20 @@ TextureImporter:
         width: 153
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 39, y: 0, z: 32, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e77e100a0326d7d70800000000000000
-      internalID: 9042491587812255614
+      spriteID: caa316e2ba93050a0800000000000000
+      internalID: -6894947622123914580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-set_1
+      name: object-set_1
       rect:
         serializedVersion: 2
         x: 317
@@ -147,41 +150,62 @@ TextureImporter:
         width: 179
         height: 132
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcfc5611ea0eda780800000000000000
-      internalID: -8670026669397520437
+      spriteID: 6260d93b33f297a30800000000000000
+      internalID: 4213450825485059622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-set_3
+      name: object-set_2
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 321
+        width: 132
+        height: 193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99188a809ccb75ac0800000000000000
+      internalID: -3866414183454572135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: object-set_4
       rect:
         serializedVersion: 2
         x: 69
-        y: 53
+        y: 54
         width: 162
-        height: 267
+        height: 266
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 987a777d71a27bbf0800000000000000
-      internalID: -308731767564032119
+      spriteID: 7b14945c8f95450d0800000000000000
+      internalID: -3435021690780171849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tutorial-set_4
+      name: object-set_5
       rect:
         serializedVersion: 2
         x: 375
@@ -189,14 +213,35 @@ TextureImporter:
         width: 32
         height: 226
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4836d162d7dc0ad0800000000000000
-      internalID: -2734573575136200628
+      spriteID: 819d69acf995b9100800000000000000
+      internalID: 115784758261635352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: object-set_7
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 14
+        width: 276
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11350959b802cfe50800000000000000
+      internalID: 6844381317578117905
       vertices: []
       indices: 
       edges: []

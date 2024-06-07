@@ -1329,7 +1329,7 @@ MonoBehaviour:
   playClickAudio: 0
   UIObject: LevelSelectMenu
   delay: 0
-  playUISlideAudio: 0
+  playUISlideAudio: 1
 --- !u!114 &1109983009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playClickAudio: 1
   UIObject: MainMenu
-  delay: 0
+  delay: 0.2
   playUISlideAudio: 1
 --- !u!114 &1109983010
 MonoBehaviour:
@@ -2053,7 +2053,7 @@ MonoBehaviour:
   playClickAudio: 0
   UIObject: MainMenu
   delay: 0
-  playUISlideAudio: 0
+  playUISlideAudio: 1
 --- !u!114 &1926851712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,7 +2068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playClickAudio: 1
   UIObject: LevelSelectMenu
-  delay: 0
+  delay: 0.2
   playUISlideAudio: 1
 --- !u!1 &2012622592
 GameObject:
@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playClickAudio: 1
   UIObject: Settings
-  delay: 0.3
+  delay: 0.2
   playUISlideAudio: 1
 --- !u!114 &2090955421
 MonoBehaviour:
@@ -2303,6 +2303,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 47092949}
     m_Modifications:
+    - target: {fileID: 4055732619756580300, guid: 35a170afc7b689c41929c57b089dea25, type: 3}
+      propertyPath: delay
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4055732619756580300, guid: 35a170afc7b689c41929c57b089dea25, type: 3}
       propertyPath: playAudio
       value: 0

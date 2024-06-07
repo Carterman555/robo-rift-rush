@@ -15308,8 +15308,6 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 0b304e1492625d646889a98937ef537c, type: 2}
   leftGroundTrigger: {fileID: 7567837671331030986}
   rightGroundTrigger: {fileID: 5424128049961225663}
-  rollSpeed: 40
-  rollDuration: 0.3
 --- !u!114 &6916853990179449719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15322,7 +15320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45e5f32c9d45a4497a5014a9dfa97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUnlocked: 0
+  startUnlocked: 1
   grappleSurfaceLayerMask:
     serializedVersion: 2
     m_Bits: 8192
@@ -15335,6 +15333,7 @@ MonoBehaviour:
   launchSpeed: 75
   maxDistance: 40
   correctRotationSpeed: 150
+  grappleCooldown: 0.1
 --- !u!114 &5400878577179821067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15347,7 +15346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974685a875d85704d965bf211f72df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPlayerYPos: -15
+  killPlayerYPos: -90
 --- !u!1 &6916853991358414901
 GameObject:
   m_ObjectHideFlags: 0

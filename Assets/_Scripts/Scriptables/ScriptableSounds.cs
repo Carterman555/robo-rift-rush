@@ -32,6 +32,9 @@ namespace RoboRiftRush.Audio {
         [SerializeField] private AudioClip wind;
         public AudioClip Wind => wind;
 
+        [SerializeField] private AudioClip grapplePickup;
+        public AudioClip GrapplePickup => grapplePickup;
+
         [SerializeField] private AudioClip grappleLaunch;
         public AudioClip GrappleLaunch => grappleLaunch;
 
@@ -56,6 +59,9 @@ namespace RoboRiftRush.Audio {
 
         [SerializeField] private AudioClip buttonClick;
         public AudioClip ButtonClick => buttonClick;
+
+        [SerializeField] private AudioClip clickLocked;
+        public AudioClip ClickLocked => clickLocked;
 
         [SerializeField] private AudioClip _UISlide;
         public AudioClip UISlide => _UISlide;

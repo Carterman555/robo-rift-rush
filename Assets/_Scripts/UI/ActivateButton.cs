@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace RoboRiftRush.UI {
@@ -11,11 +12,11 @@ namespace RoboRiftRush.UI {
         protected override void OnClicked() {
             base.OnClicked();
 
-            //Invoke(nameof(ActivateObject), delay);
-            ActivateObject();
+            StartCoroutine(ActivateObject());
         }
 
-        private void ActivateObject() {
+        private IEnumerator ActivateObject() {
+            yield return new WaitForSecondsRealtime(delay);
             PopupCanvas.Instance.ActivateUIObject(UIObject, playUISlideAudio);
         }
     }

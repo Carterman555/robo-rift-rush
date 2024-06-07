@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace RoboRiftRush.UI {
@@ -11,11 +12,11 @@ namespace RoboRiftRush.UI {
         protected override void OnClicked() {
             base.OnClicked();
 
-            Invoke(nameof(DeactivateObject), delay);
-            //DeactivateObject();
+            StartCoroutine(DeactivateObject());
         }
 
-        private void DeactivateObject() {
+        private IEnumerator DeactivateObject() {
+            yield return new WaitForSecondsRealtime(delay);
             PopupCanvas.Instance.DeactivateUIObject(UIObject, playUISlideAudio);
         }
     }

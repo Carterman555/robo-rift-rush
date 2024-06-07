@@ -31,6 +31,7 @@ MonoBehaviour:
   trapDeath: {fileID: 8300000, guid: da7cd799282f47f4fbf8bbd844a6ed69, type: 3}
   trapSpike: {fileID: 8300000, guid: 2a4d8dc512380b449b49b709b8361cc7, type: 3}
   wind: {fileID: 8300000, guid: ef1f7d4cad298a146bd8dfa3fe0cdb70, type: 3}
+  grapplePickup: {fileID: 8300000, guid: 599a883e941d41d4e86e504087b4ca88, type: 3}
   grappleLaunch: {fileID: 8300000, guid: 482beb3fcf35f8f40a1b1ffebaaba59f, type: 3}
   grappleBreak: {fileID: 8300000, guid: 10ee39ceaf1855a4bac81aff3d1191f6, type: 3}
   grappleAttach: {fileID: 8300000, guid: ae06b1511495c2c4bbab2763d608a704, type: 3}
@@ -39,4 +40,5 @@ MonoBehaviour:
   mouseOn: {fileID: 8300000, guid: 838b42f6bf84e1a4aaa84f04877d772e, type: 3}
   mouseOff: {fileID: 8300000, guid: 5b2a215f1a27a6f458c3a032af1c99aa, type: 3}
   buttonClick: {fileID: 8300000, guid: edea96f4f48a7634f94d3913b111dab8, type: 3}
+  clickLocked: {fileID: 8300000, guid: 3f7a2d5141a1853489f65110991d4df3, type: 3}
   _UISlide: {fileID: 8300000, guid: 2f79c402bd33da64c85583e53e80c558, type: 3}

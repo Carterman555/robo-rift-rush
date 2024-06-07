@@ -30,7 +30,7 @@ namespace RoboRiftRush {
 
                 LevelTransitionFade.Instance.FadeOut();
 
-                LevelTimer.Instance.StopTimer();
+                LevelTimer.Instance.StopAndSaveTime();
 
                 AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.CompleteLevel, 0, 0.75f);
             }

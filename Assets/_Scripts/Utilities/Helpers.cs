@@ -2,25 +2,13 @@ using RoboRiftRush.Triggers;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 /// <summary>
 /// A static class for general helpful methods
 /// </summary>
-public static class Helpers
-{
-    /// <code>
-    /// transform.DestroyChildren();
-    /// </code>
-    public static void DestroyChildren(this Transform t)
-    {
-        foreach (Transform child in t) UnityEngine.Object.Destroy(child.gameObject);
-    }
-
-    public static void SetActiveChildren(this Transform t, bool active)
-    {
-        foreach (Transform child in t) child.gameObject.SetActive(active);
-    }
+public static class Helpers {
 
     public static Transform[] GetDirectChildren(this Transform t) {
         Transform[] children = new Transform[t.childCount];
@@ -30,22 +18,15 @@ public static class Helpers
         return children;
     }
 
-    public static void Fade(this SpriteRenderer spriteRenderer, float value)
-    {
+    public static void Fade(this SpriteRenderer spriteRenderer, float value) {
         Color color = spriteRenderer.color;
         color.a = value;
         spriteRenderer.color = color;
     }
-    public static void Fade(this Image image, float value)
-    {
+    public static void Fade(this Image image, float value) {
         Color color = image.color;
         color.a = value;
         image.color = color;
-    }
-
-    public static bool TryFindByName(out GameObject gameObject, string name) {
-        gameObject = GameObject.Find(name);
-        return gameObject != null;
     }
 
     public static Vector3 PerpendicularDirection(this Vector3 originalDirection) {
@@ -53,10 +34,6 @@ public static class Helpers
     }
     public static Vector2 PerpendicularDirection(this Vector2 originalDirection) {
         return new Vector2(originalDirection.y, -originalDirection.x);
-    }
-
-    public static Vector2 AngleToDirection(this float angle) {
-        return new Vector2(Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
     }
 
     public static Vector2 GetVelocityFromRotation(Vector3 center, Vector3 objectPos, float angularVelocityDegrees) {
@@ -78,21 +55,29 @@ public static class Helpers
         return velocity;
     }
 
-    public static bool IsMouseOverUI()
-    {
-        if (EventSystem.current == null) EventSystem.current = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).GetComponent<EventSystem>();
+    public static string ToTimerFormat(this float time) {
+        int centisecondsInSecond = 100;
+        int secondsInMinute = 60;
 
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
+        int centiseconds = (int)((time * centisecondsInSecond) % centisecondsInSecond);
+        int seconds = (int)((time % secondsInMinute));
+        int minutes = (int)(time / secondsInMinute);
 
-        List<RaycastResult> raycastResultList = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, raycastResultList);
-
-        for (int i = 0; i < raycastResultList.Count; i++)
-        {
-            if (raycastResultList[i].gameObject.layer == 5) return true;
+        if (minutes == 0) {
+            return FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
         }
-        return false;
+        else {
+            return FormatToTwoDigits(minutes) + ":" + FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
+        }
+
+        string FormatToTwoDigits(int num) {
+            if (num >= 10) {
+                return num.ToString();
+            }
+            else {
+                return "0" + num.ToString();
+            }
+        }
     }
 
     public static AudioClip RandomClip(this AudioClip[] clips) {
