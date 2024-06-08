@@ -64,19 +64,10 @@ public static class Helpers {
         int minutes = (int)(time / secondsInMinute);
 
         if (minutes == 0) {
-            return FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
+            return string.Format("{0:00}:{1:00}", seconds, centiseconds);
         }
         else {
-            return FormatToTwoDigits(minutes) + ":" + FormatToTwoDigits(seconds) + ":" + FormatToTwoDigits(centiseconds);
-        }
-
-        string FormatToTwoDigits(int num) {
-            if (num >= 10) {
-                return num.ToString();
-            }
-            else {
-                return "0" + num.ToString();
-            }
+            return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, centiseconds);
         }
     }
 

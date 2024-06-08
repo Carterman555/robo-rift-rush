@@ -1,8 +1,11 @@
 using UnityEngine;
 using RoboRiftRush.UI;
+using System;
 
 namespace RoboRiftRush.Management {
     public class PauseManager : Singleton<PauseManager> {
+
+        public static event Action OnPause;
 
         public static bool Paused { get; private set; }
 
@@ -19,7 +22,7 @@ namespace RoboRiftRush.Management {
         private void Update() {
 
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                if (PopupCanvas.Instance.GetPopupActive("SettingsPanel")) {
+                if (PopupCanvas.Instance.IsPopupActive("SettingsPanel")) {
                     PopupCanvas.Instance.ActivateUIObject("PausePanel");
                     PopupCanvas.Instance.DeactivateUIObject("SettingsPanel");
                 }
@@ -30,11 +33,12 @@ namespace RoboRiftRush.Management {
         }
 
         public void TogglePause() {
-            Paused = !Paused;
-            if (Paused) {
+            if (!Paused && !PopupCanvas.Instance.IsPopupActive("PausePanel")) {
+                Paused = true;
                 Pause();
             }
-            else {
+            else if (Paused && PopupCanvas.Instance.IsPopupActive("PausePanel")) {
+                Paused = false;
                 Unpause();
             }
         }
@@ -42,6 +46,7 @@ namespace RoboRiftRush.Management {
         public void Pause() {
             Time.timeScale = 0;
             PopupCanvas.Instance.ActivateUIObject("PausePanel");
+            OnPause?.Invoke();
         }
 
         public void Unpause() {

@@ -1,11 +1,14 @@
+using RoboRiftRush.Management;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TarodevController;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Blobber
 {
-    public class DataPersistenceManager : StaticInstance<DataPersistenceManager>
+    public class DataPersistenceManager : Singleton<DataPersistenceManager>
     {
         [Header("File Storage Config")]
         [SerializeField] private string fileName;
@@ -16,12 +19,22 @@ namespace Blobber
         private List<IDataPersistance> _dataPersistanceObjects;
         private FileDataHandler _dataHandler;
 
+        public GameData GetGameData() {
+            return _gameData;
+        }
+
         private void Start() {
-            if (!saveGame) return;
+            SceneManager.sceneUnloaded += BeforeSceneChange;
+            SceneManager.activeSceneChanged += AfterSceneChange;
 
-            _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-            _dataPersistanceObjects = FindAllDataPersistanceObjects();
+            LoadGame();
+        }
 
+        private void BeforeSceneChange(Scene arg0) {
+            SaveGame();
+        }
+
+        private void AfterSceneChange(Scene arg0, Scene arg1) {
             LoadGame();
         }
 
@@ -31,6 +44,9 @@ namespace Blobber
 
         private void LoadGame() {
             if (!saveGame) return;
+
+            _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+            _dataPersistanceObjects = FindAllDataPersistanceObjects();
 
             _gameData = _dataHandler.Load();
 

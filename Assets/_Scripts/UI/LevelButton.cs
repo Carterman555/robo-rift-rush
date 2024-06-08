@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace RoboRiftRush {
-	public class LevelButton : GameButton, IDataPersistance {
+	public class LevelButton : GameButton {
 
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private TextMeshProUGUI timeText;
@@ -16,13 +16,14 @@ namespace RoboRiftRush {
 
         private bool levelLocked;
 
-        private float fastestTime;
-
         public void SetLevel(int num) {
             levelNum = num;
             levelText.text = levelNum.ToString();
 
-            if (fastestTime != 0) {
+            int levelIndex = levelNum - 1;
+
+            float fastestTime = DataPersistenceManager.Instance.GetGameData().FastestTimes[levelIndex];
+            if (fastestTime != float.MaxValue) {
                 timeText.text = "Time: " + fastestTime.ToTimerFormat();
             }
             else {
@@ -45,15 +46,6 @@ namespace RoboRiftRush {
             base.OnClicked();
             GameProgress.SetLevel(levelNum);
             GameProgress.ResetLevel();
-        }
-
-
-        public void LoadData(GameData data) {
-            int levelIndex = levelNum - 1;
-            fastestTime = data.FastestTimes[levelIndex];
-        }
-
-        public void SaveData(ref GameData data) {
         }
     }
 }

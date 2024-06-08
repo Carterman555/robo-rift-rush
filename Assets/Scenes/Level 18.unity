@@ -7112,8 +7112,8 @@ EdgeCollider2D:
   - {x: -2.3846054, y: -3.9135385}
   - {x: -1.9389124, y: -4.265955}
   - {x: -1.2376902, y: -4.5379877}
-  - {x: -0.22356622, y: -4.4745936}
-  - {x: 0.96618915, y: -4.1618376}
+  - {x: -0.22356626, y: -4.4745936}
+  - {x: 0.9661893, y: -4.1618376}
   - {x: 2.3259773, y: -3.6564035}
   - {x: 3.8096292, y: -2.9961817}
   - {x: 5.6352177, y: -2.0659494}
@@ -18453,6 +18453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 1964206524}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!114 &1215209808
 MonoBehaviour:
@@ -22434,6 +22435,7 @@ GameObject:
   - component: {fileID: 1964206523}
   - component: {fileID: 1964206525}
   - component: {fileID: 1964206524}
+  - component: {fileID: 1964206526}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -22493,6 +22495,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.683975, y: 1.6403599}
   m_EdgeRadius: 0
+--- !u!50 &1964206526
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964206522}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1975413801
 GameObject:
   m_ObjectHideFlags: 0
@@ -23164,6 +23187,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1845868361}
     m_Modifications:
+    - target: {fileID: 5400878577179821067, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: killPlayerYPos
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449673, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_Name
       value: Player
@@ -23224,6 +23251,10 @@ PrefabInstance:
       propertyPath: grapplePoint
       value: 
       objectReference: {fileID: 77527183}
+    - target: {fileID: 6916853990179449719, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
+      propertyPath: startUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
 --- !u!1001 &8968868932010700850

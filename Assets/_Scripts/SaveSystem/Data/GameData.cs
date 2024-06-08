@@ -15,7 +15,7 @@ namespace Blobber
             FastestTimes = new SerializableSaveDictionary<int, float>();
             float levelCount = 18;
             for (int i = 0; i < levelCount; i++) {
-                FastestTimes.Add(i, 0f);
+                FastestTimes.Add(i, float.MaxValue);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace RoboRiftRush.UI {
         // name of popup, is the popup active
         private Dictionary<string, bool> activePopups = new Dictionary<string, bool>();
 
-        public bool GetPopupActive(string name) {
+        public bool IsPopupActive(string name) {
             return activePopups[name];
         }
 

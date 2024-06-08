@@ -15,6 +15,8 @@ namespace RoboRiftRush.Environment {
             breakTrigger.OnTriggerEntered -= TryBreak;
         }
 
+        [SerializeField] private bool debug;
+
         private void TryBreak(Collider2D collision){
             bool collidedWithIsland = collision.gameObject.layer == GameLayers.GroundLayer || collision.gameObject.layer == GameLayers.GrappleSurfaceLayer;
             if (collidedWithIsland && collision.gameObject != gameObject) {
@@ -102,6 +104,9 @@ namespace RoboRiftRush.Environment {
 
             BoxCollider2D collider = breakTriggerObj.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;
+
+            Rigidbody2D rb = breakTriggerObj.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
 
             //... add and assign moveTrigger component
             breakTrigger = breakTriggerObj.AddComponent<TriggerEvent>();

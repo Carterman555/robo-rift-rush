@@ -26,6 +26,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ccc34d12807dc9b44bfb46d09ac1fd41, type: 3}
   jump: {fileID: 8300000, guid: 7368d22fe1c58e345936601fc2c3a0a2, type: 3}
   land: {fileID: 8300000, guid: 61174735a2a43124cb4d91e4dfba82b5, type: 3}
+  startLevel: {fileID: 8300000, guid: 905ffad6f0a0ad6468ea882c85314be7, type: 3}
   completeLevel: {fileID: 8300000, guid: ca39085ae1210244ab96ef7e1f1e88c7, type: 3}
   fallVoid: {fileID: 8300000, guid: e882a9cb9579241439496a76e2847d93, type: 3}
   trapDeath: {fileID: 8300000, guid: da7cd799282f47f4fbf8bbd844a6ed69, type: 3}

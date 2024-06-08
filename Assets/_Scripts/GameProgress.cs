@@ -1,5 +1,6 @@
 using Blobber;
 using RoboRiftRush.UI;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,11 +40,11 @@ namespace RoboRiftRush.Management {
             highestLevelCompleted = level;
         }
 
+        #endregion
+
         public static void ResetLevel() {
             SceneManager.LoadScene(GetLevelScene());
         }
-
-        #endregion
 
         public static void ContinueNextLevel() {
             SetLevel(level + 1);

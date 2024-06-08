@@ -1,5 +1,6 @@
 using RoboRiftRush.Audio;
 using RoboRiftRush.Management;
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -46,8 +47,10 @@ namespace TarodevController {
             //... wait a frame to allow audio system to initialize
             yield return null;
             if (windSource == null) {
-                windSource = AudioSystem.Instance.PlayLoopingSound(AudioSystem.SoundClips.Wind, 0.5f); // testing (remove)
+                windSource = AudioSystem.Instance.PlayLoopingSound(AudioSystem.SoundClips.Wind, 0.5f);
             }
+
+            AudioSystem.Instance.PlaySound(AudioSystem.SoundClips.StartLevel, 0, 0.75f);
         }
 
         private void OnEnable() {
@@ -65,7 +68,10 @@ namespace TarodevController {
         }
 
         private void Update() {
-            if (player == null) return;
+            if (player == null || PauseManager.Paused) {
+                windSource.volume = 0;
+                return;
+            }
 
             DetectGroundColor();
 

@@ -1,7 +1,5 @@
 using Blobber;
 using RoboRiftRush.Management;
-using RoboRiftRush.UI;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RoboRiftRush

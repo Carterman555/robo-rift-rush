@@ -23,7 +23,7 @@ namespace RoboRiftRush.UI {
 
             time += Time.deltaTime;
 
-            timerText.text = time.ToTimerFormat();
+            timerText.text = "<mspace=.6em>" + time.ToTimerFormat() + "</mspace>";
         }
 
         private static SerializableSaveDictionary<int, float> fastestTimes;
@@ -33,14 +33,12 @@ namespace RoboRiftRush.UI {
 
             int levelIndex = GameProgress.GetLevel() - 1;
 
-            print("Save");
             if (time < fastestTimes[levelIndex]) {
                 fastestTimes[levelIndex] = time;
             }
         }
 
         public void LoadData(GameData data) {
-            print("Load");
             fastestTimes = data.FastestTimes;
         }
 

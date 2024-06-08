@@ -17,6 +17,9 @@ namespace RoboRiftRush.Audio {
         [SerializeField] private AudioClip land;
         public AudioClip Land => land;
 
+        [SerializeField] private AudioClip startLevel;
+        public AudioClip StartLevel => startLevel;
+
         [SerializeField] private AudioClip completeLevel;
         public AudioClip CompleteLevel => completeLevel;
 

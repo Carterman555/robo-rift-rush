@@ -195,7 +195,7 @@ namespace RoboRiftRush.Player {
 
                 SetGrappleObjectPos(playerGrapplePoint.position);
 
-                launchDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerGrapplePoint.position).normalized;
+                launchDirection = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)playerGrapplePoint.position).normalized;
 
                 grapplePoint.up = launchDirection;
 

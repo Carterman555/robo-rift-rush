@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 346636772}
   - component: {fileID: 346636774}
   - component: {fileID: 346636773}
+  - component: {fileID: 346636775}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -1204,6 +1205,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 24.646133, y: 1.2369347}
   m_EdgeRadius: 0
+--- !u!50 &346636775
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346636771}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &356177388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,6 +1306,7 @@ GameObject:
   - component: {fileID: 388282470}
   - component: {fileID: 388282472}
   - component: {fileID: 388282471}
+  - component: {fileID: 388282473}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -1343,6 +1366,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 33.35, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &388282473
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388282469}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &388312786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4830033280267411682, guid: 5ce725c91959492408f53c7ab0b58dbc, type: 3}
@@ -2530,6 +2574,7 @@ GameObject:
   - component: {fileID: 578274740}
   - component: {fileID: 578274742}
   - component: {fileID: 578274741}
+  - component: {fileID: 578274743}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -2589,6 +2634,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 21.722717, y: 1.8038979}
   m_EdgeRadius: 0
+--- !u!50 &578274743
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578274739}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &605912699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2666,7 @@ GameObject:
   - component: {fileID: 605912700}
   - component: {fileID: 605912702}
   - component: {fileID: 605912701}
+  - component: {fileID: 605912703}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -2659,6 +2726,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 27.28, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &605912703
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605912699}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &607215556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3687,7 @@ GameObject:
   - component: {fileID: 722752967}
   - component: {fileID: 722752969}
   - component: {fileID: 722752968}
+  - component: {fileID: 722752970}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -3658,6 +3747,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.918304, y: 1.220829}
   m_EdgeRadius: 0
+--- !u!50 &722752970
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722752966}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &732393128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3793,6 +3903,7 @@ GameObject:
   - component: {fileID: 808427711}
   - component: {fileID: 808427713}
   - component: {fileID: 808427712}
+  - component: {fileID: 808427714}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -3852,6 +3963,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.42, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &808427714
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808427710}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &846313143
 GameObject:
   m_ObjectHideFlags: 0
@@ -3863,6 +3995,7 @@ GameObject:
   - component: {fileID: 846313144}
   - component: {fileID: 846313146}
   - component: {fileID: 846313145}
+  - component: {fileID: 846313147}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -3922,6 +4055,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 23.54136, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &846313147
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846313143}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &887257557
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,33 +5102,33 @@ EdgeCollider2D:
   - {x: -10.132297, y: 4.583662}
   - {x: -10.576, y: 4.5778522}
   - {x: -10.884151, y: 4.455712}
-  - {x: -11.143356, y: 3.9010239}
-  - {x: -10.904554, y: 2.587614}
+  - {x: -11.143356, y: 3.90102}
+  - {x: -10.904554, y: 2.5876138}
   - {x: -12.558216, y: 2.5802612}
   - {x: -13.150202, y: 2.4185696}
   - {x: -13.434422, y: 1.8343693}
   - {x: -13.138582, y: 1.2970885}
   - {x: -12.700617, y: 0.9466615}
-  - {x: -11.439782, y: 0.18646999}
+  - {x: -11.439782, y: 0.1864698}
   - {x: -8.002187, y: -1.6548319}
   - {x: -6.3423758, y: -2.6061318}
-  - {x: -5.6492596, y: -3.053678}
-  - {x: -5.0412083, y: -3.5185027}
-  - {x: -4.234373, y: -4.226244}
+  - {x: -5.649259, y: -3.0536785}
+  - {x: -5.0412054, y: -3.5185056}
+  - {x: -4.234373, y: -4.2262435}
   - {x: -3.648592, y: -4.4763465}
-  - {x: -2.9646397, y: -4.585149}
+  - {x: -2.9646382, y: -4.585149}
   - {x: -2.3361316, y: -4.579226}
-  - {x: -1.632469, y: -4.487911}
-  - {x: -0.8346285, y: -4.308913}
-  - {x: 0.5970708, y: -3.8664584}
-  - {x: 4.155701, y: -2.5246773}
-  - {x: 5.920143, y: -1.989886}
-  - {x: 7.237733, y: -1.3301667}
+  - {x: -1.6324688, y: -4.487911}
+  - {x: -0.8346244, y: -4.3089128}
+  - {x: 0.5970708, y: -3.866459}
+  - {x: 4.1557007, y: -2.5246773}
+  - {x: 5.920147, y: -1.9898843}
+  - {x: 7.237733, y: -1.3301668}
   - {x: 7.9628906, y: -0.877566}
-  - {x: 8.698196, y: -0.3724943}
-  - {x: 10.258553, y: 0.8306749}
+  - {x: 8.698196, y: -0.3724946}
+  - {x: 10.258558, y: 0.83067906}
   - {x: 11.416464, y: 1.8338896}
-  - {x: 12.530066, y: 2.9579065}
+  - {x: 12.530069, y: 2.957912}
   - {x: 13.015944, y: 3.6200514}
   - {x: 13.075853, y: 4.2039685}
   - {x: 12.5, y: 4.583662}
@@ -5148,6 +5302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 846313145}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &1018471713
 GameObject:
@@ -7062,6 +7217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 605912701}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &1344251079
 GameObject:
@@ -7668,6 +7824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 722752968}
+  debug: 1
   dissolveDuration: 0.5
 --- !u!1 &1408573363
 GameObject:
@@ -8119,6 +8276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 388282471}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &1439427074
 GameObject:
@@ -9588,6 +9746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 578274741}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &1540791980
 GameObject:
@@ -11201,6 +11360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 1882203537}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &1788416256
 GameObject:
@@ -22430,6 +22590,7 @@ GameObject:
   - component: {fileID: 1882203536}
   - component: {fileID: 1882203538}
   - component: {fileID: 1882203537}
+  - component: {fileID: 1882203539}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -22489,6 +22650,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 26.12, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1882203539
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882203535}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1887539698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23103,6 +23285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 808427712}
+  debug: 1
   dissolveDuration: 0.5
 --- !u!1 &1978214135
 GameObject:
@@ -23115,6 +23298,7 @@ GameObject:
   - component: {fileID: 1978214136}
   - component: {fileID: 1978214138}
   - component: {fileID: 1978214137}
+  - component: {fileID: 1978214139}
   m_Layer: 0
   m_Name: BreakTrigger
   m_TagString: Untagged
@@ -23174,6 +23358,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.64, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1978214139
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978214135}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2033128532
 GameObject:
   m_ObjectHideFlags: 0
@@ -23514,6 +23719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 1978214137}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &2076892114
 GameObject:
@@ -23854,6 +24060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTrigger: {fileID: 346636773}
+  debug: 0
   dissolveDuration: 0.5
 --- !u!1 &2133397923
 GameObject:
@@ -23959,19 +24166,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 302.1
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931130883110, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6000009
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 302.1
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701741, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6000009
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 5499219931145701778, guid: 8b08b0ecc42097a448e5a318c2595d82, type: 3}
       propertyPath: orthographic size
@@ -24158,11 +24365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 302.1
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 6916853990179449674, guid: 59f22df1756dcc7498907ab2195b0524, type: 3}
       propertyPath: m_LocalPosition.z

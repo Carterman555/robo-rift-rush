@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c61207a4c61c704a8aa436b4d689513, type: 3}
   m_Name: MovementStats
   m_EditorClassIdentifier: 
-  PlayerLayer:
+  GroundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8200
   SnapInput: 0
   VerticalDeadZoneThreshold: 0.3
   HorizontalDeadZoneThreshold: 0.1
