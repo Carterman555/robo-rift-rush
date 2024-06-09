@@ -3,15 +3,14 @@ using RoboRiftRush.UI;
 using System;
 
 namespace RoboRiftRush.Management {
-    public class PauseManager : Singleton<PauseManager> {
+    public class PauseManager : StaticInstance<PauseManager> {
 
         public static event Action OnPause;
 
         public static bool Paused { get; private set; }
 
-        // to reset the bool when domain is not reloaded
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void Init() {
+        protected override void Awake() {
+            base.Awake();
             Paused = false;
         }
 

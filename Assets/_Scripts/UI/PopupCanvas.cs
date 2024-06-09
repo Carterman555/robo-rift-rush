@@ -44,10 +44,10 @@ namespace RoboRiftRush.UI {
                 return;
             }
 
-            currentPopup.Transform.gameObject.SetActive(true);
+            currentPopup.RectTransform.gameObject.SetActive(true);
 
-            currentPopup.Transform.position = currentPopup.HidePos;
-            currentPopup.Transform.DOMove(currentPopup.ShowPos, 0.3f).SetEase(Ease.OutSine).SetUpdate(true).OnComplete(() => {
+            currentPopup.RectTransform.localPosition = currentPopup.HidePos;
+            currentPopup.RectTransform.DOLocalMove(currentPopup.ShowPos, 0.3f).SetEase(Ease.OutSine).SetUpdate(true).OnComplete(() => {
                 // set the dictionary to the panel being active
                 activePopups[name] = true;
             });
@@ -75,9 +75,9 @@ namespace RoboRiftRush.UI {
                 return;
             }
 
-            currentPopup.Transform.position = currentPopup.ShowPos;
-            currentPopup.Transform.DOMove(currentPopup.HidePos, 0.3f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() => {
-                currentPopup.Transform.gameObject.SetActive(false);
+            currentPopup.RectTransform.localPosition = currentPopup.ShowPos;
+            currentPopup.RectTransform.DOLocalMove(currentPopup.HidePos, 0.3f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() => {
+                currentPopup.RectTransform.gameObject.SetActive(false);
 
                 // set the dictionary to the object being deactive
                 activePopups[name] = false;
@@ -91,7 +91,7 @@ namespace RoboRiftRush.UI {
 
         private void OnDisable() {
             foreach (var popupData in popupData) {
-                popupData.Transform.DOKill();
+                popupData.RectTransform.DOKill();
             }
         }
 
@@ -100,7 +100,7 @@ namespace RoboRiftRush.UI {
     [Serializable]
     public struct PopupData {
         public string Name;
-        public Transform Transform;
+        public RectTransform RectTransform;
         public Vector2 ShowPos;
         public Vector2 HidePos;
         public bool StartActive;

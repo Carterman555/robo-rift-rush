@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: RoboRiftRush.game
   saveGame: 1
-  useEncryption: 0
+  useEncryption: 1
 --- !u!1 &2881580683323059984
 GameObject:
   m_ObjectHideFlags: 0
