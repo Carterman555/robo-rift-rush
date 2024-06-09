@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpeedPlatformer {
+namespace RoboRiftRush {
 
 	[CreateAssetMenu(fileName = "fileName", menuName = "menuName")]
 	public class #SCRIPTNAME# : ScriptableObject {
